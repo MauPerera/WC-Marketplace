@@ -23,11 +23,14 @@ class WCMp_Admin {
 		add_action( 'trashed_post', array( $this, 'remove_commission_from_sales_report'), 10 );
 		add_action( 'untrashed_post', array( $this, 'restore_commission_from_sales_report'), 10 );
 		add_action( 'woocommerce_order_status_changed', array($this, 'change_commission_status'),20,3 );
+		
 				
 		
 		$this->load_class('settings');
 		$this->settings = new WCMp_Settings();
 	}
+	
+	
 	
 	public function change_commission_status($order_id, $old_status, $new_status) {
 		global $WCMp, $wpdb;

@@ -9,7 +9,10 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  * @author 		DualCube
 */
 class WCMp_Product {
-
+	public $loop;
+	public $variation_data = array();
+	public $variation;
+	
 	public function __construct() {
 		
 		add_action(	'woocommerce_product_write_panel_tabs', array( &$this, 'add_vendor_tab' ), 30);
@@ -48,8 +51,87 @@ class WCMp_Product {
 		add_filter( 'parse_query', array( $this, 'product_vendor_filters_query' ) );
 		add_action(	'save_post', array( &$this, 'check_sku_is_unique' ) );
 		
+		add_action( 'woocommerce_variation_options_dimensions',array($this,'add_filter_for_shipping_class'),10,3 );
+		add_action( 'woocommerce_variation_options_tax',array($this,'remove_filter_for_shipping_class'),10,3 );
+		//add_action( 'wp_footer', array($this, 'print_in_footer'),1000);
+		
 		$this->vendor_product_restriction();
 	}
+	
+	public function add_filter_for_shipping_class( $loop, $variation_data, $variation ) {
+		$this->loop = $loop;
+		$this->variation_data = $variation_data;
+		$this->variation = $variation;		
+		add_filter( 'wp_dropdown_cats', array( $this, 'filter_shipping_class_for_variation' ),10,2 );		
+	}
+	public function remove_filter_for_shipping_class( $loop, $variation_data, $variation ) {
+		remove_filter( 'wp_dropdown_cats', array( $this, 'filter_shipping_class_for_variation' ),10,2 );		
+	}
+	
+	public function print_in_footer() {
+		$data = get_option('shipping_class_args_test_by_prabhakar');
+		echo "<pre>";
+		print_r($data);
+		echo "<pre>";		
+	}
+	
+	
+	public function filter_shipping_class_for_variation($output, $arg ) {
+		global $WCMp;
+		$loop = $this->loop;
+		$variation_data = $this->variation_data;
+		$variation = $this->variation;
+		if( is_array($arg) && !empty($arg) && isset($arg['taxonomy']) && ($arg['taxonomy'] == 'product_shipping_class') ) {		
+			$html = '';			
+			$classes = get_the_terms( $variation->ID, 'product_shipping_class' );
+			if ( $classes && ! is_wp_error( $classes ) ) {
+				$current_shipping_class = current( $classes )->term_id;
+			} else {
+				$current_shipping_class = false;
+			}
+			$product_shipping_class = get_terms( 'product_shipping_class', array('hide_empty' => 0));
+			$current_user_id = get_current_user_id();
+			$option = '<option value="-1">Same as parent</option>';
+			
+			if(!empty($product_shipping_class)) {
+				$shipping_option_array = array();
+				$vednor_shipping_option_array = array();			
+				if(is_user_wcmp_vendor($current_user_id) ) {
+					$shipping_class_id = get_user_meta($current_user_id, 'shipping_class_id', true);
+					if(!empty($shipping_class_id)) {
+						$term_shipping_obj = get_term_by( 'id', $shipping_class_id, 'product_shipping_class');
+						$shipping_option_array[$term_shipping_obj->term_id] = $term_shipping_obj->name;
+					}				
+				}
+				else {			
+					foreach($product_shipping_class as $product_shipping) {				
+						$shipping_option_array[$product_shipping->term_id] = $product_shipping->name;					
+					}
+				}
+				if(!empty($vednor_shipping_option_array)) {
+					$shipping_option_array = array();
+					$shipping_option_array = $vednor_shipping_option_array;
+				}
+				if(!empty($shipping_option_array)) {
+					foreach($shipping_option_array as $shipping_option_array_key => $shipping_option_array_val) {
+						if($current_shipping_class && $shipping_option_array_key == $current_shipping_class) {
+							$option .= '<option selected value="'.$shipping_option_array_key.'">'.$shipping_option_array_val.'</option>';
+						} else {
+							$option .= '<option value="'.$shipping_option_array_key.'">'.$shipping_option_array_val.'</option>';
+						}
+					}
+				}
+			}
+			$html .= '<select name="dc_variable_shipping_class['.$loop.']" id="dc_variable_shipping_class['.$loop.']" class="postform">';
+			$html .= $option;
+			$html .= '</select>';	
+			return $html;
+		}
+		else {
+			return $output;
+		}
+	}
+	
 	
 	function check_sku_is_unique( $post_id ) {
 		global $WCMp;
@@ -89,9 +171,11 @@ class WCMp_Product {
 		if(is_ajax()) return;
 		$current_user_id = get_current_user_id();		
 		if( is_user_wcmp_vendor($current_user_id) ) {
+			add_filter( 'manage_product_posts_columns', array($this, 'remove_featured_star'),15);			
 			if( isset($_GET['post']) ) {
 				$current_post_id = $_GET['post'];
 				if( get_post_type($current_post_id) == 'product' ) {
+					
 					if(in_array(get_post_status( $current_post_id ), array('draft', 'publish', 'pending'))) {
 						$product_vendor_obj = get_wcmp_product_vendors($current_post_id);
 						if( $product_vendor_obj->id != $current_user_id ) {
@@ -109,6 +193,14 @@ class WCMp_Product {
 				}
 			}
 		}
+	}
+	
+	public function remove_featured_star( $existing_columns ) {
+		if ( empty( $existing_columns ) && ! is_array( $existing_columns ) ) {
+			$existing_columns = array();
+		}
+		unset( $existing_columns['featured'] );
+		return $existing_columns;		
 	}
 	
 	function product_vendor_filters_query($query) {
@@ -704,55 +796,7 @@ class WCMp_Product {
 	public function add_variation_settings( $loop, $variation_data, $variation ) {
 		global $WCMp;
 		
-		$html = '';
-		
-		$html .= '<p class="form-row hide_if_variation_virtual form-row-full"><label>'. __( 'Shipping class:', $WCMp->text_domain ).'</label>';
-		$classes = get_the_terms( $variation->ID, 'product_shipping_class' );
-		if ( $classes && ! is_wp_error( $classes ) ) {
-			$current_shipping_class = current( $classes )->term_id;
-		} else {
-			$current_shipping_class = false;
-		}
-		$product_shipping_class = get_terms( 'product_shipping_class', array('hide_empty' => 0));
-		$current_user_id = get_current_user_id();
-		$option = '<option value="-1">Same as parent</option>';
-		
-		if(!empty($product_shipping_class)) {
-			$shipping_option_array = array();
-			$vednor_shipping_option_array = array();
-			foreach($product_shipping_class as $product_shipping) {
-				$vendor_shipping_data = get_user_meta($current_user_id, 'vendor_shipping_data', true);		
-				if(is_user_wcmp_vendor($current_user_id) ) {
-					$vendor_id = get_woocommerce_term_meta( $product_shipping->term_id, 'vendor_id', true );
-					if(!$vendor_id)	{
-						$vednor_shipping_option_array[$product_shipping->term_id] = $product_shipping->name;
-					} else {
-						if($vendor_id == $current_user_id) {
-							$vednor_shipping_option_array[$product_shipping->term_id] = $product_shipping->name;
-						}
-					}
-				} else {
-					$shipping_option_array[$product_shipping->term_id] = $product_shipping->name;
-				}
-			}
-			if(!empty($vednor_shipping_option_array)) {
-				$shipping_option_array = array();
-				$shipping_option_array = $vednor_shipping_option_array;
-			}
-			if(!empty($shipping_option_array)) {
-				foreach($shipping_option_array as $shipping_option_array_key => $shipping_option_array_val) {
-					if($current_shipping_class && $shipping_option_array_key == $current_shipping_class) {
-						$option .= '<option selected value="'.$shipping_option_array_key.'">'.$shipping_option_array_val.'</option>';
-					} else {
-						$option .= '<option value="'.$shipping_option_array_key.'">'.$shipping_option_array_val.'</option>';
-					}
-				}
-			}
-		}
-		$html .= '<select name="dc_variable_shipping_class['.$loop.']" id="dc_variable_shipping_class['.$loop.']" class="postform">';
-		$html .= $option;
-		$html .= '</select>';
-		
+		$html = '';		
 		$commission = $commission_percentage = $commission_fixed_per_trans = $commission_fixed_per_qty = '';
 		$commission = get_post_meta($variation->ID, '_product_vendors_commission', true );
 		$commission_percentage = get_post_meta($variation->ID, '_product_vendors_commission_percentage', true );

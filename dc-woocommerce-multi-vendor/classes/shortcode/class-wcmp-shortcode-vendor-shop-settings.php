@@ -8,6 +8,7 @@
  */
  
 class WCMp_Shop_Setting_Shortcode {
+	public $error_msg;
 
 	public function __construct() {
 
@@ -36,8 +37,13 @@ class WCMp_Shop_Setting_Shortcode {
 		$is_saved = 0;
 		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			if(isset($_POST['store_save'])) {
-				$WCMp->vendor_dashboard->save_store_settings($vendor->id, $_POST);
-				$is_saved = 1;
+				$error_msg = $WCMp->vendor_dashboard->save_store_settings($vendor->id, $_POST);
+				if(empty($error_msg)) {
+					$is_saved = 1;
+				}
+				else {
+					$is_saved = $error_msg;
+				}				
 			}
 		}
 		
@@ -48,7 +54,9 @@ class WCMp_Shop_Setting_Shortcode {
 					if($user_array['is_shop_settings_saved'] == 1) { ?>
 						<div style="margin-bottom:10px; width:98%;" class="green_massenger"><i class="fa fa-check"></i> &nbsp; <?php _e( 'All Options Saved', $WCMp->text_domain );?></div>
 						
-					<?php } ?>
+					<?php } else { if(!empty($user_array['is_shop_settings_saved'])){ ?>
+						<div style="margin-bottom:10px; width:98%;" class="red_massenger"><i class="fa fa-times"></i> &nbsp; <?php echo $user_array['is_shop_settings_saved'];?></div>
+					<?php } }?>	
 		<div class="wcmp_remove_div">
 		
 			<div class="wcmp_main_page">  <?php 

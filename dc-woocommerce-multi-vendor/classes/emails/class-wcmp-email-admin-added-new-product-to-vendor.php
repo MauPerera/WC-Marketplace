@@ -99,7 +99,7 @@ class WC_Email_Admin_Added_New_Product_to_Vendor extends WC_Email {
 															 'submit_product'=> $this->submit_product,
 															 'post_id'       => $this->post_id,
 															 'email_heading' => $this->get_heading()
-														), 'woocommerce/', $this->template_base );
+														), 'dc-product-vendor/', $this->template_base );
 
 		return ob_get_clean();
 	}
@@ -120,7 +120,7 @@ class WC_Email_Admin_Added_New_Product_to_Vendor extends WC_Email {
 															  'submit_product'=> $this->submit_product,
 															  'post_id'       => $this->post_id,
 															  'email_heading' => $this->get_heading()
-														 ), 'woocommerce/', $this->template_base );
+														 ), 'dc-product-vendor/', $this->template_base );
 
 		return ob_get_clean();
 	}

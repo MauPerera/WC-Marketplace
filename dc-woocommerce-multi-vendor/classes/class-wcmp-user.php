@@ -121,7 +121,8 @@ class WCMp_User {
 		}  
 		if(is_user_wcmp_vendor($current_user)) {
 			$admin_url = admin_url();
-			echo apply_filters( 'wcmp_vendor_goto_dashboard', '<a href="'.$admin_url.'">'.__('Dashboard - manage your account here', $WCMp->text_domain).'</a>' );
+			$dashboard_page_id = get_option('wcmp_product_vendor_vendor_dashboard_page_id');
+			echo apply_filters( 'wcmp_vendor_goto_dashboard', '<a href="'.get_permalink($dashboard_page_id).'">'.__('Dashboard - manage your account here', $WCMp->text_domain).'</a>' );
 		}
   }
   
@@ -138,14 +139,21 @@ class WCMp_User {
   	
   	$user = new WP_User( $user_id );
   	if($user_id && $new_role == 'dc_rejected_vendor') {
+  		if(in_array('dc_vendor', $old_role)) {
+				$caps = $this->get_vendor_caps( $user_id );
+				foreach( $caps as $cap ) {
+					$user->remove_cap( $cap );
+				}
+				$user->remove_cap('manage_woocommerce');
+			}			
   		$user_dtl = get_userdata( absint( $user_id ) );
   		$email = WC()->mailer()->emails['WC_Email_Rejected_New_Vendor_Account'];
   		$email->trigger( $user_id, $user_dtl->user_pass );
   		if(in_array('dc_vendor', $old_role)) {
   			$vendor = get_wcmp_vendor($user_id);
   			if($vendor) wp_delete_term( $vendor->term_id, 'dc_vendor_shop' );
-  		}
-  		wp_delete_user($user_id); 
+  		}  		
+  		//wp_delete_user($user_id); 
   	}
   	if($user_id && $new_role == 'dc_pending_vendor') {
   		if(in_array('dc_vendor', $old_role)) {
@@ -207,6 +215,11 @@ class WCMp_User {
   	}
   	if( $WCMp->vendor_caps->vendor_capabilities_settings('is_published_coupon') ) {                    
 			$user->add_cap( 'publish_shop_coupons' );                
+		}
+		$shipping_class_id = get_user_meta($user_id,'shipping_class_id',true);
+		if( empty($shipping_class_id) ) {
+			$shipping_term = wp_insert_term( $user->user_login.'-'.$user_id, 'product_shipping_class' );
+			update_user_meta($user_id, 'shipping_class_id', $shipping_term['term_id']);
 		}
   	do_action('wcmp_set_user_role', $user_id, $new_role, $old_role);
   }

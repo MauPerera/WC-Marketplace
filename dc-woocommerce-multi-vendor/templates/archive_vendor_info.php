@@ -57,7 +57,7 @@ $vendor_hide_description = get_user_meta($vendor_id,'_vendor_hide_description', 
 if(!$vendor_hide_description) { ?>
 <div class="description_data">
 	<?php
-		$string = strip_tags($description);
+		$string = $description;
 	?>
 	<table>
 		<tbody>

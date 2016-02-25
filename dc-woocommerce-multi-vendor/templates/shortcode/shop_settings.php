@@ -19,6 +19,7 @@ if($vendor) {
 	$vendor_hide_address = get_user_meta($user->ID, '_vendor_hide_address', true);
 	$vendor_hide_phone = get_user_meta($user->ID, '_vendor_hide_phone', true);
 	$vendor_hide_message_to_buyers = get_user_meta($user->ID, '_vendor_hide_message_to_buyers', true);
+	$capabality_settings = get_option('wcmp_capabilities_settings_name');
 	?>
 	
 	<div class="wcmp_main_holder toside_fix">
@@ -46,28 +47,42 @@ if($vendor) {
 				} echo $shop_page_url = trailingslashit(get_home_url()); echo $store_slug;  ?><input class="small no_input" readonly type="text" name="vendor_page_slug" readonly value="<?php echo isset($vendor_page_slug['value']) ? $vendor_page_slug['value'] : ''; ?>" placeholder="<?php _e( 'Enter your Store Name here', $WCMp->text_domain );?>">
 				</span>				
 				<p> <?php _e( 'Shop Description', $WCMp->text_domain );?>
+				<?php if(isset($capabality_settings['is_hide_option_show'])) {?>
 				<span class="input-group-addon beautiful" ><input type="checkbox" name="vendor_hide_description"  value="Enable" <?php if($vendor_hide_description == 'Enable') echo 'checked=checked'; ?>><span>  <?php _e( 'Hide from user', $WCMp->text_domain );?></span></span></p>
+				<?php }?>
 				<textarea class="no_input" readonly name="vendor_description" cols="" rows="" placeholder="It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. "><?php echo isset($vendor_description['value']) ? $vendor_description['value'] : ''; ?></textarea>
 				<?php if(isset($vendor_message_to_buyers)){ ?>
 					<p> <?php _e( 'Message to Buyers', $WCMp->text_domain );?></p>
 					<textarea class="no_input" readonly name="vendor_message_to_buyers" cols="" rows="" placeholder="It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. "><?php echo isset($vendor_message_to_buyers['value']) ? $vendor_message_to_buyers['value'] : '';?></textarea>
 				<?php } ?>
 				<div class="half_part">
-					<p><?php _e( 'Phone*', $WCMp->text_domain );?> <span class="input-group-addon beautiful" >
+					<p><?php _e( 'Phone', $WCMp->text_domain );?>
+					<?php if(isset($capabality_settings['is_hide_option_show'])) {?>
+					<span class="input-group-addon beautiful" >
 						<input type="checkbox" name="vendor_hide_phone"  value="Enable" <?php if($vendor_hide_phone == 'Enable') echo 'checked=checked'; ?> >
-						<span> <?php _e( 'Hide from user', $WCMp->text_domain );?></span> </span> </p>
+						<span> <?php _e( 'Hide from user', $WCMp->text_domain );?></span> </span> 
+					<?php }?>	
+						</p>
 					<input class="no_input" readonly type="text" name="vendor_phone" placeholder="" value="<?php echo isset($vendor_phone['value']) ? $vendor_phone['value'] : ''; ?>">
 				</div>
 				<div class="half_part">
-					<p><?php _e( 'Email*', $WCMp->text_domain );?> <span class="input-group-addon beautiful" >
+					<p><?php _e( 'Email *', $WCMp->text_domain );?> 
+					<?php if(isset($capabality_settings['is_hide_option_show'])) {?>
+						<span class="input-group-addon beautiful" >
 						<input type="checkbox"  name="vendor_hide_email"  value="Enable" <?php if($vendor_hide_email == 'Enable') echo 'checked=checked'; ?>>
-						<span><?php _e( 'Hide from user', $WCMp->text_domain );?></span> </span> </p>
-					<input class="no_input vendor_email" readonly type="text" placeholder=""  value="<?php echo isset($vendor->user_data->user_email) ? $vendor->user_data->user_email : ''; ?>">
+						<span><?php _e( 'Hide from user', $WCMp->text_domain );?></span> </span>
+					<?php }?>
+						</p>
+					<input class="no_input vendor_email" readonly type="text" disabled placeholder=""  value="<?php echo isset($vendor->user_data->user_email) ? $vendor->user_data->user_email : ''; ?>">
 				</div>
 				<div class="clear"></div>
-				<p><?php _e( 'Address*', $WCMp->text_domain );?>  <span class="input-group-addon beautiful" >
+				<p><?php _e( 'Address', $WCMp->text_domain );?> 
+				<?php if(isset($capabality_settings['is_hide_option_show'])) {?>
+					<span class="input-group-addon beautiful" >
 					<input type="checkbox" name="vendor_hide_address"  value="Enable" <?php if($vendor_hide_address == 'Enable') echo 'checked=checked'; ?>>
-					<span><?php _e( ' Hide from user', $WCMp->text_domain );?></span> </span> </p>
+					<span><?php _e( ' Hide from user', $WCMp->text_domain );?></span> </span> 
+				<?php }?>	
+				</p>
 				<input class="no_input" readonly type="text" placeholder="Addressl line 1" name="vendor_address_1"  value="<?php echo isset($vendor_address_1['value']) ? $vendor_address_1['value']:''; ?>">
 				<input class="no_input" readonly type="text" placeholder="Addressl line 2" name="vendor_address_2"  value="<?php echo isset($vendor_address_2['value']) ? $vendor_address_2['value']:''; ?>">
 				<div class="one_third_part">

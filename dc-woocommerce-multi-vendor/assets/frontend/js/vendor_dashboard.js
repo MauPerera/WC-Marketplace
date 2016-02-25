@@ -130,10 +130,10 @@ function checkbox_custome_design() {
 						jQuery(this).parent().find('.fa').addClass('fa-square-o');
 					});
 				}
-			}
-			
-			
+			}			
 		});
+		
+		
 				
 		function updateDisplay() {
 			var isChecked = $input.is(':checked') ? 'on' : 'off';					
@@ -147,3 +147,40 @@ function checkbox_custome_design() {
 		updateDisplay();
 	});
 }
+jQuery(document).ready(function($){
+	var window_width = $( window ).width();
+	if(window_width <= 640 ) {
+		var active_menu = $(".wcmp_main_menu ul li.hasmenu>a.active");
+		var parent_ele = active_menu.parent();
+		var submenu = parent_ele.find('ul.submenu');
+		submenu.hide();
+		active_menu.removeClass('active');
+		if(!active_menu.hasClass('responsive_active')) {
+			active_menu.addClass('responsive_active');
+		}		
+	}			
+});
+jQuery(window).resize(function() {
+	var window_width = jQuery( window ).width();
+	if(window_width <= 640 ) {
+		var active_menu = jQuery(".wcmp_main_menu ul li.hasmenu>a.active");
+		var parent_ele = active_menu.parent();
+		var submenu = parent_ele.find('ul.submenu');
+		submenu.hide();
+		active_menu.removeClass('active');
+		if(!active_menu.hasClass('responsive_active')) {
+			active_menu.addClass('responsive_active');
+		}		
+	}
+	else {
+		var active_menu = jQuery(".wcmp_main_menu ul li.hasmenu>a.responsive_active");
+		var parent_ele = active_menu.parent();
+		var submenu = parent_ele.find('ul.submenu');
+		submenu.show();
+		active_menu.removeClass('responsive_active');
+		if(!active_menu.hasClass('active')) {
+			active_menu.addClass('active');
+		}		
+	}
+		
+});

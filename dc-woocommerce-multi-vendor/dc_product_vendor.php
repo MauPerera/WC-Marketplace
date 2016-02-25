@@ -4,7 +4,7 @@ Plugin Name: WC Marketplace
 Plugin URI: http://dualcube.com
 Description: A Free Extension That Transforms Your WooCommerce Site into a Marketplace.
 Author: DualCube, Mousumi Saha, Prabhakar Kumar Shaw, Arim Ghosh, Aveek Kr Saha, Sandeep Kumar
-Version: 2.3.3
+Version: 2.3.4
 Author URI: http://dualcube.com
 */
 

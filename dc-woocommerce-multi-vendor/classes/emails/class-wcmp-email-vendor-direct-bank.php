@@ -82,7 +82,7 @@ class WC_Email_Vendor_Direct_Bank extends WC_Email {
 			'transaction_id' => $this->transaction_id,
 			'sent_to_admin' => false,
 			'plain_text'    => false
-			), '', $this->template_base);
+			), 'dc-product-vendor/', $this->template_base);
 		return ob_get_clean();
 	}
 
@@ -101,7 +101,7 @@ class WC_Email_Vendor_Direct_Bank extends WC_Email {
 			'transaction_id' => $this->transaction_id,
 			'sent_to_admin' => false,
 			'plain_text'    => false
-			), '', $this->template_base);
+			), 'dc-product-vendor/', $this->template_base);
 		return ob_get_clean();
 	}
 

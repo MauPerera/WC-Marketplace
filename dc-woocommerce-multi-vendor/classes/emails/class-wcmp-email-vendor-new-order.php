@@ -92,7 +92,7 @@ class WC_Email_Vendor_New_Order extends WC_Email {
 			'blogname'           => $this->get_blogname(),
 			'sent_to_admin' => false,
 			'plain_text'    => false
-		), '', $this->template_base);
+		), 'dc-product-vendor/', $this->template_base);
 		return ob_get_clean();
 	}
 
@@ -111,7 +111,7 @@ class WC_Email_Vendor_New_Order extends WC_Email {
 			'blogname'           => $this->get_blogname(),
 			'sent_to_admin' => false,
 			'plain_text'    => true
-		) ,'', $this->template_base );
+		) ,'dc-product-vendor/', $this->template_base );
 		return ob_get_clean();
 	}
 

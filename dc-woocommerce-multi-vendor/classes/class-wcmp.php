@@ -130,12 +130,14 @@ final class WCMp {
 			add_filter( 'template_include', array( $this, 'template_loader' ) );
 		}
 		
+		// Init vendor action class
+		$this->load_class( 'vendor-details' );
+		
 		// Init Calculate commission class
 		$this->load_class( 'calculate-commission' );
 		new WCMp_Calculate_Commission();
 		
-		// Init vendor action class
-		$this->load_class( 'vendor-details' );
+		
 		
 		// Init product vendor taxonomies
     $this->init_taxonomy();
@@ -176,6 +178,7 @@ final class WCMp {
     $this->wcmp_plugins_loaded();
     
     do_action( 'wcmp_init' );
+    
     
 	}
 	
@@ -521,18 +524,18 @@ final class WCMp {
   		
   		if(!empty($prev_capability)) {
   			
-  			$new_capability = $prev_capability;
-  			
+  			$new_capability = $prev_capability;  			
   			if(isset($new_capability['give_tax'])) {
   				$new_payment['give_tax'] = $new_capability['give_tax'];
   				unset($new_capability['give_tax']);
-  			}
-  			
+  			}  			
   			if(isset($new_capability['give_shipping'])) {
   				$new_payment['give_shipping'] = $new_capability['give_shipping'];
   				unset($new_capability['give_shipping']);
   			}
-  			
+  			if($previous_plugin_version <= '2.3.3' ) {
+  				$new_capability['is_hide_option_show'] = 'Enable'; 	
+  			}
   		}
   		
   		if(!empty($prev_product)) {

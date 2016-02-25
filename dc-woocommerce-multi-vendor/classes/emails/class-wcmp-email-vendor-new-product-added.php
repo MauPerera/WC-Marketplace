@@ -104,7 +104,7 @@ class WC_Email_Vendor_New_Product_Added extends WC_Email {
 															 'post_id'       => $this->post_id,
 															 'post_type'     => $this->post_type,
 															 'email_heading' => $this->get_heading()
-														), 'woocommerce/', $this->template_base );
+														), 'dc-product-vendor/', $this->template_base );
 
 		return ob_get_clean();
 	}
@@ -125,7 +125,7 @@ class WC_Email_Vendor_New_Product_Added extends WC_Email {
 															  'post_id'       => $this->post_id,
 															  'post_type'     => $this->post_type,
 															  'email_heading' => $this->get_heading()
-														 ), 'woocommerce/', $this->template_base );
+														 ), 'dc-product-vendor/', $this->template_base );
 
 		return ob_get_clean();
 	}

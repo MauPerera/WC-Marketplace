@@ -79,6 +79,8 @@ class WCMp_Commission {
 			'query_var' => false,
 			'rewrite' => true,
 			'capability_type' => 'post',
+			'capabilities' => array('create_posts' => false, 'delete_posts' => false,),
+			'map_meta_cap' => true, 			
 			'has_archive' => true,
 			'hierarchical' => true,
 			'supports' => array( 'title' ),

@@ -181,6 +181,7 @@ class WCMp_Install {
 				'show_customer_billing' => 'Enable',
 				'show_customer_shipping' => 'Enable',
 				'show_cust_add' => 'Enable',
+				'is_hide_option_show' => 'Enable',
 			);
 			update_option('wcmp_capabilities_settings_name', $capabilities_settings);
 		}

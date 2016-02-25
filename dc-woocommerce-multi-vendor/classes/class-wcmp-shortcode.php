@@ -315,12 +315,16 @@ class WCMp_Shortcode {
 				'order' 				=> $order,
 				'meta_query' 			=> $meta_query
 			);
+			if ( !empty( $vendor ) ) {
+				$user = get_user_by ( 'login', $vendor );
+			}
 			
 			if ( !empty( $vendor ) ) {
+				$term_id = get_user_meta($user->ID, '_vendor_term_id', true);
 				$args['tax_query'][] = array(
 					'taxonomy' 		=> $WCMp->taxonomy->taxonomy_name,
-					'field' => 'slug',
-					'terms' => sanitize_title($vendor)
+					'field' => 'term_id',
+					'terms' => $term_id
 				);
 			}
  
@@ -369,7 +373,9 @@ class WCMp_Shortcode {
 			'order'     => 'asc'
 		), $atts ) );
 
-
+		if ( !empty( $vendor ) ) {
+			$user = get_user_by ( 'login', $vendor );
+		}
 
 		$args = array(
 			'post_type'				=> 'product',
@@ -388,11 +394,12 @@ class WCMp_Shortcode {
 		);
 		
 		if ( !empty( $vendor ) ) {
+			$term_id = get_user_meta($user->ID, '_vendor_term_id', true);
 			$args['tax_query'][] = array(
 				'taxonomy' 		=> $WCMp->taxonomy->taxonomy_name,
-				'field' => 'slug',
-				'terms' => sanitize_title($vendor)
-			);
+				'field' => 'term_id',
+				'terms' => $term_id
+			);			
 		} else if ( !empty( $id ) ) {
 			$term_id = get_user_meta($id, '_vendor_term_id', true);
 			$args['tax_query'][] = array(
@@ -483,13 +490,16 @@ class WCMp_Shortcode {
 				)
 			)
 		);
-		
 		if ( !empty( $vendor ) ) {
+			$user = get_user_by ( 'login', $vendor );
+		}
+		if ( !empty( $vendor ) ) {
+			$term_id = get_user_meta($user->ID, '_vendor_term_id', true);
 			$args['tax_query'][] = array(
 				'taxonomy' 		=> $WCMp->taxonomy->taxonomy_name,
-				'field' => 'slug',
-				'terms' => sanitize_title($vendor)
-			);
+				'field' => 'term_id',
+				'terms' => $term_id
+			);			
 		}
 
 		ob_start();
@@ -553,13 +563,17 @@ class WCMp_Shortcode {
 			'meta_query' 		=> $meta_query,
 			'post__in'			=> array_merge( array( 0 ), $product_ids_on_sale )
 		);
+		if ( !empty( $vendor ) ) {
+			$user = get_user_by ( 'login', $vendor );
+		}
 		
 		if ( !empty( $vendor ) ) {
+			$term_id = get_user_meta($user->ID, '_vendor_term_id', true);
 			$args['tax_query'][] = array(
 				'taxonomy' 		=> $WCMp->taxonomy->taxonomy_name,
-				'field' => 'slug',
-				'terms' => sanitize_title($vendor)
-			);
+				'field' => 'term_id',
+				'terms' => $term_id
+			);			
 		}
 		ob_start();
 
@@ -619,14 +633,18 @@ class WCMp_Shortcode {
 				)
 			)
 		);
+		if ( !empty( $vendor ) ) {
+			$user = get_user_by ( 'login', $vendor );
+		}
 		
 		if ( !empty( $vendor ) ) {
+			$term_id = get_user_meta($user->ID, '_vendor_term_id', true);
 			$args['tax_query'][] = array(
 				'taxonomy' 		=> $WCMp->taxonomy->taxonomy_name,
-				'field' => 'slug',
-				'terms' => sanitize_title($vendor)
-			);
-		}
+				'field' => 'term_id',
+				'terms' => $term_id
+			);			
+		}	
 
 		ob_start();
 
@@ -690,12 +708,19 @@ class WCMp_Shortcode {
 		);
 		
 		if ( !empty( $vendor ) ) {
+			$user = get_user_by ( 'login', $vendor );
+		}
+		
+		if ( !empty( $vendor ) ) {
+			$term_id = get_user_meta($user->ID, '_vendor_term_id', true);
 			$args['tax_query'][] = array(
 				'taxonomy' 		=> $WCMp->taxonomy->taxonomy_name,
-				'field' => 'slug',
-				'terms' => sanitize_title($vendor)
-			);
+				'field' => 'term_id',
+				'terms' => $term_id
+			);			
 		}
+		
+		
 		
 		ob_start();
 
@@ -774,12 +799,19 @@ class WCMp_Shortcode {
 		);
 		
 		if ( !empty( $vendor ) ) {
+			$user = get_user_by ( 'login', $vendor );
+		}
+		
+		if ( !empty( $vendor ) ) {
+			$term_id = get_user_meta($user->ID, '_vendor_term_id', true);
 			$args['tax_query'][] = array(
 				'taxonomy' 		=> $WCMp->taxonomy->taxonomy_name,
-				'field' => 'slug',
-				'terms' => sanitize_title($vendor)
-			);
+				'field' => 'term_id',
+				'terms' => $term_id
+			);			
 		}
+		
+		
 		
 		if ( isset( $ordering_args['meta_key'] ) ) {
 			$args['meta_key'] = $ordering_args['meta_key'];

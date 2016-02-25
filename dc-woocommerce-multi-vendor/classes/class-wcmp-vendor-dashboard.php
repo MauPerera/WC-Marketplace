@@ -772,7 +772,7 @@ Class WCMp_Admin_Dashboard {
 	}
 	
 	function save_store_settings($user_id, $post) {
-		global $WCMp;
+		global $WCMp;			
 		$vendor = get_wcmp_vendor($user_id);
 		$fields = $WCMp->user->get_vendor_fields($user_id);
 		foreach( $fields as $fieldkey => $value ) {
@@ -780,18 +780,48 @@ Class WCMp_Admin_Dashboard {
 			if ( isset( $post[ $fieldkey ] )  ) {
 				if(	$fieldkey == "vendor_page_slug" &&  !empty($post[ $fieldkey ]) )	{
 					if ( $vendor && ! $vendor->update_page_slug( wc_clean( $_POST[$fieldkey] ) ) ) {
-						echo  _e( 'Slug already exists', $WCMp->text_domain );						
+						if( is_admin() ) {
+							echo  _e( 'Slug already exists', $WCMp->text_domain );
+						}
+						else {
+							$err_msg = __( 'Slug already exists', $WCMp->text_domain );
+							return $err_msg;
+						}
 					}
 					else {
 						update_user_meta( $user_id, '_' . $fieldkey, wc_clean( $post[ $fieldkey ] ) );
 					}
 					continue;
 				}
+				if(	$fieldkey == "vendor_page_slug" &&  empty($post[ $fieldkey ]) )	{
+					if( is_admin() ) {
+						echo  _e( 'Slug can not be empty', $WCMp->text_domain );
+					}
+					else {
+						$err_msg = __( 'Slug can not be empty', $WCMp->text_domain );
+						return $err_msg;
+					}					
+				}
 				if( $fieldkey == 'vendor_description' ) update_user_meta( $user_id, '_' . $fieldkey,  $post[ $fieldkey ]  );
 				else update_user_meta( $user_id, '_' . $fieldkey, wc_clean( $post[ $fieldkey ] ) );
+				if ( $fieldkey == 'vendor_page_title' && empty($post[ $fieldkey ]) ) {				
+					if(is_admin()) {
+						echo  _e( 'Shop Title can not be empty', $WCMp->text_domain );
+					}
+					else {
+						$err_msg = __( 'Shop Title can not be empty', $WCMp->text_domain );
+						return $err_msg;
+					}					
+				}
 				if ( $fieldkey == 'vendor_page_title' ) {
 					if( ! $vendor->update_page_title( wc_clean( $post[ $fieldkey ] ) ) ) {
-						echo  _e( 'Shop Title Update Error', $WCMp->text_domain );
+						if(is_admin()) {
+							echo  _e( 'Shop Title Update Error', $WCMp->text_domain );
+						}
+						else {
+							$err_msg = __( 'Shop Title Update Error', $WCMp->text_domain );
+							return $err_msg;
+						}
 					} else {
 						wp_update_user( array( 'ID' => $user_id, 'display_name' => $post[ $fieldkey ]  ) );
 					}
@@ -807,7 +837,7 @@ Class WCMp_Admin_Dashboard {
 			} else if(!isset( $post['vendor_hide_message_to_buyers'] ) && $fieldkey == 'vendor_hide_message_to_buyers') {
 				delete_user_meta($user_id, '_vendor_hide_message_to_buyers');
 			}
-		} 
+		}		
 	}
 }
 

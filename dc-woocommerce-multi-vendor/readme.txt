@@ -4,7 +4,7 @@ Tags: wc marketplace, wc market place, woocommerce product vendors, WooCommerce 
 Donate link: https://dualcube.com/
 Requires at least: 3.8.1
 Tested up to: 4.4.1
-Stable tag: 2.3.3
+Stable tag: 2.3.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -218,6 +218,20 @@ Ans. This plugin is tested with php version 5.5.
 
 == Changelog ==
 
+= 2.3.4 =
+* Added: Admin can allow vendors to hide/show their information(phone, email, address, despriction) from the customers.
+* Added: Admin can view "Rejected Vendors" under "User" tab.
+* Fixed: Shipping class issue for variable products has been fixed.
+* Fixed: Vendors can't mark products as featured.
+* Fixed: Overriding email template issue has been fixed.
+* Fixed: The "Add Commission" tab has been removed from the Admin's back-end.
+* Fixed: Shortcode - [wcmp_products vendor="VENDOR LOGIN NAME"] has been fixed.
+* Fixed: Product variation type is now available on the "Cart" page.
+* Fixed: Responsive issues in Vendor Dashboard fixed.
+* Fixed: Commission payment via PayPal MassPay issue has been fixed.
+* Modify: Description editor on the vendor's profile page has been modified.
+* Modify: Shipping class now has User ID as suffix.
+
 = 2.3.3 =
 * Fixed: Hide Promote Tab from Vendor Dashboard when coupon creation capability is disabled.
 * Fixed: Commission issue has been fixed now.
@@ -363,6 +377,19 @@ Ans. This plugin is tested with php version 5.5.
 
 
 == Upgrade Notice ==
+= 2.3.4 =
+* Added: Admin can allow vendors to hide/show their information(phone, email, address, despriction) from the customers.
+* Added: Admin can view "Rejected Vendors" under "User" tab.
+* Fixed: Shipping class issue for variable products has been fixed.
+* Fixed: Vendors can't mark products as featured.
+* Fixed: Overriding email template issue has been fixed.
+* Fixed: The "Add Commission" tab has been removed from the Admin's back-end.
+* Fixed: Shortcode - [wcmp_products vendor="VENDOR LOGIN NAME"] has been fixed.
+* Fixed: Product variation type is now available on the "Cart" page.
+* Fixed: Responsive issues in Vendor Dashboard fixed.
+* Fixed: Commission payment via PayPal MassPay issue has been fixed.
+* Modify: Description editor on the vendor's profile page has been modified.
+
 = 2.3.3 =
 * Fixed: Hide Promote Tab from Vendor Dashboard when coupon creation capability is disabled.
 * Fixed: Commission issue has been fixed now.

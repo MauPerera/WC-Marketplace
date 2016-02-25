@@ -103,7 +103,7 @@ class WC_Email_Approved_New_Vendor_Account extends WC_Email {
 			'password_generated' => $this->password_generated,
 			'sent_to_admin' => false,
 			'plain_text'    => false
-		), '', $this->template_base);
+		), 'dc-product-vendor/', $this->template_base);
 		return ob_get_clean();
 	}
 
@@ -123,7 +123,7 @@ class WC_Email_Approved_New_Vendor_Account extends WC_Email {
 			'password_generated' => $this->password_generated,
 			'sent_to_admin' => false,
 			'plain_text'    => true
-		) ,'', $this->template_base );
+		) ,'dc-product-vendor/', $this->template_base );
 		return ob_get_clean();
 	}
 }

@@ -84,28 +84,41 @@ class WCMp_Frontend {
 	function wcmp_checkout_order_processed($order_id, $order_posted) {
 		global $wpdb, $WCMp;
 		
-		$order = new WC_Order($order_id);
-		
-		if( $order->has_shipping_method('flat_rate') ) {
-			
+		$order = new WC_Order($order_id);		
+		if( $order->has_shipping_method('flat_rate') ) {			
 			$woocommerce_flat_rate_settings = get_option('woocommerce_flat_rate_settings');
-			$line_items = $order->get_items('line_item');
-			
-			if($woocommerce_flat_rate_settings['enabled'] == 'yes') {
-				
-				
+			$line_items = $order->get_items('line_item');			
+			if($woocommerce_flat_rate_settings['enabled'] == 'yes') {				
 				if ( version_compare( WC_VERSION, '2.5.0', '>=' ) ) {
 					if($woocommerce_flat_rate_settings['type'] == 'class') {
 						if (!empty($line_items)) {
 							foreach ( $line_items as $item_id => $item ) {
+								$shipping_item_qty = 0;
 								$wc_flat_rate = new WC_Shipping_Flat_Rate();
 								$product = $order->get_product_from_item( $item );
 								$shipping_class = $product->get_shipping_class_id();
-								$class_cost_string = $shipping_class ? $wc_flat_rate->get_option( 'class_cost_' . $shipping_class, '' ) : $wc_flat_rate->get_option( 'no_class_cost', '' );
+								
+								$class_cost_string = $shipping_class ? $wc_flat_rate->get_option( 'class_cost_' . $shipping_class, '' ) : $wc_flat_rate->get_option( 'no_class_cost', '' );								
 								$cost_item_id = $this->evaluate_flat_shipping_cost( $class_cost_string, array(
-												'qty'  => $item['qty'],
-												'cost' => $order->get_line_subtotal( $item )
-										) );
+									'qty'  => $item['qty'],
+									'cost' => $order->get_line_subtotal( $item )
+								) );								
+								$searchStr= "qty";								
+								if(strlen(strstr($class_cost_string,$searchStr)) == 0) {									
+									$order_items = $order->get_items('line_item');
+									if(!empty( $order_items )) {
+										foreach ( $order_items as $order_item ) {
+											$product_2 = $order->get_product_from_item( $order_item );
+											$shipping_class_2 = $product_2->get_shipping_class_id();
+											if( $shipping_class_2 == $shipping_class ) {
+												$shipping_item_qty++;
+											}																						
+										}										
+									}
+									if( $cost_item_id > 0 && $shipping_item_qty > 1) {
+										$cost_item_id = (($cost_item_id/$shipping_item_qty));										
+									}
+								}								
 								$flat_shipping_per_item_val = wc_get_order_item_meta( $item_id, 'flat_shipping_per_item', true);
 								if(!$flat_shipping_per_item_val) wc_add_order_item_meta( $item_id, 'flat_shipping_per_item',  round($cost_item_id, 2));
 							}
@@ -121,9 +134,25 @@ class WCMp_Frontend {
 								$shipping_class = $product->get_shipping_class();
 								$class_cost_string = $shipping_class ? $wc_flat_rate->get_option( 'class_cost_' . $shipping_class, '' ) : $wc_flat_rate->get_option( 'no_class_cost', '' );
 								$cost_item_id = $this->evaluate_flat_shipping_cost( $class_cost_string, array(
-												'qty'  => $item['qty'],
-												'cost' => $order->get_line_subtotal( $item )
-										) );
+									'qty'  => $item['qty'],
+									'cost' => $order->get_line_subtotal( $item )
+								) );
+								$searchStr= "qty";								
+								if(strlen(strstr($class_cost_string,$searchStr)) == 0) {									
+									$order_items = $order->get_items('line_item');
+									if(!empty( $order_items )) {
+										foreach ( $order_items as $order_item ) {
+											$product_2 = $order->get_product_from_item( $order_item );
+											$shipping_class_2 = $product_2->get_shipping_class_id();
+											if( $shipping_class_2 == $shipping_class ) {
+												$shipping_item_qty++;
+											}																						
+										}										
+									}
+									if( $cost_item_id > 0 && $shipping_item_qty > 1) {
+										$cost_item_id = (($cost_item_id/$shipping_item_qty));										
+									}
+								}
 								$flat_shipping_per_item_val = wc_get_order_item_meta( $item_id, 'flat_shipping_per_item', true);
 								if(!$flat_shipping_per_item_val) wc_add_order_item_meta( $item_id, 'flat_shipping_per_item',  round($cost_item_id, 2));
 							}
@@ -172,9 +201,25 @@ class WCMp_Frontend {
 								$shipping_class = $product->get_shipping_class_id();
 								$class_cost_string = $shipping_class ? $wc_international_flat_rate->get_option( 'class_cost_' . $shipping_class, '' ) : $wc_international_flat_rate->get_option( 'no_class_cost', '' );
 								$cost_item_id = $this->evaluate_flat_shipping_cost( $class_cost_string, array(
-												'qty'  => $item['qty'],
-												'cost' => $order->get_line_subtotal( $item )
-										) );
+									'qty'  => $item['qty'],
+									'cost' => $order->get_line_subtotal( $item )
+								) );
+								$searchStr= "qty";								
+								if(strlen(strstr($class_cost_string,$searchStr)) == 0) {									
+									$order_items = $order->get_items('line_item');
+									if(!empty( $order_items )) {
+										foreach ( $order_items as $order_item ) {
+											$product_2 = $order->get_product_from_item( $order_item );
+											$shipping_class_2 = $product_2->get_shipping_class_id();
+											if( $shipping_class_2 == $shipping_class ) {
+												$shipping_item_qty++;
+											}																						
+										}										
+									}
+									if( $cost_item_id > 0 && $shipping_item_qty > 1) {
+										$cost_item_id = (($cost_item_id/$shipping_item_qty));										
+									}
+								}								
 								$international_flat_shipping_per_item_val = wc_get_order_item_meta( $item_id, 'international_flat_shipping_per_item', true);
 								if(!$international_flat_shipping_per_item_val) wc_add_order_item_meta( $item_id, 'international_flat_shipping_per_item',  $cost_item_id);
 							}
@@ -191,9 +236,25 @@ class WCMp_Frontend {
 								$shipping_class = $product->get_shipping_class();
 								$class_cost_string = $shipping_class ? $wc_international_flat_rate->get_option( 'class_cost_' . $shipping_class, '' ) : $wc_international_flat_rate->get_option( 'no_class_cost', '' );
 								$cost_item_id = $this->evaluate_flat_shipping_cost( $class_cost_string, array(
-												'qty'  => $item['qty'],
-												'cost' => $order->get_line_subtotal( $item )
-										) );
+									'qty'  => $item['qty'],
+									'cost' => $order->get_line_subtotal( $item )
+								) );
+								$searchStr= "qty";								
+								if(strlen(strstr($class_cost_string,$searchStr)) == 0) {									
+									$order_items = $order->get_items('line_item');
+									if(!empty( $order_items )) {
+										foreach ( $order_items as $order_item ) {
+											$product_2 = $order->get_product_from_item( $order_item );
+											$shipping_class_2 = $product_2->get_shipping_class_id();
+											if( $shipping_class_2 == $shipping_class ) {
+												$shipping_item_qty++;
+											}																						
+										}										
+									}
+									if( $cost_item_id > 0 && $shipping_item_qty > 1) {
+										$cost_item_id = (($cost_item_id/$shipping_item_qty));										
+									}
+								}
 								$international_flat_shipping_per_item_val = wc_get_order_item_meta( $item_id, 'international_flat_shipping_per_item', true);
 								if(!$international_flat_shipping_per_item_val) wc_add_order_item_meta( $item_id, 'international_flat_shipping_per_item',  $cost_item_id);
 							}
@@ -226,9 +287,7 @@ class WCMp_Frontend {
 						if(in_array($product_vendors->id, $vendor_shipping_array)) {
 							$mark_ship = 1;
 						}
-					}
-					
-					
+					}					
 					
 					$insert_query = $wpdb->query($wpdb->prepare("INSERT INTO `{$wpdb->prefix}wcmp_vendor_orders` ( order_id, commission_id, vendor_id, shipping_status, order_item_id, product_id )
 													 VALUES

@@ -506,7 +506,7 @@ class WCMp_Vendor {
 	 * @access public
 	 * @param order , vendor term id 
 	*/
-	public function wcmp_get_vendor_part_from_order($order, $vendor_term_id) {
+	public function wcmp_get_vendor_part_from_order($order, $vendor_term_id) {		
 		global $WCMp;	
 		require_once ( 'class-wcmp-calculate-commission.php' );
 		$commission_obj = new WCMp_Calculate_Commission();
@@ -734,7 +734,7 @@ class WCMp_Vendor {
 					$method = $shipping_method['method_id'];
 					break;
 			}
-			
+			// Flat Rate
 			if( $method == 'flat_rate') {
 				$woocommerce_flat_rate_settings = get_option('woocommerce_flat_rate_settings');
 				if ( version_compare( WC_VERSION, '2.4.0', '>' ) ) {
@@ -747,17 +747,16 @@ class WCMp_Vendor {
 						$vendor_shipping_costs['shipping_amount'] = $product['flat_shipping_per_item'];
 					}
 				}
-			}	
+			}// Local Delivery	
 			else if ( $method == 'local_delivery' ) {
 				$local_delivery = get_option( 'woocommerce_local_delivery_settings' );
 
 				if ( $local_delivery[ 'type' ] == 'product' ) {
 					$vendor_shipping_costs['shipping_amount'] 	= $product[ 'qty' ] * $local_delivery[ 'fee' ];
 					$vendor_shipping_costs['shipping_tax'] 		= $this->calculate_shipping_tax( $vendor_shipping_costs['shipping_amount'], $order ); 
-				}
-
-				// International Delivery
-			} else if ( $method == 'international_delivery' ) {
+				}				
+			}// International Delivery 
+			else if ( $method == 'international_delivery' ) {
 
 				$wc_international_delivery = get_option( 'woocommerce_international_delivery_settings' );
 				
@@ -774,6 +773,9 @@ class WCMp_Vendor {
 					}
 				}
 			}
+			else {
+				do_action('wcmp_other_shipping_methods', $order_id, $product, $method, $order );
+			}			
 		}
 
 		$vendor_shipping_costs = apply_filters( 'wcmp_vendors_shipping_amount', $vendor_shipping_costs, $order_id, $product );

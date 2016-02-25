@@ -13,6 +13,7 @@ jQuery(document).ready(function($) {
 		$('#vendor_image_remove_button').show();
 		$('#vendor_banner_remove_button').show();
 		$('.green_massenger').each(function(e){$(this).remove();});
+		$('.red_massenger').each(function(e){$(this).remove();});
 	});
 	$('.edit_policy').on( "click", function(e) {
 		e.preventDefault();
@@ -54,4 +55,5 @@ jQuery(document).ready(function($) {
 		$('.red_massenger').each(function(e){$(this).remove();});
 		
 	});
+	
 });

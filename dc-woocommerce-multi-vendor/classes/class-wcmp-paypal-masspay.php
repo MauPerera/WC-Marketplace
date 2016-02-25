@@ -44,8 +44,8 @@ class WCMp_Paypal_Masspay {
 		$currency = urlencode(get_woocommerce_currency());
 		$nvpstr = '';
 		if($receiver_information) {
-			foreach($receiver_information as $receiver) {
-				$j = 0;
+			$j = 0;
+			foreach($receiver_information as $receiver) {				
 				$receiverEmail = urlencode($receiver['recipient']);
 				$amount = urlencode($receiver['total']);
 				$uniqueID = urlencode($receiver['vendor_id']);
@@ -53,12 +53,9 @@ class WCMp_Paypal_Masspay {
 				$nvpstr.="&L_EMAIL$j=$receiverEmail&L_Amt$j=$amount&L_UNIQUEID$j=$uniqueID&L_NOTE$j=$note";
 				$j++;
 			}
-			$nvpstr.="&EMAILSUBJECT=$emailSubject&RECEIVERTYPE=$receiverType&CURRENCYCODE=$currency" ;
-			
-			doProductVendorLOG($nvpstr);
-			
-			$resArray=hash_call("MassPay",$nvpstr);
-			
+			$nvpstr.="&EMAILSUBJECT=$emailSubject&RECEIVERTYPE=$receiverType&CURRENCYCODE=$currency" ;			
+			doProductVendorLOG($nvpstr);			
+			$resArray=hash_call("MassPay",$nvpstr);			
 			$ack = strtoupper($resArray["ACK"]);
 			if($ack == "SUCCESS" ||  $ack == "SuccessWithWarning" ){
 				doProductVendorLOG(json_encode($resArray));
@@ -79,9 +76,9 @@ class WCMp_Paypal_Masspay {
 		$commissions = $this->get_query_commission();
 		$commission_data = $commission_totals = $commissions_data = array();
 		if($commissions) {
-			$transaction_data = array();
+			$transaction_data = array();			
 			foreach($commissions as $commission) {
-				
+				//doProductVendorLOG("commision id ---".$commission->ID."---commision_id");
 				$WCMp_Commission = new WCMp_Commission();
 				$commission_data = $WCMp_Commission->get_commission( $commission->ID );
 				$commission_order_id = get_post_meta( $commission->ID, '_commission_order_id', true );
@@ -89,12 +86,11 @@ class WCMp_Paypal_Masspay {
 				$vendor_tax = get_post_meta($commission->ID, '_tax', true);
 				
 				$order = new WC_Order ( $commission_order_id );
-				$vendor = get_wcmp_vendor_by_term($commission_data->vendor->term_id);
-				
+				$vendor = get_wcmp_vendor_by_term($commission_data->vendor->term_id);									
 				$payment_type = get_user_meta($vendor->id, '_vendor_payment_mode', true);				
-				if($payment_type == 'direct_bank') continue;
-				
-				$due_vendor = $vendor->wcmp_get_vendor_part_from_order($order, $vendor->term_id);
+				if($payment_type == 'direct_bank') continue;				
+				if(!is_object($vendor)) continue;				
+				$due_vendor = $vendor->wcmp_get_vendor_part_from_order($order, $commission_data->vendor->term_id);
 				if(!$vendor_shipping) $vendor_shipping = $due_vendor['shipping'];
 				if(!$vendor_tax) $vendor_tax = $due_vendor['tax'];
 				
@@ -140,7 +136,7 @@ class WCMp_Paypal_Masspay {
 							'payout_note' =>$payout_note
 					);
 				}
-			}
+			}		
 			$result = $this->call_masspay_api($commissions_data);
 			if($result) {
 				// create a new transaction by vendor

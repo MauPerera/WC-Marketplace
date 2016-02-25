@@ -1133,6 +1133,11 @@ class WCMp_Ajax {
 		$user_dtl = get_userdata( absint( $user_id ) );
 		$email = WC()->mailer()->emails['WC_Email_Approved_New_Vendor_Account'];
 		$email->trigger( $user_id, $user_dtl->user_pass );
+		$shipping_class_id = get_user_meta($user_id,'shipping_class_id',true);
+		if( empty($shipping_class_id) ) {
+			$shipping_term = wp_insert_term( $user->user_login.'-'.$user_id, 'product_shipping_class' );
+			update_user_meta($user_id, 'shipping_class_id', $shipping_term['term_id']);
+		}
 		die();
 	}
 	
@@ -1151,13 +1156,18 @@ class WCMp_Ajax {
 		$user->add_role( 'dc_rejected_vendor' );
 		$user_dtl = get_userdata( absint( $user_id ) );
 		$email = WC()->mailer()->emails['WC_Email_Rejected_New_Vendor_Account'];
-		$email->trigger( $user_id, $user_dtl->user_pass );
+		$email->trigger( $user_id, $user_dtl->user_pass );		
 		
-		if(in_array('dc_vendor', $old_role)) {
+		if(is_array( $user->roles ) && in_array( 'dc_vendor', $user->roles )) {
 			$vendor = get_wcmp_vendor($user_id);
 			if($vendor) wp_delete_term( $vendor->term_id, 'dc_vendor_shop' );
+			$caps = $this->get_vendor_caps( $user_id );
+			foreach( $caps as $cap ) {
+				$user->remove_cap( $cap );
+			}
+			$user->remove_cap('manage_woocommerce');
 		}
-		wp_delete_user($user_id);
+		//wp_delete_user($user_id);
 		die();
 	}
 	

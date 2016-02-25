@@ -28,8 +28,7 @@ if($vendor_data) {
 					$term_shipping_obj = get_term_by( 'id', $shipping_class_id, 'product_shipping_class');
 				}
 				if(!(isset($term_shipping_obj) && isset($term_shipping_obj->term_id) && !empty($term_shipping_obj))) {
-					$shipping_term = wp_insert_term( $vendor_data->user_data->user_login.'-'.$vendor_user_id, 'product_shipping_class' );	
-					
+					$shipping_term = wp_insert_term( $vendor_data->user_data->user_login.'-'.$vendor_user_id, 'product_shipping_class' );					
 					if(!is_wp_error($shipping_term)) {
 						$shipping_term_id = $shipping_term['term_id'];
 						update_user_meta($vendor_user_id, 'shipping_class_id', $shipping_term['term_id']);
@@ -154,13 +153,16 @@ if($vendor_data) {
 						<tr>
 						<td><input class="no_input" readonly name="vendor_shipping_data[ship_from]" type="text" value="<?php echo isset($vendor_shipping_data['ship_from']) ? $vendor_shipping_data['ship_from'] :  ''; ?>" /></td>
 					</tr>
-                    <tr><td>
-                    <input type="submit" class="wcmp_orange_btn" value="<?php _e( 'Submit', $WCMp->text_domain ) ?>" />
-                    </td>
-                    </tr>
+					<?php do_action('wcmp_before_shipping_form_end_vendor_dashboard'); ?>
+					<tr>
+						<td>
+							<input type="submit" class="wcmp_orange_btn" value="<?php _e( 'Submit', $WCMp->text_domain ) ?>" />
+						</td>
+					</tr>
 						
 				</tbody>
 			</table>
+			
 			
 		</form>
 		<br class="clear"/>

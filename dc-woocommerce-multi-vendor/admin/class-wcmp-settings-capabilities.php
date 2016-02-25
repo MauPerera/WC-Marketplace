@@ -59,6 +59,7 @@ class WCMp_Settings_Capabilities {
                                                                                                            "is_vendor_view_comment" => array('title' => __('View Comment', $WCMp->text_domain), 'type' => 'checkbox', 'id' => 'is_vendor_view_comment', 'label_for' => 'is_vendor_view_comment', 'name' => 'is_vendor_view_comment',  'desc' => __('Vendor can see order notes.', $WCMp->text_domain), 'value' => 'Enable'), // Checkbox
                                                                                                            "is_vendor_submit_comment" => array('title' => __('Submit Comment', $WCMp->text_domain), 'type' => 'checkbox', 'id' => 'is_vendor_submit_comment', 'label_for' => 'is_vendor_submit_comment', 'name' => 'is_vendor_submit_comment', 'desc' => __('Vendor can add order notes.', $WCMp->text_domain), 'value' => 'Enable'), // Checkbox
                                                                                                            "is_vendor_add_external_url" => array('title' => __('Enable store url', $WCMp->text_domain), 'type' => 'checkbox', 'id' => 'is_vendor_add_external_url', 'label_for' => 'is_vendor_add_external_url', 'name' => 'is_vendor_add_external_url', 'desc' => __('Vendor can add external store url.', $WCMp->text_domain), 'value' => 'Enable'), // Checkbox
+                                                                                                           "is_hide_option_show" => array('title' => __('Enable hide option for vendor', $WCMp->text_domain), 'type' => 'checkbox', 'id' => 'is_hide_option_show', 'label_for' => 'is_hide_option_show', 'name' => 'is_hide_option_show', 'desc' => __('Vendor can hide some details from shop.', $WCMp->text_domain), 'value' => 'Enable'), // Checkbox
                                                                                                            )
                                                                                          ),
                                                       "vendor_messages" => array("title" =>  __('Messages ', $WCMp->text_domain), // Section one
@@ -223,8 +224,8 @@ class WCMp_Settings_Capabilities {
 		if( isset( $input['csd_return_country'] ) )
 			$new_input['csd_return_country'] = sanitize_text_field( $input['csd_return_country'] );
 		
-		if( isset( $input['csd_return_zipcode'] ) )
-			$new_input['csd_return_zipcode'] = sanitize_text_field( $input['csd_return_zipcode'] );
+		if( isset( $input['is_hide_option_show'] ) )
+			$new_input['is_hide_option_show'] = sanitize_text_field( $input['is_hide_option_show'] );
 		
 		if( isset( $input['can_vendor_edit_cancellation_policy'] ) )
 			$new_input['can_vendor_edit_cancellation_policy'] = sanitize_text_field( $input['can_vendor_edit_cancellation_policy'] );

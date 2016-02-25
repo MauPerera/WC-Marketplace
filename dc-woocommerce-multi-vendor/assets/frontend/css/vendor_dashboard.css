@@ -1727,3 +1727,116 @@ p.error_wcmp {
 		display:none;
 	} 
 }
+.wcmp_main_menu ul li a.responsive_active .icon_stand.ic1{
+background:url(../../images/ic1b.png) center center no-repeat;
+}
+
+.wcmp_main_menu ul li a.responsive_active .icon_stand.ic2{
+background:url(../../images/ic2b.png) center center no-repeat;
+}
+
+.wcmp_main_menu ul li a.responsive_active .icon_stand.ic3{
+background:url(../../images/ic3b.png) center center no-repeat;
+}
+
+.wcmp_main_menu ul li a.responsive_active .icon_stand.ic4{
+background:url(../../images/ic4b.png) center center no-repeat;
+}
+
+.wcmp_main_menu ul li a.responsive_active .icon_stand.ic5{
+background:url(../../images/ic5b.png) center center no-repeat;
+}
+
+.wcmp_main_menu ul li a.responsive_active .icon_stand.ic6{
+background:url(../../images/ic6b.png) center center no-repeat;
+}
+
+.wcmp_main_menu ul li a.responsive_active .icon_stand.ic7{
+background:url(../../images/ic7b.png) center center no-repeat;
+}
+
+.wcmp_main_menu ul li a.responsive_active .icon_stand.ic8{
+background:url(../../images/ic8b.png) center center no-repeat;
+}
+
+.wcmp_main_menu ul li a.responsive_active .icon_stand.ic9{
+background:url(../../images/ic9b.png) center center no-repeat;
+}
+
+/*.................... new css fixing date - 22-02-2016.................................*/
+.wcmp_main_holder .wcmp_form1 span.txt {
+	display: table-cell !important;
+}
+@media (max-width:990px) {
+	.wcmp_main_holder .wcmp_form1 span.txt {
+		display: inline-block !important;
+		width: 200px !important;
+		word-wrap: break-word;
+	}
+}
+.wcmp_form1 input.small {
+	margin: 3px 0 0 0 !important;
+	width: 15%;
+}
+
+@media (max-width:990px) {
+	.wcmp_form1 input.small {
+		margin: 0;
+		width: 40%;
+	}
+	.input-group-addon {
+		width: 100%;
+	}
+}
+
+@media (max-width:600px) and (min-width:411px)  {
+	.wcmp_main_holder .wcmp_form1 span.txt {
+		display: inline-block !important;
+		width: 300px !important;
+		word-wrap: break-word;
+	}
+}
+
+@media (max-width:410px) {
+	.wcmp_main_holder .wcmp_form1 span.txt {
+		display: inline-block !important;
+		width: 200px !important;
+		word-wrap: break-word;
+	}
+}
+.input-group-addon.beautiful .fa.fa-check-square-o, .input-group-addon.beautiful .fa.fa-square-o {
+	margin-top: 3px;
+}
+
+/*..............................*/
+
+
+.wcmp_table_holder table{
+max-width:100%;
+border-top:1px solid #565656;
+margin:0px !important;
+}
+
+
+
+@media (max-width:640px){
+.half_part, .one_third_part, .two_third_part{
+padding: 0 ;
+   width: 100%;
+float:none;
+}
+}
+
+.wcmp_main_page {
+   background: #fff none repeat scroll 0 0;
+}
+
+.wcmp_tab .ui-tabs-nav li a {
+   font-size: 13px;
+   padding: 0 7px !important;
+}
+
+
+.wcmp_form1 textarea {
+   display: inline;
+}
