@@ -53,6 +53,8 @@ final class WCMp {
 	
 	public $email;
 	
+	public $review_rating;
+	
 	public function __construct( $file ) {
 
 		$this->file = $file;
@@ -107,6 +109,9 @@ final class WCMp {
 			$this->load_class( 'ajax' );
 			$this->ajax = new  WCMp_Ajax();
 		}
+		// Init main admin action class 
+		$this->load_class( 'seller-review-rating' );
+		$this->review_rating = new WCMp_Seller_Review_Rating();
 		
 		// Init main admin action class 
 		if ( is_admin() ) {

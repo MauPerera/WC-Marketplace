@@ -36,6 +36,48 @@ class WCMp_Vendor {
 		}
 	}
 	
+	public function get_reviews_and_rating($offset = 0) {
+		global $WCMp, $wpdb;
+		$vendor_id = $this->id;
+		$posts_per_page = get_option('posts_per_page');
+		if(empty($vendor_id) || $vendor_id == '' || $vendor_id == 0) {
+			return 0;
+		}
+		else {
+			$args_default = array(				
+				'status' => 'approve',
+				'type' => 'wcmp_vendor_rating',				
+				'count' => false,
+				'number' => $posts_per_page,
+				'offset' => $offset,
+				'meta_key' => 'vendor_rating_id',
+				'meta_value' => $vendor_id,					
+			);
+			$args = apply_filters('wcmp_vendor_review_rating_args_to_fetch', $args_default );
+			return get_comments( $args );					
+		}		
+	}
+	
+	
+	public function get_review_count() {
+		global $WCMp, $wpdb;
+		$vendor_id = $this->id;
+		if(empty($vendor_id) || $vendor_id == '' || $vendor_id == 0) {
+			return 0;
+		}
+		else {
+			$args_default = array(				
+				'status' => 'approve',
+				'type' => 'wcmp_vendor_rating',				
+				'count' => true,
+				'meta_key' => 'vendor_rating_id',
+				'meta_value' => $vendor_id,					
+			);
+			$args = apply_filters('wcmp_vendor_review_rating_args_to_fetch', $args_default );
+			return get_comments( $args );					
+		}		
+	}
+	
 	/**
 	 * Gets an Vendor User from the database.
 	 *

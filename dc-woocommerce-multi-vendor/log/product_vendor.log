@@ -651,3 +651,11 @@ UPDATE `wp_wcmp_vendor_orders` 	SET commission_id = 5164, commission_amount = '1
 -------------------------------------
 UPDATE `wp_wcmp_vendor_orders` 	SET commission_id = 5170, commission_amount = '10', `shipping` = '10', `tax` = '0'	WHERE order_id =5169 AND order_item_id = 475 AND product_id	=5000
 -------------------------------------
+UPDATE `wp_wcmp_vendor_orders` 	SET commission_id = 115, commission_amount = '8.1', `shipping` = '0', `tax` = '0'	WHERE order_id =114 AND order_item_id = 1 AND product_id	=83
+-------------------------------------
+UPDATE `wp_wcmp_vendor_orders` 	SET commission_id = 116, commission_amount = '1.8', `shipping` = '0', `tax` = '0'	WHERE order_id =114 AND order_item_id = 2 AND product_id	=99
+-------------------------------------
+UPDATE `wp_wcmp_vendor_orders` 	SET commission_id = 118, commission_amount = '2.7', `shipping` = '0', `tax` = '0'	WHERE order_id =117 AND order_item_id = 4 AND product_id	=93
+-------------------------------------
+UPDATE `wp_wcmp_vendor_orders` 	SET commission_id = 127, commission_amount = '10.8', `shipping` = '0', `tax` = '0'	WHERE order_id =126 AND order_item_id = 7 AND product_id	=73
+-------------------------------------

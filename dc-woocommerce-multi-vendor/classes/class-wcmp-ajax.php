@@ -51,7 +51,69 @@ class WCMp_Ajax {
 		// Sort vendors by category
     add_action('wp_ajax_vendor_list_by_category', array($this, 'vendor_list_by_category'));
     add_action('wp_ajax_nopriv_vendor_list_by_category', array($this, 'vendor_list_by_category'));
+    
+    add_action( 'wp_ajax_wcmp_add_review_rating_vendor', array($this, 'wcmp_add_review_rating_vendor'));
+    add_action( 'wp_ajax_nopriv_wcmp_add_review_rating_vendor', array($this, 'wcmp_add_review_rating_vendor')); 
+    // load more vendor review
+    add_action( 'wp_ajax_wcmp_load_more_review_rating_vendor', array($this, 'wcmp_load_more_review_rating_vendor'));
+    add_action( 'wp_ajax_nopriv_wcmp_load_more_review_rating_vendor', array($this, 'wcmp_load_more_review_rating_vendor'));
         
+  }
+  
+  function wcmp_load_more_review_rating_vendor() {
+  	global $WCMp, $wpdb;
+  	
+  	if(!empty($_POST['pageno']) && !empty($_POST['term_id']) ) {
+  		$vendor = get_wcmp_vendor_by_term( $_POST['term_id'] );			
+			$vendor_id =  $vendor->id;
+			$offset = $_POST['postperpage'] * $_POST['pageno'] ;			
+			$reviews_lists = $vendor->get_reviews_and_rating( $offset );
+			$WCMp->template->get_template( 'review/wcmp-vendor-review.php', array('reviews_lists' => $reviews_lists, 'vendor_term_id'=> $_POST['term_id']));
+  	}
+		die;  	
+  }
+  
+  function wcmp_add_review_rating_vendor() {
+  	global $WCMp, $wpdb;
+  	$review = $_POST['comment'];
+  	$rating = $_POST['rating'];
+  	$vendor_id = $_POST['vendor_id'];
+  	$current_user = wp_get_current_user();
+  	$comment_approve_by_settings = get_option('comment_moderation') ? 0 : 1;
+  	if( !empty($review) && !empty($rating) ) {
+  		$time = current_time('mysql');
+  		if($current_user->ID > 0 ) {
+  			$page_settings = get_option('wcmp_pages_settings_name');  			
+				$data = array(
+					'comment_post_ID' => $page_settings['vendor_dashboard'] ? $page_settings['vendor_dashboard'] : 0,
+					'comment_author' => $current_user->display_name,
+					'comment_author_email' => $current_user->user_email,
+					'comment_author_url' => $current_user->user_url,
+					'comment_content' => $review,
+					'comment_type' => 'wcmp_vendor_rating',
+					'comment_parent' => 0,
+					'user_id' => $current_user->ID,
+					'comment_author_IP' => $_SERVER['REMOTE_ADDR'],
+					'comment_agent' => $_SERVER['HTTP_USER_AGENT'],
+					'comment_date' => $time,
+					'comment_approved' => $comment_approve_by_settings,
+				);				
+				$comment_id = wp_insert_comment($data);
+				if( $comment_id ) {
+					$meta_key = 'vendor_rating';
+					$meta_value = $rating;
+					$is_updated = update_comment_meta( $comment_id, $meta_key, $meta_value );
+					$is_updated = update_comment_meta( $comment_id, 'vendor_rating_id', $vendor_id );
+					if($is_updated) {
+						echo 1;
+					}
+				}
+			}
+  	}
+  	else {
+  		echo 0;
+  	}
+  	die;  	
   }
   
   

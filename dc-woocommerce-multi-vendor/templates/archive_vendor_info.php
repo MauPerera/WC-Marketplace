@@ -13,6 +13,7 @@ global $WCMp;
 $vendor_hide_address = get_user_meta($vendor_id,'_vendor_hide_address', true);
 $vendor_hide_phone = get_user_meta($vendor_id,'_vendor_hide_phone', true);
 $vendor_hide_email = get_user_meta($vendor_id,'_vendor_hide_email', true);
+$review_settings = get_option('wcmp_general_sellerreview_settings_name');
 ?>
 <div class="vendor_description_background" style="background: url(<?php echo $banner; ?>) no-repeat; width: 100%; height: 245px; color: white; margin-bottom: 10px; background-size: 100% 100%;">
 	<div class="vendor_description">
@@ -52,7 +53,14 @@ $vendor_hide_email = get_user_meta($vendor_id,'_vendor_hide_email', true);
 		</div>
 	</div>
 </div>	
-<?php 
+<?php
+if(isset($review_settings['is_sellerreview'])) {
+	$queried_object = get_queried_object();
+	if(isset($queried_object->term_id) && !empty($queried_object)) {		
+		$rating_val_array = wcmp_get_vendor_review_info($queried_object->term_id);
+		$WCMp->template->get_template( 'review/rating.php', array('rating_val_array' => $rating_val_array));
+	}
+}
 $vendor_hide_description = get_user_meta($vendor_id,'_vendor_hide_description', true);
 if(!$vendor_hide_description) { ?>
 <div class="description_data">
@@ -63,7 +71,7 @@ if(!$vendor_hide_description) { ?>
 		<tbody>
 			<tr>
 				<td>
-					<label><strong><?php _e('Desciption', $WCMp->text_domain) ?></strong></label>
+					<label><strong><?php _e('Description', $WCMp->text_domain) ?></strong></label>
 				</td>
 				<td style="padding: 15px;">
 					<?php echo stripslashes($string); ?>

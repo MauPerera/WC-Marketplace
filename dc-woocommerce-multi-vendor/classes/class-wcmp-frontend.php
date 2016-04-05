@@ -353,6 +353,24 @@ class WCMp_Frontend {
 			wp_enqueue_script('jquery-ui-datepicker');
 			wp_enqueue_script('wcmp_new_vandor_dashboard_js', $frontend_script_path.'/vendor_dashboard'.$suffix.'.js', array('jquery'), $WCMp->version, true);
 		}
+		if(is_tax('dc_vendor_shop') ) {
+			$queried_object = get_queried_object();
+			if(isset($queried_object->term_id) && !empty($queried_object)) {
+				$vendor = get_wcmp_vendor_by_term( $queried_object->term_id );
+				$vendor_id =  $vendor->id;								
+			}
+			
+			wp_enqueue_script('wcmp_seller_review_rating_js', $frontend_script_path.'/vendor_review_rating'.$suffix.'.js', array('jquery'), $WCMp->version, true);
+			$vendor_review_rating_msg_array = array(
+				'rating_error_msg_txt' => __( 'Please rate the vendor', $WCMp->text_domain ),
+				'review_error_msg_txt' => __( 'Please review your vendor and minimum 10 Character required', $WCMp->text_domain ),
+				'review_success_msg_txt' => __( 'Your review submitted successfully', $WCMp->text_domain ),
+				'review_failed_msg_txt' => __( 'Error in system please try again later', $WCMp->text_domain ),
+				'ajax_url' => trailingslashit(get_admin_url()).'admin-ajax.php',
+				'vendor_id'=> $vendor_id ? $vendor_id : ''				
+			);
+			wp_localize_script( 'wcmp_seller_review_rating_js', 'wcmp_review_rating_msg', $vendor_review_rating_msg_array );
+		}
 	}
 
   /**
@@ -390,6 +408,14 @@ class WCMp_Frontend {
     	wp_enqueue_style('jquery-style', 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/themes/smoothness/jquery-ui.css');
 			wp_enqueue_style('wcmp_new_vandor_dashboard_css',  $frontend_style_path .'vendor_dashboard'.$suffix.'.css', array(), $WCMp->version);
 			wp_enqueue_style('font-awesome',  'http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css', array(), $WCMp->version);
+		}
+		if(is_tax('dc_vendor_shop') ) {
+			$current_theme = get_option('template');
+			if($current_theme == 'storefront') {
+				wp_enqueue_style('wcmp_review_rating',  $frontend_style_path .'review_rating_storefront'.$suffix.'.css', array(), $WCMp->version);
+			}else {
+				wp_enqueue_style('wcmp_review_rating',  $frontend_style_path .'review_rating'.$suffix.'.css', array(), $WCMp->version);
+			}
 		}
 	}
 	

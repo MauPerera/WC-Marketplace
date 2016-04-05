@@ -66,12 +66,10 @@ class WCMp_Report {
 	 */
 	public function filter_tabs( $tabs ){
 		global $woocommerce;
-		unset( $tabs[ 'wcmp_vendors' ]['reports']['vendor'] );
-		
+		unset( $tabs[ 'wcmp_vendors' ]['reports']['vendor'] );		
 		$return = array(
 			'wcmp_vendors' => $tabs[ 'wcmp_vendors' ],
 		);
-
 		return $return;
 	}
 
@@ -79,8 +77,7 @@ class WCMp_Report {
 	 * WCMp reports tab options
 	 */
 	function wcmp_report_tabs( $reports ) {
-		global $WCMp;
-		
+		global $WCMp;		
 		$reports['wcmp_vendors'] = array(
 			'title'  => __( 'WCMp', $WCMp->text_domain ),
 			'reports' => array(
@@ -114,12 +111,9 @@ class WCMp_Report {
 	public static function wcmp_get_report( $name ) {
 		$name  = sanitize_title( str_replace( '_', '-', $name ) );
 		$class = 'WCMp_Report_' . ucfirst( str_replace( '-', '_', $name ) );
-
 		include_once( apply_filters( 'wcmp_admin_reports_path', 'reports/class-wcmp-report-' . $name . '.php', $name, $class ) );
-
 		if ( ! class_exists( $class ) )
 			return;
-
 		$report = new $class();
 		$report->output_report();
 	}
@@ -198,55 +192,54 @@ class WCMp_Report {
 							$product_vendors = get_wcmp_product_vendors($product_id);
 							
 							if( $product_vendors ) {
-								
-								$sales += $line_total;
-								$total_sales += $line_total;
-								
-								$args = array(
-									'post_type' =>  'dc_commission',
-									'post_status' => array( 'publish', 'private' ),
-									'posts_per_page' => -1,
-									'meta_query' => array(
-										array(
-											'key' => '_commission_vendor',
-											'value' => absint($product_vendors->term_id),
-											'compare' => '='
+								if($vendor->id == $item['item_meta']['_vendor_id'][0]) {
+									$sales += $line_total;
+									$total_sales += $line_total;
+									
+									$args = array(
+										'post_type' =>  'dc_commission',
+										'post_status' => array( 'publish', 'private' ),
+										'posts_per_page' => -1,
+										'meta_query' => array(
+											array(
+												'key' => '_commission_vendor',
+												'value' => absint($product_vendors->term_id),
+												'compare' => '='
+											),
+											array(
+												'key' => '_commission_order_id',
+												'value' => absint($order_obj->ID),
+												'compare' => '='
+											),
+											array(
+												'key' => '_commission_product',
+												'value' => absint($comm_pro_id),
+												'compare' => 'LIKE'
+											),
 										),
-										array(
-											'key' => '_commission_order_id',
-											'value' => absint($order_obj->ID),
-											'compare' => '='
-										),
-										array(
-											'key' => '_commission_product',
-											'value' => absint($comm_pro_id),
-											'compare' => 'LIKE'
-										),
-									),
-								);
-								$commissions = get_posts( $args );
-								$comm_amount = 0;
-								if(!empty($commissions)) { 
-									foreach($commissions as $commission) {
-										
-										
-										if(in_array($commission->ID, $commission_array)) continue;
-										
-										$comm_amount += (float)get_post_meta($commission->ID, '_commission_amount', true);
-										
-										$commission_array[] = $commission->ID;
+									);
+									$commissions = get_posts( $args );
+									$comm_amount = 0;
+									if(!empty($commissions)) { 
+										foreach($commissions as $commission) {
+											
+											
+											if(in_array($commission->ID, $commission_array)) continue;
+											
+											$comm_amount += (float)get_post_meta($commission->ID, '_commission_amount', true);
+											
+											$commission_array[] = $commission->ID;
+										}
 									}
+									
+									$vendor_earnings += $comm_amount;
+									$total_vendor_earnings  += $comm_amount;
+									$earnings += ( $line_total - $comm_amount );
+									$total_earnings += ( $line_total - $comm_amount );
+									$total_purchased_products++;
 								}
-								
-								$vendor_earnings += $comm_amount;
-								$total_vendor_earnings  += $comm_amount;
-								$earnings += ( $line_total - $comm_amount );
-								$total_earnings += ( $line_total - $comm_amount );
-								$total_purchased_products++;
-							}
-							
-						}
-						
+							}							
+						}						
 					}
 					
 					//coupons count
@@ -266,8 +259,7 @@ class WCMp_Report {
 					//user count
 					if( $order->customer_user != 0 && $order->customer_user != 1) array_push($total_customers, $order->customer_user);
 				}
-			}
-			
+			}			
 		}
 		
 		return array('total_order_count' => $total_order_count, 'total_vendor_sales' => $total_sales, 'total_vendor_earning' => $total_vendor_earnings, 'total_coupon_discuont_value' => $total_coupon_discuont_value, 'total_coupon_used' => $total_coupon_used, 'total_customers' => array_unique($total_customers), 'total_purchased_products' => $total_purchased_products);

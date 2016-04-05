@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WC Marketplace\n"
-"POT-Creation-Date: 2016-02-23 19:10+0530\n"
-"PO-Revision-Date: 2016-02-23 19:10+0530\n"
+"POT-Creation-Date: 2016-03-17 16:29+0530\n"
+"PO-Revision-Date: 2016-03-17 16:29+0530\n"
 "Last-Translator: Dualcube <admin@dualcube.com>\n"
 "Language-Team: Dualcube <admin@dualcube.com>\n"
 "Language: en_US\n"
@@ -20,11 +20,11 @@ msgid ""
 "woocommerce/\">WooCommerce</a> plugins to be active!"
 msgstr ""
 
-#: ../includes/wcmp-core-functions.php:444
+#: ../includes/wcmp-core-functions.php:451
 msgid "Settings"
 msgstr ""
 
-#: ../includes/wcmp-core-functions.php:529
+#: ../includes/wcmp-core-functions.php:536
 msgid ""
 "Another Multivendor Plugin is allready Activated Please deactivate first to "
 "install this plugin"
@@ -49,27 +49,27 @@ msgstr ""
 msgid "Vendor Order Details"
 msgstr ""
 
-#: ../includes/class-wcmp-install.php:106 ../classes/class-wcmp.php:605
+#: ../includes/class-wcmp-install.php:106 ../classes/class-wcmp.php:610
 msgid "Withdrawal Request Status"
 msgstr ""
 
 #: ../includes/class-wcmp-install.php:107
-#: ../admin/class-wcmp-settings-pages.php:41 ../classes/class-wcmp.php:621
+#: ../admin/class-wcmp-settings-pages.php:41 ../classes/class-wcmp.php:626
 msgid "Transaction Details"
 msgstr ""
 
 #: ../includes/class-wcmp-install.php:108
-#: ../admin/class-wcmp-settings-pages.php:42 ../classes/class-wcmp.php:638
+#: ../admin/class-wcmp-settings-pages.php:42 ../classes/class-wcmp.php:643
 msgid "Vendor Policies"
 msgstr ""
 
 #: ../includes/class-wcmp-install.php:109
-#: ../admin/class-wcmp-settings-pages.php:43 ../classes/class-wcmp.php:655
+#: ../admin/class-wcmp-settings-pages.php:43 ../classes/class-wcmp.php:660
 msgid "Vendor Billing"
 msgstr ""
 
 #: ../includes/class-wcmp-install.php:110
-#: ../admin/class-wcmp-settings-pages.php:48 ../classes/class-wcmp.php:672
+#: ../admin/class-wcmp-settings-pages.php:48 ../classes/class-wcmp.php:677
 msgid "Vendor Shipping"
 msgstr ""
 
@@ -77,21 +77,21 @@ msgstr ""
 msgid "Vendor Reports"
 msgstr ""
 
-#: ../includes/class-wcmp-install.php:112 ../classes/class-wcmp.php:707
+#: ../includes/class-wcmp-install.php:112 ../classes/class-wcmp.php:712
 msgid "Vendor Widthdrawals"
 msgstr ""
 
 #: ../includes/class-wcmp-install.php:113
-#: ../admin/class-wcmp-settings-pages.php:46 ../classes/class-wcmp.php:724
+#: ../admin/class-wcmp-settings-pages.php:46 ../classes/class-wcmp.php:729
 msgid "Vendor University"
 msgstr ""
 
 #: ../includes/class-wcmp-install.php:114
-#: ../admin/class-wcmp-settings-pages.php:47 ../classes/class-wcmp.php:742
+#: ../admin/class-wcmp-settings-pages.php:47 ../classes/class-wcmp.php:747
 msgid "Vendor Announcements"
 msgstr ""
 
-#: ../templates/vendor_tab.php:22 ../templates/widget/vendor-info.php:28
+#: ../templates/vendor_tab.php:37 ../templates/widget/vendor-info.php:28
 #: ../templates/widget/vendor-info.php:29
 #, php-format
 msgid "More Products from %1$s"
@@ -171,12 +171,13 @@ msgstr ""
 msgid "Shipping Policy"
 msgstr ""
 
-#: ../templates/archive_vendor_info.php:29
+#: ../templates/archive_vendor_info.php:30
 msgid "External Store URL"
 msgstr ""
 
-#: ../templates/archive_vendor_info.php:66
-msgid "Desciption"
+#: ../templates/archive_vendor_info.php:74 ../classes/class-wcmp-user.php:362
+#: ../classes/widgets/class-wcmp-widget-vendor-quick-info.php:171
+msgid "Description"
 msgstr ""
 
 #: ../templates/customer_support_details_to_buyer.php:76
@@ -195,7 +196,7 @@ msgstr ""
 #: ../templates/vendor_dashboard_menu.php:43
 #: ../templates/vendor_dashboard_menu.php:49
 #: ../templates/shortcode/vendor_announcements.php:19
-#: ../admin/class-wcmp-settings.php:78
+#: ../admin/class-wcmp-settings.php:79
 #: ../classes/class-wcmp-post-notices.php:72
 #: ../classes/class-wcmp-post-notices.php:73
 #: ../classes/class-wcmp-post-notices.php:74
@@ -274,7 +275,7 @@ msgstr ""
 
 #: ../templates/vendor_dashboard_menu.php:91
 #: ../templates/shortcode/vendor_university.php:29
-#: ../admin/class-wcmp-settings.php:77
+#: ../admin/class-wcmp-settings.php:78
 #: ../classes/class-wcmp-post-university.php:33
 #: ../classes/class-wcmp-post-university.php:34
 #: ../classes/class-wcmp-post-university.php:35
@@ -286,6 +287,42 @@ msgstr ""
 #: ../classes/class-wcmp-post-university.php:42
 #: ../classes/class-wcmp-post-university.php:43
 msgid "University"
+msgstr ""
+
+#: ../templates/wcmp-vendor-review-form.php:38
+msgid "Your Rating"
+msgstr ""
+
+#: ../templates/wcmp-vendor-review-form.php:40
+msgid "Rate..."
+msgstr ""
+
+#: ../templates/wcmp-vendor-review-form.php:41
+msgid "Perfect"
+msgstr ""
+
+#: ../templates/wcmp-vendor-review-form.php:42
+msgid "Good"
+msgstr ""
+
+#: ../templates/wcmp-vendor-review-form.php:43
+msgid "Average"
+msgstr ""
+
+#: ../templates/wcmp-vendor-review-form.php:44
+msgid "Not that bad"
+msgstr ""
+
+#: ../templates/wcmp-vendor-review-form.php:45
+msgid "Very Poor"
+msgstr ""
+
+#: ../templates/wcmp-vendor-review-form.php:48
+msgid "Your Review"
+msgstr ""
+
+#: ../templates/wcmp-vendor-review-form.php:89
+msgid "There are no reviews yet."
 msgstr ""
 
 #: ../templates/widget/store-location.php:16
@@ -403,8 +440,8 @@ msgstr ""
 
 #: ../templates/shortcode/vendor_withdrawal.php:55
 #: ../templates/shortcode/vendor_report.php:47
-#: ../classes/class-wcmp-ajax.php:455 ../classes/class-wcmp-ajax.php:684
-#: ../classes/class-wcmp-ajax.php:874 ../classes/class-wcmp-ajax.php:971
+#: ../classes/class-wcmp-ajax.php:517 ../classes/class-wcmp-ajax.php:746
+#: ../classes/class-wcmp-ajax.php:936 ../classes/class-wcmp-ajax.php:1033
 #: ../classes/reports/class-wcmp-report-product.php:322
 #: ../classes/reports/class-wcmp-report-vendor.php:238
 msgid "My Earnings"
@@ -423,7 +460,7 @@ msgid "Stats & Reports"
 msgstr ""
 
 #: ../templates/shortcode/vendor_report.php:19
-#: ../classes/class-wcmp-report.php:88
+#: ../classes/class-wcmp-report.php:85
 msgid "Overview"
 msgstr ""
 
@@ -513,7 +550,7 @@ msgstr ""
 
 #: ../templates/shortcode/vendor_announcements_unread.php:80
 #: ../templates/shortcode/vendor_announcements_all.php:68
-#: ../classes/class-wcmp-ajax.php:201
+#: ../classes/class-wcmp-ajax.php:263
 msgid "Mark Read"
 msgstr ""
 
@@ -783,12 +820,12 @@ msgid ""
 msgstr ""
 
 #: ../templates/shortcode/vendor_dashboard.php:77
-#: ../classes/class-wcmp-ajax.php:116
+#: ../classes/class-wcmp-ajax.php:178
 msgid "Admin Message:"
 msgstr ""
 
 #: ../templates/shortcode/vendor_dashboard.php:80
-#: ../classes/class-wcmp-ajax.php:119
+#: ../classes/class-wcmp-ajax.php:181
 msgid "DETAILS"
 msgstr ""
 
@@ -814,7 +851,7 @@ msgstr ""
 
 #: ../templates/shortcode/vendor_dashboard.php:199
 #: ../templates/shortcode/vendor_dashboard.php:350
-#: ../classes/class-wcmp-ajax.php:738
+#: ../classes/class-wcmp-ajax.php:800
 msgid "Sales"
 msgstr ""
 
@@ -897,7 +934,7 @@ msgstr ""
 
 #: ../templates/shortcode/vendor_announcements_all.php:71
 #: ../templates/shortcode/vendor_announcements_read.php:77
-#: ../classes/class-wcmp-ajax.php:183
+#: ../classes/class-wcmp-ajax.php:245
 msgid "Mark Unread"
 msgstr ""
 
@@ -1051,7 +1088,7 @@ msgid ""
 msgstr ""
 
 #: ../templates/shortcode/shop_settings.php:35
-#: ../admin/class-wcmp-settings.php:58 ../admin/class-wcmp-settings.php:74
+#: ../admin/class-wcmp-settings.php:59 ../admin/class-wcmp-settings.php:75
 msgid "General"
 msgstr ""
 
@@ -1211,7 +1248,7 @@ msgstr ""
 #: ../templates/emails/vendor-new-order.php:24
 #: ../templates/emails/vendor-notify-shipped.php:28
 #: ../classes/class-wcmp-post-commission.php:347
-#: ../classes/class-wcmp-report.php:100
+#: ../classes/class-wcmp-report.php:97
 msgid "Product"
 msgstr ""
 
@@ -1475,6 +1512,44 @@ msgstr ""
 #: ../templates/emails/plain/approved-vendor-account.php:21
 #, php-format
 msgid "Application Status: %s"
+msgstr ""
+
+#: ../templates/review/rating-vendor-tab.php:31
+#: ../templates/review/rating.php:30
+#, php-format
+msgid "Rated %s out of 5"
+msgstr ""
+
+#: ../templates/review/rating-vendor-tab.php:32
+#: ../templates/review/rating.php:31 ../templates/review/review-link.php:32
+#: ../templates/review/review.php:37
+msgid "out of 5"
+msgstr ""
+
+#: ../templates/review/rating-vendor-tab.php:43
+msgid " No Reviews Yet"
+msgstr ""
+
+#: ../templates/review/rating.php:43
+msgid " No Reviews Yet "
+msgstr ""
+
+#: ../templates/review/review-link.php:30
+#: ../templates/review/review-link.php:31
+msgid "Leave Vendor feedback"
+msgstr ""
+
+#: ../templates/review/review.php:36
+#, php-format
+msgid "Rated %d out of 5"
+msgstr ""
+
+#: ../templates/review/review.php:42
+msgid "Your comment is awaiting approval"
+msgstr ""
+
+#: ../templates/review/review.php:49
+msgid "verified buyer"
 msgstr ""
 
 #: ../admin/class-wcmp-settings-frontend.php:30
@@ -1782,48 +1857,48 @@ msgid ""
 "vendors ."
 msgstr ""
 
-#: ../admin/class-wcmp-settings.php:43 ../admin/class-wcmp-settings.php:44
-#: ../classes/class-wcmp-report.php:85
+#: ../admin/class-wcmp-settings.php:44 ../admin/class-wcmp-settings.php:45
+#: ../classes/class-wcmp-report.php:82
 msgid "WCMp"
 msgstr ""
 
-#: ../admin/class-wcmp-settings.php:59
+#: ../admin/class-wcmp-settings.php:60
 #: ../classes/class-wcmp-post-transaction.php:216
 #: ../classes/class-wcmp-vendor-order-page.php:80
 #: ../classes/class-wcmp-user.php:831
 msgid "Products"
 msgstr ""
 
-#: ../admin/class-wcmp-settings.php:60
+#: ../admin/class-wcmp-settings.php:61
 msgid "Frontend"
 msgstr ""
 
-#: ../admin/class-wcmp-settings.php:61
+#: ../admin/class-wcmp-settings.php:62
 msgid "Payment"
 msgstr ""
 
-#: ../admin/class-wcmp-settings.php:62
+#: ../admin/class-wcmp-settings.php:63
 msgid "Capabilities"
 msgstr ""
 
-#: ../admin/class-wcmp-settings.php:63
+#: ../admin/class-wcmp-settings.php:64
 msgid "To-do List"
 msgstr ""
 
-#: ../admin/class-wcmp-settings.php:64
+#: ../admin/class-wcmp-settings.php:65
 msgid "Pages"
 msgstr ""
 
-#: ../admin/class-wcmp-settings.php:75 ../classes/class-wcmp-product.php:579
+#: ../admin/class-wcmp-settings.php:76 ../classes/class-wcmp-product.php:579
 #: ../classes/class-wcmp-product.php:961
 msgid "Policies"
 msgstr ""
 
-#: ../admin/class-wcmp-settings.php:76
+#: ../admin/class-wcmp-settings.php:77
 msgid "Customer Support"
 msgstr ""
 
-#: ../admin/class-wcmp-settings.php:79
+#: ../admin/class-wcmp-settings.php:80
 #: ../classes/class-wcmp-post-commission.php:58
 #: ../classes/class-wcmp-post-commission.php:59
 #: ../classes/class-wcmp-post-commission.php:60
@@ -1831,51 +1906,55 @@ msgstr ""
 msgid "WCMp Commission"
 msgstr ""
 
-#: ../admin/class-wcmp-settings.php:88
+#: ../admin/class-wcmp-settings.php:81
+msgid "Vendor Review and Rating"
+msgstr ""
+
+#: ../admin/class-wcmp-settings.php:90
 msgid ""
 "Configure the \"Product Add\" page for vendors. Choose the features you want "
 "to show to your vendors."
 msgstr ""
 
-#: ../admin/class-wcmp-settings.php:89
+#: ../admin/class-wcmp-settings.php:91
 msgid "Configure which vendor details you want to reveal to your users"
 msgstr ""
 
-#: ../admin/class-wcmp-settings.php:90
+#: ../admin/class-wcmp-settings.php:92
 msgid ""
 "Manage everything about payments to vendors in this page - what to pay, how "
 "to pay and when to pay."
 msgstr ""
 
-#: ../admin/class-wcmp-settings.php:91
+#: ../admin/class-wcmp-settings.php:93
 msgid ""
 "These are general sets of permissions for vendors. Note that these are "
 "global settings, and you may override these settings for an individual "
 "vendor from the vendor profile page. "
 msgstr ""
 
-#: ../admin/class-wcmp-settings.php:153
+#: ../admin/class-wcmp-settings.php:155
 #, php-format
 msgid "<h2>%s Settings</h2>"
 msgstr ""
 
-#: ../admin/class-wcmp-settings.php:170
+#: ../admin/class-wcmp-settings.php:172
 #, php-format
 msgid ""
 "<h4 style='border-bottom: 1px solid rgb(215, 211, 211);padding-bottom: "
 "21px;'>%s</h4>"
 msgstr ""
 
-#: ../admin/class-wcmp-settings.php:228
+#: ../admin/class-wcmp-settings.php:230
 msgid "<br><b>MassPay Sync</b><br>"
 msgstr ""
 
-#: ../admin/class-wcmp-settings.php:229
+#: ../admin/class-wcmp-settings.php:231
 #, php-format
 msgid "Next MassPay cron @ %s"
 msgstr ""
 
-#: ../admin/class-wcmp-settings.php:230
+#: ../admin/class-wcmp-settings.php:232
 #, php-format
 msgid "<br>Now the time is %s"
 msgstr ""
@@ -2350,7 +2429,7 @@ msgstr ""
 msgid "Choose your preferred page for vendor policies"
 msgstr ""
 
-#: ../admin/class-wcmp-settings-pages.php:44 ../classes/class-wcmp.php:690
+#: ../admin/class-wcmp-settings-pages.php:44 ../classes/class-wcmp.php:695
 msgid "Vendor Report"
 msgstr ""
 
@@ -2508,7 +2587,7 @@ msgstr ""
 
 #: ../admin/class-wcmp-settings-to_do_list.php:150
 #: ../classes/class-wcmp-post-commission.php:348
-#: ../classes/class-wcmp-report.php:94 ../classes/class-wcmp-product.php:453
+#: ../classes/class-wcmp-report.php:91 ../classes/class-wcmp-product.php:453
 #: ../classes/class-wcmp-product.php:478 ../classes/class-wcmp-product.php:928
 #: ../classes/class-wcmp-user.php:243 ../classes/class-wcmp-taxonomy.php:37
 msgid "Vendor"
@@ -2547,6 +2626,27 @@ msgstr ""
 
 #: ../admin/class-wcmp-settings-notices.php:29
 msgid "Notices Enable/Disable :"
+msgstr ""
+
+#: ../admin/class-wcmp-settings-general-sellerreview.php:34
+msgid "Enable Review ( for Vendor )"
+msgstr ""
+
+#: ../admin/class-wcmp-settings-general-sellerreview.php:34
+msgid "If checked, user can rate vendor(s)."
+msgstr ""
+
+#: ../admin/class-wcmp-settings-general-sellerreview.php:35
+msgid "Enable Review ( by verified customers )."
+msgstr ""
+
+#: ../admin/class-wcmp-settings-general-sellerreview.php:35
+msgid ""
+"If checked, only customers who have purchased from the vendor can rate them."
+msgstr ""
+
+#: ../admin/class-wcmp-settings-general-sellerreview.php:69
+msgid "Vendor Review Rating Settings Updated"
 msgstr ""
 
 #: ../classes/class-wcmp-post-commission.php:58
@@ -2719,7 +2819,7 @@ msgstr ""
 
 #: ../classes/class-wcmp-post-commission.php:523
 #: ../classes/class-wcmp-vendor-dashboard.php:109
-#: ../classes/class-wcmp-paypal-masspay.php:116
+#: ../classes/class-wcmp-masspay-cron.php:70
 #, php-format
 msgid "Total commissions earned from %1$s as at %2$s on %3$s"
 msgstr ""
@@ -2835,46 +2935,46 @@ msgstr ""
 msgid "Commission - %s"
 msgstr ""
 
-#: ../classes/class-wcmp.php:403
+#: ../classes/class-wcmp.php:408
 msgid "Every 7 Days"
 msgstr ""
 
-#: ../classes/class-wcmp.php:407
+#: ../classes/class-wcmp.php:412
 msgid "Every 1 Month"
 msgstr ""
 
-#: ../classes/class-wcmp.php:411
+#: ../classes/class-wcmp.php:416
 msgid "Every 15 Days"
 msgstr ""
 
-#: ../classes/class-wcmp-vendor-details.php:489
+#: ../classes/class-wcmp-vendor-details.php:531
 #, php-format
 msgid "Quantity: %s"
 msgstr ""
 
-#: ../classes/class-wcmp-vendor-details.php:495
+#: ../classes/class-wcmp-vendor-details.php:537
 #, php-format
 msgid "Total: %s"
 msgstr ""
 
-#: ../classes/class-wcmp-vendor-details.php:496
+#: ../classes/class-wcmp-vendor-details.php:538
 #, php-format
 msgid "Commission: %s"
 msgstr ""
 
-#: ../classes/class-wcmp-vendor-details.php:658
+#: ../classes/class-wcmp-vendor-details.php:700
 msgid "Commission Subtotal:"
 msgstr ""
 
-#: ../classes/class-wcmp-vendor-details.php:661
+#: ../classes/class-wcmp-vendor-details.php:703
 msgid "Tax Subtotal:"
 msgstr ""
 
-#: ../classes/class-wcmp-vendor-details.php:666
+#: ../classes/class-wcmp-vendor-details.php:708
 msgid "Shipping Subtotal:"
 msgstr ""
 
-#: ../classes/class-wcmp-vendor-details.php:669
+#: ../classes/class-wcmp-vendor-details.php:711
 msgid "Total:"
 msgstr ""
 
@@ -2980,6 +3080,47 @@ msgstr ""
 msgid "Our Return Address :"
 msgstr ""
 
+#: ../classes/class-wcmp-seller-review-rating.php:98
+msgid "Vendor Rating"
+msgstr ""
+
+#: ../classes/class-wcmp-seller-review-rating.php:124
+#: ../classes/class-wcmp-seller-review-rating.php:126
+msgid "Vendor Name."
+msgstr ""
+
+#: ../classes/class-wcmp-seller-review-rating.php:150
+msgid "Vendor Rating."
+msgstr ""
+
+#: ../classes/class-wcmp-seller-review-rating.php:152
+msgid "Vendor Rating Star."
+msgstr ""
+
+#: ../classes/class-wcmp-seller-review-rating.php:153
+msgid "Please Select"
+msgstr ""
+
+#: ../classes/class-wcmp-seller-review-rating.php:153
+msgid "1 Star"
+msgstr ""
+
+#: ../classes/class-wcmp-seller-review-rating.php:153
+msgid "2 Star"
+msgstr ""
+
+#: ../classes/class-wcmp-seller-review-rating.php:153
+msgid "3 Star"
+msgstr ""
+
+#: ../classes/class-wcmp-seller-review-rating.php:153
+msgid "4 Star"
+msgstr ""
+
+#: ../classes/class-wcmp-seller-review-rating.php:153
+msgid "5 Star"
+msgstr ""
+
 #: ../classes/class-wcmp-capabilities.php:259
 #: ../classes/class-wcmp-capabilities.php:279
 msgid "Sold By"
@@ -3018,7 +3159,7 @@ msgstr ""
 msgid "Report Abuse"
 msgstr ""
 
-#: ../classes/class-wcmp-product.php:1082 ../classes/class-wcmp-ajax.php:1193
+#: ../classes/class-wcmp-product.php:1082 ../classes/class-wcmp-ajax.php:1255
 msgid "Report an abuse for product"
 msgstr ""
 
@@ -3105,11 +3246,6 @@ msgstr ""
 
 #: ../classes/class-wcmp-user.php:356
 msgid "Vendor Page Slug"
-msgstr ""
-
-#: ../classes/class-wcmp-user.php:362
-#: ../classes/widgets/class-wcmp-widget-vendor-quick-info.php:171
-msgid "Description"
 msgstr ""
 
 #: ../classes/class-wcmp-user.php:369
@@ -3288,7 +3424,7 @@ msgstr ""
 msgid "WCMp Vendors"
 msgstr ""
 
-#: ../classes/class-wcmp-taxonomy.php:38 ../classes/class-wcmp-ajax.php:976
+#: ../classes/class-wcmp-taxonomy.php:38 ../classes/class-wcmp-ajax.php:1038
 #: ../classes/reports/class-wcmp-report-vendor.php:243
 msgid "Vendors"
 msgstr ""
@@ -3345,100 +3481,116 @@ msgstr ""
 msgid "No vendors found"
 msgstr ""
 
-#: ../classes/class-wcmp-ajax.php:126
+#: ../classes/class-wcmp-frontend.php:365
+msgid "Please rate the vendor"
+msgstr ""
+
+#: ../classes/class-wcmp-frontend.php:366
+msgid "Please review your vendor and minimum 10 Character required"
+msgstr ""
+
+#: ../classes/class-wcmp-frontend.php:367
+msgid "Your review submitted successfully"
+msgstr ""
+
+#: ../classes/class-wcmp-frontend.php:368
+msgid "Error in system please try again later"
+msgstr ""
+
+#: ../classes/class-wcmp-ajax.php:188
 msgid "No Messages Found:"
 msgstr ""
 
-#: ../classes/class-wcmp-ajax.php:132
+#: ../classes/class-wcmp-ajax.php:194
 msgid "Error in process:"
 msgstr ""
 
-#: ../classes/class-wcmp-ajax.php:219
+#: ../classes/class-wcmp-ajax.php:281
 msgid "Mark Restore"
 msgstr ""
 
-#: ../classes/class-wcmp-ajax.php:244 ../classes/class-wcmp-ajax.php:265
+#: ../classes/class-wcmp-ajax.php:306 ../classes/class-wcmp-ajax.php:327
 msgid "no more data found"
 msgstr ""
 
-#: ../classes/class-wcmp-ajax.php:450 ../classes/class-wcmp-ajax.php:679
-#: ../classes/class-wcmp-ajax.php:733 ../classes/class-wcmp-ajax.php:966
+#: ../classes/class-wcmp-ajax.php:512 ../classes/class-wcmp-ajax.php:741
+#: ../classes/class-wcmp-ajax.php:795 ../classes/class-wcmp-ajax.php:1028
 #: ../classes/reports/class-wcmp-report-product.php:317
 #: ../classes/reports/class-wcmp-report-vendor.php:233
 msgid "Sales and Earnings"
 msgstr ""
 
-#: ../classes/class-wcmp-ajax.php:453 ../classes/class-wcmp-ajax.php:682
-#: ../classes/class-wcmp-ajax.php:872 ../classes/class-wcmp-ajax.php:969
+#: ../classes/class-wcmp-ajax.php:515 ../classes/class-wcmp-ajax.php:744
+#: ../classes/class-wcmp-ajax.php:934 ../classes/class-wcmp-ajax.php:1031
 #: ../classes/reports/class-wcmp-report-product.php:320
 #: ../classes/reports/class-wcmp-report-vendor.php:236
 msgid "Gross Sales"
 msgstr ""
 
-#: ../classes/class-wcmp-ajax.php:460 ../classes/class-wcmp-ajax.php:689
-#: ../classes/class-wcmp-ajax.php:737 ../classes/class-wcmp-ajax.php:879
+#: ../classes/class-wcmp-ajax.php:522 ../classes/class-wcmp-ajax.php:751
+#: ../classes/class-wcmp-ajax.php:799 ../classes/class-wcmp-ajax.php:941
 #: ../classes/reports/class-wcmp-report-product.php:327
 msgid "Month"
 msgstr ""
 
-#: ../classes/class-wcmp-ajax.php:461 ../classes/class-wcmp-ajax.php:690
-#: ../classes/class-wcmp-ajax.php:977
+#: ../classes/class-wcmp-ajax.php:523 ../classes/class-wcmp-ajax.php:752
+#: ../classes/class-wcmp-ajax.php:1039
 #: ../classes/reports/class-wcmp-report-product.php:328
 #: ../classes/reports/class-wcmp-report-vendor.php:244
 msgid "Sales Report"
 msgstr ""
 
-#: ../classes/class-wcmp-ajax.php:470
+#: ../classes/class-wcmp-ajax.php:532
 #: ../classes/reports/class-wcmp-report-product.php:337
 msgid "No product was sold in the given period."
 msgstr ""
 
-#: ../classes/class-wcmp-ajax.php:699
+#: ../classes/class-wcmp-ajax.php:761
 msgid "This product was not sold in the given period."
 msgstr ""
 
-#: ../classes/class-wcmp-ajax.php:704
+#: ../classes/class-wcmp-ajax.php:766
 msgid "Please select a product."
 msgstr ""
 
-#: ../classes/class-wcmp-ajax.php:742
+#: ../classes/class-wcmp-ajax.php:804
 msgid "No Sales :("
 msgstr ""
 
-#: ../classes/class-wcmp-ajax.php:880
+#: ../classes/class-wcmp-ajax.php:942
 msgid "Vendor Earnings"
 msgstr ""
 
-#: ../classes/class-wcmp-ajax.php:889
+#: ../classes/class-wcmp-ajax.php:951
 msgid "This vendor did not generate any sales in the given period."
 msgstr ""
 
-#: ../classes/class-wcmp-ajax.php:986
+#: ../classes/class-wcmp-ajax.php:1048
 #: ../classes/reports/class-wcmp-report-vendor.php:253
 msgid "Any vendor did not generate any sales in the given period."
 msgstr ""
 
-#: ../classes/class-wcmp-ajax.php:1199
+#: ../classes/class-wcmp-ajax.php:1261
 #, php-format
 msgid "User %s (%s) is reporting an abuse on the following product: \n"
 msgstr ""
 
-#: ../classes/class-wcmp-ajax.php:1200
+#: ../classes/class-wcmp-ajax.php:1262
 #, php-format
 msgid "Product details: %s (ID: #%s) \n"
 msgstr ""
 
-#: ../classes/class-wcmp-ajax.php:1202
+#: ../classes/class-wcmp-ajax.php:1264
 #, php-format
 msgid "Vendor shop: %s \n"
 msgstr ""
 
-#: ../classes/class-wcmp-ajax.php:1204
+#: ../classes/class-wcmp-ajax.php:1266
 #, php-format
 msgid "Message: %s\n"
 msgstr ""
 
-#: ../classes/class-wcmp-ajax.php:1207
+#: ../classes/class-wcmp-ajax.php:1269
 #, php-format
 msgid "Product page:: %s\n"
 msgstr ""

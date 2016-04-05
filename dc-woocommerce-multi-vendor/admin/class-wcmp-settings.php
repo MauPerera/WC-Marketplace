@@ -25,7 +25,8 @@ class WCMp_Settings {
     add_action('settings_page_to_do_list_tab_init', array(&$this, 'to_do_list_tab_init'), 10, 1);
     add_action('settings_page_notices_tab_init', array(&$this, 'notices_tab_init'), 10, 1);    
     add_action('settings_page_general_policies_tab_init', array(&$this, 'general_policies_tab_init'), 10, 2);
-    add_action('settings_page_general_customer_support_details_tab_init', array(&$this, 'general_customer_support_details_tab_init'), 10, 2);    
+    add_action('settings_page_general_customer_support_details_tab_init', array(&$this, 'general_customer_support_details_tab_init'), 10, 2);
+		add_action('settings_page_general_sellerreview_tab_init', array(&$this, 'general_sellerreview_tab_init'), 10, 2);    
   }
   
   public function delete_dc_product_vendor_plugin_db_version() {
@@ -77,6 +78,7 @@ class WCMp_Settings {
         'university' =>  __('University', $WCMp->text_domain),
         'vendor_notices' =>  __('Announcements', $WCMp->text_domain),
         'commission' =>  __('WCMp Commission', $WCMp->text_domain),
+        'sellerreview' =>  __('Vendor Review and Rating', $WCMp->text_domain),
        
     ));
     return $tabsection_general;
@@ -415,8 +417,11 @@ class WCMp_Settings {
     new WCMp_Settings_Gneral_Customer_support_Details($tab, $subsection);
   }
   
-  
-  
+  function general_sellerreview_tab_init($tab,$subsection) {
+    global $WCMp;
+    $WCMp->admin->load_class("settings-{$tab}-{$subsection}", $WCMp->plugin_path, $WCMp->token);
+    new WCMp_Settings_Gneral_Sellerreview($tab, $subsection);
+  }  
   
   function product_tab_init($tab) {
   	global $WCMp;

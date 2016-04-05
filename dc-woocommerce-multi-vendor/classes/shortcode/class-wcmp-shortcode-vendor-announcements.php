@@ -35,7 +35,7 @@ class WCMp_Vendor_Announcements_Shortcode {
 		$pluginURL = str_replace( array( 'http:', 'https:' ), '', $WCMp->plugin_url );
 		$suffix 				= defined( 'WCMP_SCRIPT_DEBUG' ) && WCMP_SCRIPT_DEBUG ? '' : '.min';
 		wp_enqueue_script('wcmp_new_vandor_announcements_js', $frontend_script_path.'wcmp_vendor_announcements'.$suffix.'.js', array('jquery'), $WCMp->version, true);
-		wp_enqueue_script('wcmp_new_vandor_announcements_js_lib', $frontend_script_path.'jquery-2.1.3.min'.$suffix.'.js', array('jquery'), $WCMp->version, true);
+		wp_enqueue_script( 'jquery' );		
 		wp_enqueue_script('wcmp_new_vandor_announcements_js_lib_ui', 'http://code.jquery.com/ui/1.10.4/jquery-ui.js', array('jquery'), $WCMp->version, true);
 		echo '<div class="wcmp_main_page">';		
 		$WCMp->template->get_template( 'vendor_dashboard_menu.php' );

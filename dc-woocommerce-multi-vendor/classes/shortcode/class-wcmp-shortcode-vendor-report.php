@@ -36,12 +36,13 @@ class WCMp_Vendor_Report_Shortcode {
 				else $end_date = date('t-m-Y'); // hard-coded '01' for first day
 				
 				$vendor = get_wcmp_vendor($user->ID);
+				
 				$WCMp_Plugin_Post_Reports = new WCMp_Report();
 				$array_report = $WCMp_Plugin_Post_Reports->vendor_sales_stat_overview( $vendor, $start_date, $end_date);
 				?>
 				<div class="wcmp_remove_div">
 					<div class="wcmp_main_page"> 
-						<?php
+						<?php							
 							$WCMp->template->get_template( 'vendor_dashboard_menu.php', array('selected_item' => 'vendor_report'));
 							$WCMp->template->get_template( 'shortcode/vendor_report.php', $array_report);
 						?> 
