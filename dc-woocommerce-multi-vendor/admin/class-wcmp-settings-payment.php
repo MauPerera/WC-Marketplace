@@ -8,6 +8,7 @@ class WCMp_Settings_Payment {
   private $paypal_api_username;
   private $paypal_api_password;
   private $paypal_api_signature;
+  private $automatic_payment_method;
 
   /**
    * Start up
@@ -34,6 +35,17 @@ class WCMp_Settings_Payment {
   public function settings_page_init() {
     global $WCMp;
     
+    $this->automatic_payment_method = apply_filters( 'automatic_payment_method', array('paypal_masspay' => __('Paypal masspay', $WCMp->text_domain), 'direct_bank' => __('Direct Bank', $WCMp->text_domain)));
+    $automatic_method = array();
+    $i=0;
+    foreach($this->automatic_payment_method as $key=>$val) {
+      if($i == 0) {
+        $automatic_method['payment_method_'.$key] = array('title' => __('Payment Method', $WCMp->text_domain), 'type' => 'checkbox', 'id' => 'payment_method_'.$key, 'class' => 'automatic_payment_method', 'label_for' => 'payment_method_'.$key, 'desc' => __('If checked, vendors commission will be disbursed automatically by '.$val.'.', $WCMp->text_domain), 'name' => 'payment_method_'.$key, 'value' => 'Enable', 'data-display-label' => $val);
+      } else {
+        $automatic_method['payment_method_'.$key] = array('title' => __('', $WCMp->text_domain), 'type' => 'checkbox', 'id' => 'payment_method_'.$key, 'class' => 'automatic_payment_method', 'label_for' => 'payment_method_'.$key, 'desc' => __('If checked, vendors commission will be disbursed automatically by '.$val.'.', $WCMp->text_domain), 'name' => 'payment_method_'.$key, 'value' => 'Enable', 'data-display-label' => $val);
+      }
+      $i++;
+    }
     $settings_tab_options = array("tab" => "{$this->tab}",
                                   "ref" => &$this,
                                   "sections" => array(
@@ -55,18 +67,23 @@ class WCMp_Settings_Payment {
                                                                                          	 								"commission_threshold" => array('title' => __('Minimum Threshold', $WCMp->text_domain), 'type' => 'text', 'id' => 'fixed_with_percentage_qty', 'label_for' => 'commission_threshold', 'name' => 'commission_threshold', 'desc' => __('Threshold amount required to disburse commission.', $WCMp->text_domain)), // Text
                                                                                          	 								),
                                                                                          ),
-                                  										"default_settings_section" => array("title" =>  __('How/When to Pay ', $WCMp->text_domain), // Section one
-                                                                                         "fields" => array("choose_payment_mode" => array('title' => __('Disbursal Mode', $WCMp->text_domain), 'type' => 'select', 'id' => 'choose_payment_mode', 'label_for' => 'choose_payment_mode', 'name' => 'choose_payment_mode', 'options' => apply_filters( 'wcmp_disbursal_mode', array('admin' => __('Automatic disbursal', $WCMp->text_domain), 'vendor' => __('Withdrawal by request', $WCMp->text_domain)) ), 'desc' => __('Choose your preferred payment mode.', $WCMp->text_domain)), // Select
-																																																					"commission_transfer" => array('title' => __('Withdrawal Charges', $WCMp->text_domain), 'type' => 'text', 'id' => 'commission_transfer', 'label_for' => 'commission_transfer', 'name' => 'commission_transfer', 'desc' => __('Vendor will be charged this amount per withdrawal after the quota of free withdrawals is over.', $WCMp->text_domain)), // Text
-																																																					"no_of_orders" => array('title' => __('Number of Free Withdrawals', $WCMp->text_domain), 'type' => 'text', 'id' => 'no_of_orders', 'label_for' => 'no_of_orders', 'name' => 'no_of_orders', 'desc' => __('Number of Free Withdrawal Requests.', $WCMp->text_domain)), // Text
-																																																					"is_mass_pay" => array('title' => __('Activate MassPay', $WCMp->text_domain), 'type' => 'checkbox', 'id' => 'is_mass_pay', 'label_for' => 'is_mass_pay', 'name' => 'is_mass_pay', 'value' => 'Enable'), // Checkbox
-																																																					"payment_schedule" => array('title' => __('Set Schedule', $WCMp->text_domain), 'type' => 'radio', 'id' => 'payment_schedule', 'label_for' => 'payment_schedule', 'name' => 'payment_schedule', 'dfvalue' => 'daily', 'options' => array('weekly' => __('Weekly', $WCMp->text_domain), 'daily' => __('Daily', $WCMp->text_domain), 'monthly' => __('Monthly', $WCMp->text_domain), 'fortnightly' => __('Fortnightly',$WCMp->text_domain), 'hourly' => __('Hourly', $WCMp->text_domain)), 'desc' => __('Choose your preferred schedule for PayaPal MassPay.', $WCMp->text_domain)), // Radio
-																																																					"api_username" => array('title' => __('API Username', $WCMp->text_domain), 'type' => 'text', 'id' => 'api_username', 'label_for' => 'api_username', 'dfvalue'=>$this->paypal_api_username, 'name' => 'api_username', 'desc' => __('Give your PayPal API Username.', $WCMp->text_domain)),
-																																																					"api_pass" => array('title' => __('API Password', $WCMp->text_domain), 'type' => 'text', 'id' => 'api_pass', 'label_for' => 'api_pass', 'name' => 'api_pass', 'dfvalue'=>$this->paypal_api_password, 'desc' => __('Give your PayPal API Password.', $WCMp->text_domain)),
-																																																					"api_signature" => array('title' => __('API Signature', $WCMp->text_domain), 'type' => 'text', 'id' => 'api_signature', 'label_for' => 'api_signature', 'name' => 'api_signature', 'dfvalue'=>$this->paypal_api_signature,  'desc' => __('Give your PayPal API Signature.', $WCMp->text_domain)),
-																																																					"is_testmode" => array('title' => __('Enable Test Mode', $WCMp->text_domain), 'type' => 'checkbox', 'id' => 'is_testmode', 'label_for' => 'is_testmode', 'name' => 'is_testmode', 'value' => 'Enable'), // Checkbox
-                                                                                                          ),							
-                                                      																	 )
+                                                      "wcmp_default_settings_section" => array("title" =>  __('How/When to Pay ', $WCMp->text_domain), // Section one
+                                                                                         "fields" => array_merge(array("choose_payment_mode_automatic_disbursal" => array('title' => __('Automatic Disbursal Mode', $WCMp->text_domain), 'type' => 'checkbox', 'id' => 'wcmp_disbursal_mode_admin', 'label_for' => 'wcmp_disbursal_mode_admin', 'name' => 'wcmp_disbursal_mode_admin',  'desc' => __('If checked, automatically vendors commission will disburse. ', $WCMp->text_domain),  'value' => 'Enable'), // Checkbox
+                                                                                                          "payment_schedule" => array('title' => __('Set Schedule', $WCMp->text_domain), 'type' => 'radio', 'id' => 'payment_schedule', 'label_for' => 'payment_schedule', 'name' => 'payment_schedule', 'dfvalue' => 'daily', 'options' => array('weekly' => __('Weekly', $WCMp->text_domain), 'daily' => __('Daily', $WCMp->text_domain), 'monthly' => __('Monthly', $WCMp->text_domain), 'fortnightly' => __('Fortnightly',$WCMp->text_domain), 'hourly' => __('Hourly', $WCMp->text_domain)), 'desc' => __('Choose your preferred schedule for MassPay.', $WCMp->text_domain)), // Radio
+                                                                                                          ),
+                                                                                                          $automatic_method,
+                                                                                                          array("choose_payment_mode_request_disbursal" => array('title' => __('Request Disbursal Mode', $WCMp->text_domain), 'type' => 'checkbox', 'id' => 'wcmp_disbursal_mode_vendor', 'label_for' => 'wcmp_disbursal_mode_vendor', 'name' => 'wcmp_disbursal_mode_vendor',  'desc' => __('If checked, vendors can withdrawal commission by request. ', $WCMp->text_domain),  'value' => 'Enable'), // Checkbox                                                                            
+                                                                                                          "commission_transfer" => array('title' => __('Withdrawal Charges', $WCMp->text_domain), 'type' => 'text', 'id' => 'commission_transfer', 'label_for' => 'commission_transfer', 'name' => 'commission_transfer', 'desc' => __('Vendor will be charged this amount per withdrawal after the quota of free withdrawals is over.', $WCMp->text_domain)), // Text
+                                                                                                          "no_of_orders" => array('title' => __('Number of Free Withdrawals', $WCMp->text_domain), 'type' => 'text', 'id' => 'no_of_orders', 'label_for' => 'no_of_orders', 'name' => 'no_of_orders', 'desc' => __('Number of Free Withdrawal Requests.', $WCMp->text_domain)), // Text),            
+                                                                                                        )),
+                                                                                         ),
+                                                      "wcmp_paypal_settings" => array("title" =>  __('WCMp Paypal Settings ', $WCMp->text_domain), // Section one
+                                                                                         "fields" => array("api_username" => array('title' => __('API Username', $WCMp->text_domain), 'type' => 'text', 'id' => 'api_username', 'label_for' => 'api_username', 'dfvalue'=>$this->paypal_api_username, 'name' => 'api_username', 'desc' => __('Give your PayPal API Username.', $WCMp->text_domain)),
+                                                                                                          "api_pass" => array('title' => __('API Password', $WCMp->text_domain), 'type' => 'text', 'id' => 'api_pass', 'label_for' => 'api_pass', 'name' => 'api_pass', 'dfvalue'=>$this->paypal_api_password, 'desc' => __('Give your PayPal API Password.', $WCMp->text_domain)),
+                                                                                                          "api_signature" => array('title' => __('API Signature', $WCMp->text_domain), 'type' => 'text', 'id' => 'api_signature', 'label_for' => 'api_signature', 'name' => 'api_signature', 'dfvalue'=>$this->paypal_api_signature,  'desc' => __('Give your PayPal API Signature.', $WCMp->text_domain)),
+                                                                                                          "is_testmode" => array('title' => __('Enable Test Mode', $WCMp->text_domain), 'type' => 'checkbox', 'id' => 'is_testmode', 'label_for' => 'is_testmode', 'name' => 'is_testmode', 'value' => 'Enable'), // Checkbox
+                                                                                                          ),              
+                                                                                         )
                                                       ),
                                   );
     
@@ -81,7 +98,6 @@ class WCMp_Settings_Payment {
   public function wcmp_payment_settings_sanitize( $input ) {
     global $WCMp;
     $new_input = array();
-    
     $hasError = false;
     
     if( isset( $input['revenue_sharing_mode'] ) )
@@ -123,42 +139,40 @@ class WCMp_Settings_Payment {
 			$new_input['give_tax'] = sanitize_text_field( $input['give_tax'] );
 		if( isset( $input['give_shipping'] ) )
 			$new_input['give_shipping'] = sanitize_text_field( $input['give_shipping'] );
-		
-		if( isset( $input['is_testmode'] ) )
-			$new_input['is_testmode'] = sanitize_text_field( $input['is_testmode'] );
-		
+
+    if(isset( $input['wcmp_disbursal_mode_admin'] )) {
+      $new_input['wcmp_disbursal_mode_admin'] = sanitize_text_field( $input['wcmp_disbursal_mode_admin'] ); 
+    }
+    if(isset( $input['wcmp_disbursal_mode_vendor'] )) {
+      $new_input['wcmp_disbursal_mode_vendor'] = sanitize_text_field( $input['wcmp_disbursal_mode_vendor'] ); 
+    }
+    foreach($this->automatic_payment_method as $key=>$val) {
+      if(isset( $input['payment_method_'.$key] )) {
+        $new_input['payment_method_'.$key] = sanitize_text_field( $input['payment_method_'.$key] ); 
+      }
+    }
+
 		if( isset( $input['payment_schedule'] ) )
-			$new_input['payment_schedule'] = $input['payment_schedule'];
-		
-		if( isset( $input['is_mass_pay']) ) {
-			$schedule = wp_get_schedule( 'paypal_masspay_cron_start' );
+			$new_input['payment_schedule'] = $input['payment_schedule'];		
+    
+		if( isset( $input['wcmp_disbursal_mode_admin']) ) {
+			$schedule = wp_get_schedule( 'masspay_cron_start' );
 			if($schedule != $input['payment_schedule']) {
-				if(wp_next_scheduled( 'paypal_masspay_cron_start' ) ) {
-					$timestamp = wp_next_scheduled( 'paypal_masspay_cron_start' );
-					wp_unschedule_event($timestamp, 'paypal_masspay_cron_start' );
+				if(wp_next_scheduled( 'masspay_cron_start' ) ) {
+					$timestamp = wp_next_scheduled( 'masspay_cron_start' );
+					wp_unschedule_event($timestamp, 'masspay_cron_start' );
 				}
-				if( $input['choose_payment_mode'] == 'admin' ) {
-					wp_schedule_event( time(), $input['payment_schedule'], 'paypal_masspay_cron_start');
-				}
-			} else {
-				//wp_schedule_event( time(), $input['payment_schedule'], 'paypal_masspay_cron_start');
+				wp_schedule_event( time(), $input['payment_schedule'], 'masspay_cron_start');
 			}
 		} else {
-    	if(wp_next_scheduled( 'paypal_masspay_cron_start' ) ) {
-				$timestamp = wp_next_scheduled( 'paypal_masspay_cron_start' );
-				wp_unschedule_event($timestamp, 'paypal_masspay_cron_start' );
+    	if(wp_next_scheduled( 'masspay_cron_start' ) ) {
+				$timestamp = wp_next_scheduled( 'masspay_cron_start' );
+				wp_unschedule_event($timestamp, 'masspay_cron_start' );
 			}
-    }
-    
-    if(isset( $input['choose_payment_mode'] )) {
-    	$new_input['choose_payment_mode'] = sanitize_text_field( $input['choose_payment_mode'] );	
     } 
-    if( $input['choose_payment_mode'] == 'vendor') {
-    	if(wp_next_scheduled( 'paypal_masspay_cron_start' ) ) {
-				$timestamp = wp_next_scheduled( 'paypal_masspay_cron_start' );
-				wp_unschedule_event($timestamp, 'paypal_masspay_cron_start' );
-			}
-    }
+
+    if( isset( $input['is_testmode'] ) )
+      $new_input['is_testmode'] = sanitize_text_field( $input['is_testmode'] );
 		
     if( isset( $input['api_username'] ) ) {
       $new_input['api_username'] = trim($input['api_username']);
@@ -210,13 +224,20 @@ class WCMp_Settings_Payment {
   /** 
    * Print the Section text
    */
-  public function default_settings_section_info() {
+  public function wcmp_default_settings_section_info() {
     global $WCMp;
    	_e('Payment can be done only if vendors have valid PayPal Email Id in their profile. You can add from [Users->Edit Users->PayPal Email]', $WCMp->text_domain);
    	echo '<br>';
    	$pages = get_option('wcmp_pages_settings_name');
 		$vendor_transaction_detail = $pages['vendor_transaction_detail'];
    	echo '<a href="'.get_permalink($vendor_transaction_detail).'" target="_blank" >' . __( "View All Transaction Details", $WCMp->text_domain ) . '</a>';
+  }
+
+  /**
+   * Print the section text
+   */
+  public function wcmp_paypal_settings_info() {
+    global $WCMp;
   }
   
   /** 

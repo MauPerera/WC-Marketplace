@@ -119,35 +119,41 @@ jQuery(document).ready(function($) {
    		$('#fixed_with_percentage_qty').closest( "tr" ).css( "display", "none" );
    	}
   });
+
+  if($('#wcmp_disbursal_mode_admin').is(':checked')) {
+        $('#payment_schedule').closest( "tr" ).show();
+        $('.automatic_payment_method').closest( "tr" ).show();
+    } else {
+        $('#payment_schedule').closest( "tr" ).css( "display", "none" );
+        $('.automatic_payment_method').closest( "tr" ).css( "display", "none" );
+    }
+    
+    if($('#wcmp_disbursal_mode_vendor').is(':checked')) {
+        $('#commission_transfer').closest( "tr" ).show();
+        $('#no_of_orders').closest( "tr" ).show();
+    } else {
+        $('#commission_transfer').closest( "tr" ).css( "display", "none" );
+        $('#no_of_orders').closest( "tr" ).css( "display", "none" );
+    }
+      
+  $('#wcmp_disbursal_mode_admin').change(function () {
+      if($(this).is(':checked')) {
+          $('#payment_schedule').closest( "tr" ).show();
+          $('.automatic_payment_method').closest( "tr" ).show();
+      } else {
+          $('#payment_schedule').closest( "tr" ).css( "display", "none" );
+          $('.automatic_payment_method').closest( "tr" ).css( "display", "none" );
+      }
+  });
   
-  if($('#choose_payment_mode').val() == 'admin' ) {  	
-  	$('#commission_transfer').closest( "tr" ).css( "display", "none" );
-  	$('#no_of_orders').closest( "tr" ).css( "display", "none" );
-  	$('#is_mass_pay').closest( "tr" ).show();
-  	$('#payment_schedule').closest( "tr" ).show();  	
-	} else if($('#choose_payment_mode').val() == 'vendor') {
-		$('#commission_transfer').closest( "tr" ).show();
-  	$('#no_of_orders').closest( "tr" ).show();
-  	$('#is_mass_pay').closest( "tr" ).show();
-  	$('#payment_schedule').closest( "tr" ).css( "display", "none" );
-	}
-  
-	
-	$('#choose_payment_mode').change(function () {
-  	var choose_payment_mode = $(this).val();
-   	if( choose_payment_mode == 'admin') {
-   			$('#commission_transfer').closest( "tr" ).css( "display", "none" );
-   			$('#no_of_orders').closest( "tr" ).css( "display", "none" );
-   			$('#is_mass_pay').closest( "tr" ).show();
-   			$('#payment_schedule').closest( "tr" ).show();
-   			$('#api_username, #api_pass, #api_signature, #is_testmode').closest( "tr" ).show();
-   	} else if(choose_payment_mode == 'vendor') {
-   			$('#commission_transfer').closest( "tr" ).show();
-   			$('#no_of_orders').closest( "tr" ).show();
-   			$('#is_mass_pay').closest( "tr" ).show();
-   			$('#payment_schedule').closest( "tr" ).css( "display", "none" );
-   			$('#api_username, #api_pass, #api_signature, #is_testmode').closest( "tr" ).show();
-   	}
+  $('#wcmp_disbursal_mode_vendor').change(function () {
+      if($(this).is(':checked')) {
+            $('#commission_transfer').closest( "tr" ).show();
+            $('#no_of_orders').closest( "tr" ).show();
+      } else {
+            $('#commission_transfer').closest( "tr" ).css( "display", "none" );
+            $('#no_of_orders').closest( "tr" ).css( "display", "none" );
+      }
   });
   
   if($('#is_policy_on').is(':checked')) {   	

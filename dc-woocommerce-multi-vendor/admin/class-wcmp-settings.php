@@ -169,7 +169,7 @@ class WCMp_Settings {
     $tab_desc = $this->get_saettings_tab_desc();
     foreach( $this->tabs as $tabd => $named ) :
       if ( $tabd == $current && !empty($tab_desc[$tabd]) ) :
-        printf( __( "<h4 style='border-bottom: 1px solid rgb(215, 211, 211);padding-bottom: 21px;'>%s</h4>", $WCMp->text_domain) , $tab_desc[$tabd]);
+        printf( __( "<h4 style=\'border-bottom: 1px solid rgb(215, 211, 211);padding-bottom: 21px;\'>%s</h4>", $WCMp->text_domain) , $tab_desc[$tabd]);
       endif;
     endforeach;
   }

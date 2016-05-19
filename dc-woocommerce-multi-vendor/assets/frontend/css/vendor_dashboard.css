@@ -1484,7 +1484,7 @@ p.error_wcmp {
 .ui-widget-header .ui-state-default .msg_date_box,
 .ui-state-default .msg_title_box,
 .ui-widget-content .ui-state-default .msg_title_box, 
-.ui-widget-header .ui-state-default .msg_title_box,
+.ui-widget-header .ui-state-default .msg_title_box
 {
 	color: #868686 !important;
 }

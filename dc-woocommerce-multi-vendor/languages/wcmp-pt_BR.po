@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WC Marketplace\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-17 16:29+0530\n"
-"PO-Revision-Date: 2016-03-17 16:30+0530\n"
+"POT-Creation-Date: 2016-04-05 18:46+0530\n"
+"PO-Revision-Date: 2016-04-05 18:46+0530\n"
 "Last-Translator: admin <graopremium@gmail.com>\n"
 "Language-Team: \n"
 "Language: Portuguese (Brazil)\n"
@@ -742,6 +742,22 @@ msgstr ""
 
 #: ../templates/shortcode/vendor_transactions.php:83
 msgid "Sorry. No transactions are available."
+msgstr ""
+
+#: ../templates/shortcode/vendor_lists.php:22
+msgid "By date"
+msgstr ""
+
+#: ../templates/shortcode/vendor_lists.php:23
+msgid "By Alphabetically"
+msgstr ""
+
+#: ../templates/shortcode/vendor_lists.php:24
+msgid "By Category"
+msgstr ""
+
+#: ../templates/shortcode/vendor_lists.php:45
+msgid "Sort"
 msgstr ""
 
 #: ../templates/shortcode/vendor_order_detail.php:23
@@ -1600,6 +1616,7 @@ msgstr ""
 
 #: ../templates/review/rating-vendor-tab.php:31
 #: ../templates/review/rating.php:30
+#: ../templates/review/rating_vendor_lists.php:31
 #, php-format
 msgid "Rated %s out of 5"
 msgstr ""
@@ -1607,6 +1624,7 @@ msgstr ""
 #: ../templates/review/rating-vendor-tab.php:32
 #: ../templates/review/rating.php:31 ../templates/review/review-link.php:32
 #: ../templates/review/review.php:37
+#: ../templates/review/rating_vendor_lists.php:32
 msgid "out of 5"
 msgstr ""
 
@@ -1635,6 +1653,11 @@ msgstr ""
 #: ../templates/review/review.php:49
 msgid "verified buyer"
 msgstr ""
+
+#: ../templates/review/rating_vendor_lists.php:35
+#, fuzzy
+msgid "No Rating Yet"
+msgstr "mensagem"
 
 #: ../admin/class-wcmp-settings-frontend.php:30
 msgid "Reveal Vendor Name- 1"
@@ -3051,34 +3074,34 @@ msgstr ""
 msgid "Every 15 Days"
 msgstr ""
 
-#: ../classes/class-wcmp-vendor-details.php:531
+#: ../classes/class-wcmp-vendor-details.php:533
 #, php-format
 msgid "Quantity: %s"
 msgstr ""
 
-#: ../classes/class-wcmp-vendor-details.php:537
+#: ../classes/class-wcmp-vendor-details.php:539
 #, php-format
 msgid "Total: %s"
 msgstr ""
 
-#: ../classes/class-wcmp-vendor-details.php:538
+#: ../classes/class-wcmp-vendor-details.php:540
 #, php-format
 msgid "Commission: %s"
 msgstr ""
 
-#: ../classes/class-wcmp-vendor-details.php:700
+#: ../classes/class-wcmp-vendor-details.php:702
 msgid "Commission Subtotal:"
 msgstr ""
 
-#: ../classes/class-wcmp-vendor-details.php:703
+#: ../classes/class-wcmp-vendor-details.php:705
 msgid "Tax Subtotal:"
 msgstr ""
 
-#: ../classes/class-wcmp-vendor-details.php:708
+#: ../classes/class-wcmp-vendor-details.php:710
 msgid "Shipping Subtotal:"
 msgstr ""
 
-#: ../classes/class-wcmp-vendor-details.php:711
+#: ../classes/class-wcmp-vendor-details.php:713
 msgid "Total:"
 msgstr ""
 
@@ -3225,47 +3248,47 @@ msgstr ""
 msgid "Our Return Address :"
 msgstr ""
 
-#: ../classes/class-wcmp-seller-review-rating.php:98
+#: ../classes/class-wcmp-seller-review-rating.php:104
 #, fuzzy
 msgid "Vendor Rating"
 msgstr "mensagem"
 
-#: ../classes/class-wcmp-seller-review-rating.php:124
-#: ../classes/class-wcmp-seller-review-rating.php:126
+#: ../classes/class-wcmp-seller-review-rating.php:130
+#: ../classes/class-wcmp-seller-review-rating.php:132
 #, fuzzy
 msgid "Vendor Name."
 msgstr "mensagem"
 
-#: ../classes/class-wcmp-seller-review-rating.php:150
+#: ../classes/class-wcmp-seller-review-rating.php:156
 #, fuzzy
 msgid "Vendor Rating."
 msgstr "mensagem"
 
-#: ../classes/class-wcmp-seller-review-rating.php:152
+#: ../classes/class-wcmp-seller-review-rating.php:158
 msgid "Vendor Rating Star."
 msgstr ""
 
-#: ../classes/class-wcmp-seller-review-rating.php:153
+#: ../classes/class-wcmp-seller-review-rating.php:159
 msgid "Please Select"
 msgstr ""
 
-#: ../classes/class-wcmp-seller-review-rating.php:153
+#: ../classes/class-wcmp-seller-review-rating.php:159
 msgid "1 Star"
 msgstr ""
 
-#: ../classes/class-wcmp-seller-review-rating.php:153
+#: ../classes/class-wcmp-seller-review-rating.php:159
 msgid "2 Star"
 msgstr ""
 
-#: ../classes/class-wcmp-seller-review-rating.php:153
+#: ../classes/class-wcmp-seller-review-rating.php:159
 msgid "3 Star"
 msgstr ""
 
-#: ../classes/class-wcmp-seller-review-rating.php:153
+#: ../classes/class-wcmp-seller-review-rating.php:159
 msgid "4 Star"
 msgstr ""
 
-#: ../classes/class-wcmp-seller-review-rating.php:153
+#: ../classes/class-wcmp-seller-review-rating.php:159
 msgid "5 Star"
 msgstr ""
 
@@ -3791,40 +3814,6 @@ msgid ""
 "Announcements are visible only to vendors through the vendor "
 "dashboard(message section). You may use this section to broadcast your "
 "announcements."
-msgstr ""
-
-#: ../classes/class-wcmp-shortcode.php:919
-#: ../classes/class-wcmp-shortcode.php:921
-#: ../classes/class-wcmp-shortcode.php:923
-#: ../classes/class-wcmp-shortcode.php:925
-#: ../classes/class-wcmp-shortcode.php:929
-#: ../classes/class-wcmp-shortcode.php:931
-#: ../classes/class-wcmp-shortcode.php:933
-msgid "By date"
-msgstr ""
-
-#: ../classes/class-wcmp-shortcode.php:919
-#: ../classes/class-wcmp-shortcode.php:921
-#: ../classes/class-wcmp-shortcode.php:923
-#: ../classes/class-wcmp-shortcode.php:925
-#: ../classes/class-wcmp-shortcode.php:929
-#: ../classes/class-wcmp-shortcode.php:931
-#: ../classes/class-wcmp-shortcode.php:933
-msgid "By Alphabetically"
-msgstr ""
-
-#: ../classes/class-wcmp-shortcode.php:919
-#: ../classes/class-wcmp-shortcode.php:921
-#: ../classes/class-wcmp-shortcode.php:923
-#: ../classes/class-wcmp-shortcode.php:925
-#: ../classes/class-wcmp-shortcode.php:929
-#: ../classes/class-wcmp-shortcode.php:931
-#: ../classes/class-wcmp-shortcode.php:933
-msgid "By Category"
-msgstr ""
-
-#: ../classes/class-wcmp-shortcode.php:955
-msgid "Sort"
 msgstr ""
 
 #: ../classes/shortcode/class-wcmp-shortcode-vendor-shipping-settings.php:59

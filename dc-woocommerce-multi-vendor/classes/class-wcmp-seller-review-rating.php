@@ -20,7 +20,13 @@ class WCMp_Seller_Review_Rating {
 			add_action( 'comment_save_pre', array( $this, 'save_wcmp_rating_meta_box' ) );
 			add_filter( 'widget_comments_args', array( $this, 'remove_vendor_rating_from_recent_comment'),10);
 			add_action( 'woocommerce_order_item_meta_end', array( $this, 'wcmp_review_rating_link'),10,3);
+			
 	  }	  
+	}
+	
+	function wcmp_vendor_list_rating_rating_value($vendor_term_id, $vendor_id) {
+		$rating_info = wcmp_get_vendor_review_info($vendor_term_id);
+		$WCMp->template->get_template( 'review/rating_vendor_lists.php', array('rating_val_array' => $rating_info));
 	}
 	
 	function wcmp_review_rating_link(  $item_id, $item, $order ) {

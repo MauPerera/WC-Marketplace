@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WC Marketplace\n"
-"POT-Creation-Date: 2016-03-17 16:29+0530\n"
-"PO-Revision-Date: 2016-03-17 16:29+0530\n"
+"POT-Creation-Date: 2016-04-05 18:45+0530\n"
+"PO-Revision-Date: 2016-04-05 18:45+0530\n"
 "Last-Translator: \n"
 "Language-Team: Dualcube <admin@dualcube.com>\n"
 "Language: fr\n"
@@ -32,6 +32,8 @@ msgid ""
 "Another Multivendor Plugin is allready Activated Please deactivate first to "
 "install this plugin"
 msgstr ""
+"Une autre extension multivendeur est déjà installée. S’il vous plait, "
+"désactiver ce dernier avant d’installer l’extension"
 
 #: ../includes/class-wcmp-install.php:102
 #: ../admin/class-wcmp-settings-pages.php:36
@@ -63,26 +65,22 @@ msgstr "détails de la transaction"
 
 #: ../includes/class-wcmp-install.php:108
 #: ../admin/class-wcmp-settings-pages.php:42 ../classes/class-wcmp.php:643
-#, fuzzy
 msgid "Vendor Policies"
-msgstr "Politiques"
+msgstr "Politiques du vendeur"
 
 #: ../includes/class-wcmp-install.php:109
 #: ../admin/class-wcmp-settings-pages.php:43 ../classes/class-wcmp.php:660
-#, fuzzy
 msgid "Vendor Billing"
-msgstr "Le bénéfice du vendeur"
+msgstr "Facturation du vendeur"
 
 #: ../includes/class-wcmp-install.php:110
 #: ../admin/class-wcmp-settings-pages.php:48 ../classes/class-wcmp.php:677
-#, fuzzy
 msgid "Vendor Shipping"
-msgstr "livraison"
+msgstr "Livraison"
 
 #: ../includes/class-wcmp-install.php:111
-#, fuzzy
 msgid "Vendor Reports"
-msgstr "Les commandes des vendeurs"
+msgstr "Rapports du vendeur"
 
 #: ../includes/class-wcmp-install.php:112 ../classes/class-wcmp.php:712
 #, fuzzy
@@ -91,9 +89,8 @@ msgstr "Nombre de retraits gratuits"
 
 #: ../includes/class-wcmp-install.php:113
 #: ../admin/class-wcmp-settings-pages.php:46 ../classes/class-wcmp.php:729
-#, fuzzy
 msgid "Vendor University"
-msgstr "Les commandes des vendeurs"
+msgstr "Université du vendeur"
 
 #: ../includes/class-wcmp-install.php:114
 #: ../admin/class-wcmp-settings-pages.php:47 ../classes/class-wcmp.php:747
@@ -109,9 +106,8 @@ msgstr "Plus de produits de%1$s"
 
 #: ../templates/vendor_message_to_buyer.php:27
 #: ../templates/customer_support_details_to_buyer.php:34
-#, fuzzy
 msgid "Vendor Details"
-msgstr "Détails de la commande vendeur"
+msgstr "Détails du vendeur"
 
 #: ../templates/vendor_message_to_buyer.php:28
 #: ../templates/widget/quick-info.php:32
@@ -120,9 +116,8 @@ msgstr "Message"
 
 #: ../templates/vendor_message_to_buyer.php:33
 #: ../templates/customer_support_details_to_buyer.php:40
-#, fuzzy
 msgid "Vender Name"
-msgstr "Nom du vendeur"
+msgstr "Nom du Vendeur"
 
 #: ../templates/vendor_message_to_buyer.php:35
 #: ../templates/customer_support_details_to_buyer.php:42
@@ -136,61 +131,56 @@ msgstr "Nom du produit"
 #: ../templates/customer_support_details_to_buyer.php:45
 #: ../templates/customer_support_details_to_buyer.php:81
 #: ../templates/shortcode/vendor_policy.php:48
-#, fuzzy
 msgid "Customer Support Details"
-msgstr "Détails Client"
+msgstr "Détails du support aux utilisateurs"
 
 #: ../templates/vendor_message_to_buyer.php:43
 #: ../templates/vendor_message_to_buyer.php:63
 #: ../templates/customer_support_details_to_buyer.php:47
 #: ../templates/customer_support_details_to_buyer.php:83
 #: ../classes/class-wcmp-email.php:76 ../classes/class-wcmp-email.php:143
-#, fuzzy
 msgid "Email : "
-msgstr "Email:"
+msgstr "Email :"
 
 #: ../templates/vendor_message_to_buyer.php:48
 #: ../templates/vendor_message_to_buyer.php:68
 #: ../templates/customer_support_details_to_buyer.php:52
 #: ../templates/customer_support_details_to_buyer.php:88
 #: ../classes/class-wcmp-email.php:83 ../classes/class-wcmp-email.php:153
-#, fuzzy
 msgid "Phone : "
-msgstr "Téléphone"
+msgstr "Téléphone :"
 
 #: ../templates/vendor_message_to_buyer.php:51
 #: ../templates/vendor_message_to_buyer.php:71
 #: ../templates/customer_support_details_to_buyer.php:55
 #: ../templates/customer_support_details_to_buyer.php:91
-#, fuzzy
 msgid "Return Address "
-msgstr "Adresse de la banque"
+msgstr "Adresse de retour"
 
 #: ../templates/policies_tab.php:26
 #: ../templates/shortcode/vendor_policy.php:35
 #: ../admin/class-wcmp-settings-general-policies.php:35
 #: ../classes/class-wcmp-product.php:605 ../classes/class-wcmp-user.php:641
 msgid "Cancellation/Return/Exchange Policy"
-msgstr ""
+msgstr "Politique de cancellation/retour/échange"
 
 #: ../templates/policies_tab.php:27
 #: ../templates/shortcode/vendor_policy.php:39
 #: ../admin/class-wcmp-settings-general-policies.php:37
 #: ../classes/class-wcmp-product.php:621 ../classes/class-wcmp-user.php:649
 msgid "Refund Policy"
-msgstr ""
+msgstr "Politique de remboursement"
 
 #: ../templates/policies_tab.php:28
 #: ../templates/shortcode/vendor_policy.php:43
 #: ../admin/class-wcmp-settings-general-policies.php:39
 #: ../classes/class-wcmp-product.php:637 ../classes/class-wcmp-user.php:657
-#, fuzzy
 msgid "Shipping Policy"
-msgstr "livraison"
+msgstr "Politique de Livraison"
 
 #: ../templates/archive_vendor_info.php:30
 msgid "External Store URL"
-msgstr ""
+msgstr "URL externe de la boutique"
 
 #: ../templates/archive_vendor_info.php:74 ../classes/class-wcmp-user.php:362
 #: ../classes/widgets/class-wcmp-widget-vendor-quick-info.php:171
@@ -199,18 +189,16 @@ msgstr "Description"
 
 #: ../templates/customer_support_details_to_buyer.php:76
 msgid "Customer Support Details & Product Return Address"
-msgstr ""
+msgstr "Détails du support et adresse de retour des produits"
 
 #: ../templates/vendor_dashboard_menu.php:40
-#, fuzzy
 msgid "Shop Name"
-msgstr "Nom du Coupon"
+msgstr "Nom de la Boutique"
 
 #: ../templates/vendor_dashboard_menu.php:42
 #: ../templates/vendor_dashboard_menu.php:48
-#, fuzzy
 msgid "Shop"
-msgstr "Slug Boutique"
+msgstr "Boutique"
 
 #: ../templates/vendor_dashboard_menu.php:43
 #: ../templates/vendor_dashboard_menu.php:49
@@ -227,61 +215,52 @@ msgstr "Slug Boutique"
 #: ../classes/class-wcmp-post-notices.php:81
 #: ../classes/class-wcmp-post-notices.php:82
 msgid "Announcements"
-msgstr ""
+msgstr "Annonces"
 
 #: ../templates/vendor_dashboard_menu.php:50
 #: ../templates/shortcode/vendor_dashboard.php:36
-#, fuzzy
 msgid "Dashboard"
-msgstr "Tableau de bord du vendeur"
+msgstr "Tableau de bord"
 
 #: ../templates/vendor_dashboard_menu.php:51
-#, fuzzy
 msgid "Store Settings"
-msgstr "Paramètres Boutique"
+msgstr "Boutique"
 
 #: ../templates/vendor_dashboard_menu.php:53
-#, fuzzy
 msgid "- Shop front"
-msgstr "Livrer à partir de :"
+msgstr "- Vitrine"
 
 #: ../templates/vendor_dashboard_menu.php:55
-#, fuzzy
 msgid "- Policies"
-msgstr "Politiques"
+msgstr "- Politiques"
 
 #: ../templates/vendor_dashboard_menu.php:57
 msgid "- Billing"
-msgstr ""
+msgstr "- Facturation"
 
 #: ../templates/vendor_dashboard_menu.php:59
-#, fuzzy
 msgid "- Shipping"
-msgstr "livraison"
+msgstr "- Livraison"
 
 #: ../templates/vendor_dashboard_menu.php:65
-#, fuzzy
 msgid "Product Manager"
-msgstr "Nom du produit"
+msgstr "Gestion de produit"
 
 #: ../templates/vendor_dashboard_menu.php:70
 msgid "Promote"
-msgstr ""
+msgstr "Promouvoir"
 
 #: ../templates/vendor_dashboard_menu.php:73
-#, fuzzy
 msgid "- Coupons"
-msgstr "Coupons"
+msgstr "- Coupons"
 
 #: ../templates/vendor_dashboard_menu.php:78
-#, fuzzy
 msgid "Stats/Reports"
-msgstr "Compte rendu de vente"
+msgstr "Rapports/Stats"
 
 #: ../templates/vendor_dashboard_menu.php:80
-#, fuzzy
 msgid "- Overview"
-msgstr "Vue d'ensemble"
+msgstr "- Vue d’ensemble"
 
 #: ../templates/vendor_dashboard_menu.php:83
 #: ../classes/class-wcmp-vendor-dashboard.php:471
@@ -290,18 +269,16 @@ msgid "Orders"
 msgstr "Commandes"
 
 #: ../templates/vendor_dashboard_menu.php:84
-#, fuzzy
 msgid "Payments"
-msgstr "Paiement"
+msgstr "Paiements "
 
 #: ../templates/vendor_dashboard_menu.php:86
-#, fuzzy
 msgid "- Withdrawal"
-msgstr "Frais de retrait"
+msgstr "- Retrait"
 
 #: ../templates/vendor_dashboard_menu.php:87
 msgid "- History"
-msgstr ""
+msgstr "Historique"
 
 #: ../templates/vendor_dashboard_menu.php:91
 #: ../templates/shortcode/vendor_university.php:29
@@ -317,45 +294,43 @@ msgstr ""
 #: ../classes/class-wcmp-post-university.php:42
 #: ../classes/class-wcmp-post-university.php:43
 msgid "University"
-msgstr ""
+msgstr "Université"
 
 #: ../templates/wcmp-vendor-review-form.php:38
 msgid "Your Rating"
-msgstr ""
+msgstr "Votre évaluation"
 
 #: ../templates/wcmp-vendor-review-form.php:40
-#, fuzzy
 msgid "Rate..."
-msgstr "Taux"
+msgstr "Taux…"
 
 #: ../templates/wcmp-vendor-review-form.php:41
 msgid "Perfect"
-msgstr ""
+msgstr "Parfait"
 
 #: ../templates/wcmp-vendor-review-form.php:42
 msgid "Good"
-msgstr ""
+msgstr "Bon"
 
 #: ../templates/wcmp-vendor-review-form.php:43
 msgid "Average"
-msgstr ""
+msgstr "Moyen"
 
 #: ../templates/wcmp-vendor-review-form.php:44
 msgid "Not that bad"
-msgstr ""
+msgstr "Pas si mauvais"
 
 #: ../templates/wcmp-vendor-review-form.php:45
 msgid "Very Poor"
-msgstr ""
+msgstr "Très mauvais"
 
 #: ../templates/wcmp-vendor-review-form.php:48
-#, fuzzy
 msgid "Your Review"
-msgstr "Voir les avis"
+msgstr "Votre Évaluation"
 
 #: ../templates/wcmp-vendor-review-form.php:89
 msgid "There are no reviews yet."
-msgstr ""
+msgstr "Il n’y a pas encore d’évaluations."
 
 #: ../templates/widget/store-location.php:16
 msgid "Show in Google Maps"
@@ -393,14 +368,14 @@ msgstr "Email"
 
 #: ../templates/shortcode/vendor_announcements_archive.php:62
 msgid "Restore"
-msgstr ""
+msgstr "Restaurer"
 
 #: ../templates/shortcode/vendor_announcements_archive.php:71
 #: ../templates/shortcode/vendor_announcements_unread.php:90
 #: ../templates/shortcode/vendor_announcements_all.php:83
 #: ../templates/shortcode/vendor_announcements_read.php:87
 msgid "Read More"
-msgstr ""
+msgstr "Lire plus"
 
 #: ../templates/shortcode/vendor_announcements_archive.php:84
 #: ../templates/shortcode/vendor_withdrawal.php:32
@@ -447,25 +422,23 @@ msgstr "Voir les commandes"
 #: ../templates/shortcode/vendor_withdrawal.php:17
 #: ../templates/shortcode/vendor_transactions.php:28
 msgid "Payments        History"
-msgstr ""
+msgstr "Historique des paiements"
 
 #: ../templates/shortcode/vendor_withdrawal.php:19
-#, fuzzy
 msgid "Withdrawals"
-msgstr "Frais de retrait"
+msgstr "Retraits"
 
 #: ../templates/shortcode/vendor_withdrawal.php:27
 msgid "Your Threshold value for withdrawals is :"
-msgstr ""
+msgstr "La valeur de votre balance de retrait est de:"
 
 #: ../templates/shortcode/vendor_withdrawal.php:31
-#, fuzzy
 msgid "Completed Orders"
-msgstr "Complété"
+msgstr "Commandes complétées"
 
 #: ../templates/shortcode/vendor_withdrawal.php:39
 msgid "out of "
-msgstr ""
+msgstr "Hors de"
 
 #: ../templates/shortcode/vendor_withdrawal.php:54
 #: ../classes/class-wcmp-post-commission.php:346
@@ -483,18 +456,16 @@ msgid "My Earnings"
 msgstr "Mes revenus"
 
 #: ../templates/shortcode/vendor_withdrawal.php:68
-#, fuzzy
 msgid "Request Withdrawals"
-msgstr "Nombre de retraits gratuits"
+msgstr "Demande de retrait"
 
 #: ../templates/shortcode/vendor_withdrawal.php:82
 msgid "Your next scheduled payment date is on:"
-msgstr ""
+msgstr "Votre prochaine date de paiement est le:"
 
 #: ../templates/shortcode/vendor_report.php:17
-#, fuzzy
 msgid "Stats & Reports"
-msgstr "Compte rendu de vente"
+msgstr "Rapports & Statistiques"
 
 #: ../templates/shortcode/vendor_report.php:19
 #: ../classes/class-wcmp-report.php:85
@@ -503,14 +474,13 @@ msgstr "Vue d'ensemble"
 
 #: ../templates/shortcode/vendor_report.php:23
 msgid "Showing stats and reports for : "
-msgstr ""
+msgstr "Montrer les rapports et statistiques pour :"
 
 #: ../templates/shortcode/vendor_report.php:35
 #: ../templates/shortcode/vendor_orders.php:35
 #: ../templates/shortcode/vendor_transactions.php:45
-#, fuzzy
 msgid "Select Date Range :"
-msgstr "Sélectionnez une date du rapport:"
+msgstr "Sélectionner la plage de dates"
 
 #: ../templates/shortcode/vendor_report.php:38
 #: ../templates/shortcode/vendor_orders.php:39
@@ -529,80 +499,71 @@ msgstr "Total des ventes"
 
 #: ../templates/shortcode/vendor_report.php:52
 msgid " Total number of"
-msgstr ""
+msgstr "Nombre total de"
 
 #: ../templates/shortcode/vendor_report.php:52
-#, fuzzy
 msgid "Order placed"
-msgstr "Date de la commande: %s"
+msgstr "Commande placée"
 
 #: ../templates/shortcode/vendor_report.php:55
-#, fuzzy
 msgid "Number of "
-msgstr "Nombre de commandes"
+msgstr "Nombre de "
 
 #: ../templates/shortcode/vendor_report.php:55
-#, fuzzy
 msgid "Purchased Products"
-msgstr "Remarque sur l'achat"
+msgstr "Produits achetés"
 
 #: ../templates/shortcode/vendor_report.php:58
-#, fuzzy
 msgid " Number of "
-msgstr "Nombre de commandes"
+msgstr "Nombre de"
 
 #: ../templates/shortcode/vendor_report.php:58
-#, fuzzy
 msgid " Coupons used"
-msgstr "Couon utilisé"
+msgstr "Coupons utilisés"
 
 #: ../templates/shortcode/vendor_report.php:61
-#, fuzzy
 msgid " Total "
-msgstr "Le total"
+msgstr "Total"
 
 #: ../templates/shortcode/vendor_report.php:61
-#, fuzzy
 msgid " Coupon Discount "
-msgstr "Partager le Coupon de réduction"
+msgstr "Coupons de réduction"
 
 #: ../templates/shortcode/vendor_report.php:61
 msgid " value "
-msgstr ""
+msgstr "valeur"
 
 #: ../templates/shortcode/vendor_report.php:64
-#, fuzzy
 msgid "  Number of  "
-msgstr "Nombre de commandes"
+msgstr "Nombre de "
 
 #: ../templates/shortcode/vendor_report.php:64
 msgid "  Unique Customers  "
-msgstr ""
+msgstr "Utilisateur unique"
 
 #: ../templates/shortcode/vendor_report.php:74
 msgid "Download CSV to get complete Stats & Reports"
-msgstr ""
+msgstr "Télécharger CSV pour avoir les rapports et les statistiques complets"
 
 #: ../templates/shortcode/vendor_report.php:77
 #: ../templates/shortcode/vendor_orders.php:88
 #: ../templates/shortcode/vendor_orders.php:143
 #: ../templates/shortcode/vendor_orders.php:197
 #: ../templates/shortcode/vendor_transactions.php:75
-#, fuzzy
 msgid "Download CSV"
-msgstr "Téléchargeable"
+msgstr "Télécharger CSV"
 
 #: ../templates/shortcode/vendor_announcements_unread.php:80
 #: ../templates/shortcode/vendor_announcements_all.php:68
 #: ../classes/class-wcmp-ajax.php:263
 msgid "Mark Read"
-msgstr ""
+msgstr "Marquer comme lu"
 
 #: ../templates/shortcode/vendor_announcements_unread.php:81
 #: ../templates/shortcode/vendor_announcements_all.php:73
 #: ../templates/shortcode/vendor_announcements_read.php:78
 msgid "Delete"
-msgstr ""
+msgstr "Supprimer"
 
 #: ../templates/shortcode/vendor_orders.php:18
 msgid "Order &amp; Shipping"
@@ -611,15 +572,15 @@ msgstr ""
 #: ../templates/shortcode/vendor_orders.php:22
 #: ../templates/shortcode/vendor_transactions.php:34
 msgid " Showing stats and reports for  :"
-msgstr ""
+msgstr "Montrer les rapports et les statistiques pour :"
 
 #: ../templates/shortcode/vendor_orders.php:37
 msgid "from"
-msgstr ""
+msgstr "De"
 
 #: ../templates/shortcode/vendor_orders.php:38
 msgid "to"
-msgstr ""
+msgstr "À"
 
 #: ../templates/shortcode/vendor_orders.php:44
 #: ../templates/shortcode/vendor_announcements.php:25
@@ -641,7 +602,7 @@ msgstr "Complété"
 #: ../templates/shortcode/vendor_orders.php:127
 #: ../templates/shortcode/vendor_orders.php:181
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #: ../templates/shortcode/vendor_orders.php:73
 #: ../templates/shortcode/vendor_orders.php:128
@@ -657,12 +618,11 @@ msgstr "date"
 #: ../templates/shortcode/vendor_orders.php:183
 #: ../templates/shortcode/vendor_dasboard_pending_shipping_items_header.php:18
 msgid "dd/mm"
-msgstr ""
+msgstr "dd/mm"
 
 #: ../templates/shortcode/vendor_orders.php:75
 #: ../templates/shortcode/vendor_orders.php:130
 #: ../templates/shortcode/vendor_orders.php:184
-#, fuzzy
 msgid "Earnings"
 msgstr "Mes revenus"
 
@@ -681,16 +641,15 @@ msgstr "Actions"
 
 #: ../templates/shortcode/vendor_university.php:48
 msgid "Sorry no university found"
-msgstr ""
+msgstr "Désolé, aucun cours trouvé"
 
 #: ../templates/shortcode/vendor_transactions.php:30
 msgid "History"
-msgstr ""
+msgstr "Historique"
 
 #: ../templates/shortcode/vendor_transactions.php:63
-#, fuzzy
 msgid "Transc.ID"
-msgstr "identifiant de la transaction"
+msgstr "ID de la transaction"
 
 #: ../templates/shortcode/vendor_transactions.php:64
 #: ../classes/class-wcmp-vendor-dashboard.php:206
@@ -703,13 +662,28 @@ msgid "Fee"
 msgstr "Frais"
 
 #: ../templates/shortcode/vendor_transactions.php:66
-#, fuzzy
 msgid "Net Earnings"
-msgstr "Mes revenus"
+msgstr "Revenus nets"
 
 #: ../templates/shortcode/vendor_transactions.php:83
 msgid "Sorry. No transactions are available."
 msgstr "Désolé. Aucune transactions sont disponibles."
+
+#: ../templates/shortcode/vendor_lists.php:22
+msgid "By date"
+msgstr "Par date"
+
+#: ../templates/shortcode/vendor_lists.php:23
+msgid "By Alphabetically"
+msgstr "Par ordre alphabétique"
+
+#: ../templates/shortcode/vendor_lists.php:24
+msgid "By Category"
+msgstr "Par Catégorie"
+
+#: ../templates/shortcode/vendor_lists.php:45
+msgid "Sort"
+msgstr "Trier"
 
 #: ../templates/shortcode/vendor_order_detail.php:23
 msgid "Order Details"
@@ -818,15 +792,15 @@ msgstr "Adresse de livraison"
 
 #: ../templates/shortcode/vendor_announcements.php:26
 msgid "Read"
-msgstr ""
+msgstr "Lu"
 
 #: ../templates/shortcode/vendor_announcements.php:27
 msgid "Unread"
-msgstr ""
+msgstr "Non-lu"
 
 #: ../templates/shortcode/vendor_announcements.php:28
 msgid "Archive"
-msgstr ""
+msgstr "Archive"
 
 #: ../templates/shortcode/vendor_coupon.php:17
 msgid "Coupons"
@@ -876,22 +850,21 @@ msgstr ""
 
 #: ../templates/shortcode/vendor_dashboard.php:77
 #: ../classes/class-wcmp-ajax.php:178
-#, fuzzy
 msgid "Admin Message:"
-msgstr "Message"
+msgstr "Message Administrateur:"
 
 #: ../templates/shortcode/vendor_dashboard.php:80
 #: ../classes/class-wcmp-ajax.php:181
 msgid "DETAILS"
-msgstr ""
+msgstr "DÉTAILS"
 
 #: ../templates/shortcode/vendor_dashboard.php:88
 msgid "Today"
-msgstr ""
+msgstr "Aujourd’hui"
 
 #: ../templates/shortcode/vendor_dashboard.php:89
 msgid " This Week"
-msgstr ""
+msgstr "Cette semaine"
 
 #: ../templates/shortcode/vendor_dashboard.php:187
 #, fuzzy
@@ -905,7 +878,7 @@ msgstr "Total des gains"
 
 #: ../templates/shortcode/vendor_dashboard.php:195
 msgid "Net Balance"
-msgstr ""
+msgstr "Balance nette"
 
 #: ../templates/shortcode/vendor_dashboard.php:199
 #: ../templates/shortcode/vendor_dashboard.php:350
@@ -981,9 +954,8 @@ msgid "View"
 msgstr "Afficher"
 
 #: ../templates/shortcode/vendor_orders_item.php:56
-#, fuzzy
 msgid "Download"
-msgstr "Téléchargeable"
+msgstr "Télécharger"
 
 #: ../templates/shortcode/vendor_dasboard_pending_shipping_items_header.php:17
 #, fuzzy
@@ -1007,13 +979,12 @@ msgstr ""
 #: ../templates/shortcode/vendor_announcements_read.php:77
 #: ../classes/class-wcmp-ajax.php:245
 msgid "Mark Unread"
-msgstr ""
+msgstr "Marquer non-lu"
 
 #: ../templates/shortcode/vendor_policy.php:20
 #: ../templates/shortcode/vendor_shipping.php:98
 #: ../templates/shortcode/shop_settings.php:28
 #: ../templates/shortcode/vendor_billing.php:18
-#, fuzzy
 msgid "Store Settings "
 msgstr "Paramètres Boutique"
 
@@ -1038,9 +1009,8 @@ msgid "Policy Tab Label"
 msgstr ""
 
 #: ../templates/shortcode/vendor_policy.php:31
-#, fuzzy
 msgid "Policies. "
-msgstr "Politiques"
+msgstr "Politiques."
 
 #: ../templates/shortcode/vendor_policy.php:36
 #: ../templates/shortcode/vendor_policy.php:40
@@ -1049,26 +1019,25 @@ msgid ""
 "It is a long established fact that a reader will be distracted by the "
 "readable content of a page when looking at its layout. "
 msgstr ""
+"C’est un fait établi depuis longtemps que les lecteurs seront distraits par "
+"le contenu lisible de la page en regardant ce schéma."
 
 #: ../templates/shortcode/vendor_policy.php:50
-#, fuzzy
 msgid "Phone*"
-msgstr "Téléphone"
+msgstr "Téléphone*"
 
 #: ../templates/shortcode/vendor_policy.php:54
-#, fuzzy
 msgid "Email*"
-msgstr "Email"
+msgstr "Email*"
 
 #: ../templates/shortcode/vendor_policy.php:58
-#, fuzzy
 msgid "Address*"
-msgstr "Adresse"
+msgstr "Adresse*"
 
 #: ../templates/shortcode/vendor_policy.php:77
 #: ../templates/shortcode/shop_settings.php:153
 msgid "* This field is required, you must fill some information."
-msgstr ""
+msgstr "* Cette case est obligatoire, vous devez remplir les informations"
 
 #: ../templates/shortcode/vendor_policy.php:81
 #: ../templates/shortcode/shop_settings.php:157
@@ -1076,9 +1045,8 @@ msgstr ""
 #: ../classes/shortcode/class-wcmp-shortcode-vendor-shop-settings.php:55
 #: ../classes/shortcode/class-wcmp-shortcode-vendor-billing-settings.php:49
 #: ../classes/shortcode/class-wcmp-shortcode-vendor-policy-settings.php:47
-#, fuzzy
 msgid "All Options Saved"
-msgstr "Type d'options "
+msgstr "Toutes les Options ont été sauvegardées"
 
 #: ../templates/shortcode/vendor_policy.php:84
 #: ../templates/shortcode/shop_settings.php:159
@@ -1181,14 +1149,13 @@ msgid "General"
 msgstr "Général"
 
 #: ../templates/shortcode/shop_settings.php:38
-#, fuzzy
 msgid "Store Name *"
-msgstr "Nom du Client:"
+msgstr "Nom de la boutique *"
 
 #: ../templates/shortcode/shop_settings.php:39
 #: ../templates/shortcode/shop_settings.php:47
 msgid "Enter your Store Name here"
-msgstr ""
+msgstr "Entrer le nom de votre boutique ici"
 
 #: ../templates/shortcode/shop_settings.php:40
 #, fuzzy
@@ -1196,22 +1163,19 @@ msgid " Store Slug *"
 msgstr "Slug Boutique"
 
 #: ../templates/shortcode/shop_settings.php:49
-#, fuzzy
 msgid "Shop Description"
-msgstr "Description"
+msgstr "Description de la Boutique"
 
 #: ../templates/shortcode/shop_settings.php:51
 #: ../templates/shortcode/shop_settings.php:63
 #: ../templates/shortcode/shop_settings.php:73
-#, fuzzy
 msgid "Hide from user"
-msgstr "Cacher aux invités"
+msgstr "Cacher aux utilisateurs"
 
 #: ../templates/shortcode/shop_settings.php:55
 #: ../classes/class-wcmp-user.php:665
-#, fuzzy
 msgid "Message to Buyers"
-msgstr "Message:%s\n"
+msgstr "Message à l’Acheteur"
 
 #: ../templates/shortcode/shop_settings.php:59
 #: ../classes/class-wcmp-vendor-order-page.php:302
@@ -1220,19 +1184,16 @@ msgid "Phone"
 msgstr "Téléphone"
 
 #: ../templates/shortcode/shop_settings.php:69
-#, fuzzy
 msgid "Email *"
-msgstr "Email"
+msgstr "Email *"
 
 #: ../templates/shortcode/shop_settings.php:83
-#, fuzzy
 msgid " Hide from user"
-msgstr "Cacher aux invités"
+msgstr "Cacher aux utilisateurs"
 
 #: ../templates/shortcode/shop_settings.php:111
-#, fuzzy
 msgid "Media Files"
-msgstr "Télécharger des fichiers médias"
+msgstr "Fichiers Médias"
 
 #: ../templates/shortcode/shop_settings.php:117
 #: ../templates/shortcode/shop_settings.php:126
@@ -1247,11 +1208,11 @@ msgstr "Remplacer \"Vendeur\""
 
 #: ../templates/shortcode/shop_settings.php:131
 msgid "Social Media"
-msgstr ""
+msgstr "Média social"
 
 #: ../templates/shortcode/shop_settings.php:133
 msgid "Enter your Social Media profile URL below:"
-msgstr ""
+msgstr "Entrez l’URL de votre page ci-dessous:"
 
 #: ../templates/shortcode/vendor_billing.php:20
 #, fuzzy
@@ -1276,12 +1237,12 @@ msgstr "par virement Bancaire directe"
 
 #: ../templates/shortcode/vendor_billing.php:39
 msgid "Paypal"
-msgstr ""
+msgstr "Paypal"
 
 #: ../templates/shortcode/vendor_billing.php:40
 #: ../templates/shortcode/vendor_billing.php:41
 msgid "Enter your Paypal ID"
-msgstr ""
+msgstr "Entrer votre ID paypal"
 
 #: ../templates/shortcode/vendor_billing.php:42
 #, fuzzy
@@ -1290,7 +1251,7 @@ msgstr "Virement bancaire direct"
 
 #: ../templates/shortcode/vendor_billing.php:43
 msgid "Enter your Bank Details"
-msgstr ""
+msgstr "Entrer vos informations bancaires"
 
 #: ../templates/shortcode/vendor_billing.php:47
 #: ../classes/class-wcmp-user.php:570
@@ -1394,13 +1355,13 @@ msgstr ""
 "vendeur %s sur votre site. Les détails de la commande sont les suivantes:"
 
 #: ../templates/emails/vendor-new-order.php:18
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "A new order was received and marked as processing from %s. Their order is as "
 "follows:"
 msgstr ""
 "Une nouvelle commande a été reçue et marquée comme terminée à partir de %s. "
-"la commande est la suivante:"
+"La commande la suivante:"
 
 #: ../templates/emails/vendor-new-order.php:25
 #: ../templates/emails/vendor-notify-shipped.php:29
@@ -1652,28 +1613,30 @@ msgstr "État de la demande: %s"
 
 #: ../templates/review/rating-vendor-tab.php:31
 #: ../templates/review/rating.php:30
+#: ../templates/review/rating_vendor_lists.php:31
 #, php-format
 msgid "Rated %s out of 5"
-msgstr ""
+msgstr "Évalué %s de 5"
 
 #: ../templates/review/rating-vendor-tab.php:32
 #: ../templates/review/rating.php:31 ../templates/review/review-link.php:32
 #: ../templates/review/review.php:37
+#: ../templates/review/rating_vendor_lists.php:32
 msgid "out of 5"
-msgstr ""
+msgstr "sur 5"
 
 #: ../templates/review/rating-vendor-tab.php:43
 msgid " No Reviews Yet"
-msgstr ""
+msgstr "Encore aucune évaluation"
 
 #: ../templates/review/rating.php:43
 msgid " No Reviews Yet "
-msgstr ""
+msgstr "Encore aucune évaluation"
 
 #: ../templates/review/review-link.php:30
 #: ../templates/review/review-link.php:31
 msgid "Leave Vendor feedback"
-msgstr ""
+msgstr "Laissez vos réactions au vendeur"
 
 #: ../templates/review/review.php:36
 #, php-format
@@ -1682,11 +1645,16 @@ msgstr ""
 
 #: ../templates/review/review.php:42
 msgid "Your comment is awaiting approval"
-msgstr ""
+msgstr "Votre commentaire est en attente d’approbation"
 
 #: ../templates/review/review.php:49
 msgid "verified buyer"
-msgstr ""
+msgstr "Acheteur vérifié"
+
+#: ../templates/review/rating_vendor_lists.php:35
+#, fuzzy
+msgid "No Rating Yet"
+msgstr "Votre évaluation"
 
 #: ../admin/class-wcmp-settings-frontend.php:30
 msgid "Reveal Vendor Name- 1"
@@ -1921,45 +1889,40 @@ msgid "Enable store url"
 msgstr "Activer le mode test"
 
 #: ../admin/class-wcmp-settings-capabilities.php:61
-#, fuzzy
 msgid "Vendor can add external store url."
-msgstr " Le Vendeur peut ajouter des notes de commande."
+msgstr " Le Vendeur peut ajouter des URL de boutique externe"
 
 #: ../admin/class-wcmp-settings-capabilities.php:62
-#, fuzzy
 msgid "Enable hide option for vendor"
-msgstr "Paramètres E-mail pour le vendeur"
+msgstr "Activer l’option « cacher » pour le vendeur"
 
 #: ../admin/class-wcmp-settings-capabilities.php:62
-#, fuzzy
 msgid "Vendor can hide some details from shop."
-msgstr " Le Vendeur peut voir les notes de commande."
+msgstr "Le vendeur peut cacher certaines informations de la boutique"
 
 #: ../admin/class-wcmp-settings-capabilities.php:65
-#, fuzzy
 msgid "Messages "
-msgstr "Message"
+msgstr "Messages"
 
 #: ../admin/class-wcmp-settings-capabilities.php:67
-#, fuzzy
 msgid "Message to buyer"
-msgstr "Message"
+msgstr "Messages à l’acheteur"
 
 #: ../admin/class-wcmp-settings-capabilities.php:67
 msgid ""
 "Allow vendors to add vendor shop specific message in \"Thank you\" page and "
 "order mail."
 msgstr ""
+"Permettre aux vendeurs d’ajouter un message personnalisé sur la page "
+"« Merci » et sur les courriels de commandes"
 
 #: ../admin/class-wcmp-settings-capabilities.php:71
-#, fuzzy
 msgid "Customer Support Settings "
-msgstr "Détails Client"
+msgstr "Réglages du support aux utilisateurs"
 
 #: ../admin/class-wcmp-settings-capabilities.php:73
-#, fuzzy
 msgid "Vendor Shop Support"
-msgstr "Base boutique Vendeur"
+msgstr "Support de la boutique du vendeur"
 
 #: ../admin/class-wcmp-settings-capabilities.php:73
 msgid ""
@@ -1967,47 +1930,49 @@ msgid ""
 "blank by the vendor, the site wide customer support details would be on "
 "display."
 msgstr ""
+"Permettre aux vendeurs d’ajouter des détails spécifiques de support pour la "
+"boutique. Si laissé vide, les détails de support du site général seront "
+"affichés."
 
 #: ../admin/class-wcmp-settings-capabilities.php:78
-#, fuzzy
 msgid "Policies Settings "
-msgstr "Paramètres Boutique"
+msgstr "Réglages des Politiques"
 
 #: ../admin/class-wcmp-settings-capabilities.php:80
-#, fuzzy
 msgid "Can Vendor Edit Policy Tab Title"
-msgstr " Titre de la page Vendeur"
+msgstr "Est-ce que le vendeur peut modifier le Titre de l’onglet Politique"
 
 #: ../admin/class-wcmp-settings-capabilities.php:80
-#, fuzzy
 msgid "Allow vendors to edit the Policy Tab Label."
-msgstr "Permettre aux vendeurs de télécharger des fichiers de médias."
+msgstr "Permettre aux vendeurs de modifier le Titre des onglets de Politique"
 
 #: ../admin/class-wcmp-settings-capabilities.php:81
 msgid "Can Vendor Edit Cancellation/Return/Exchange Policy"
 msgstr ""
+"Est-ce que le vendeur peut modifier les Politiques de Cancellation/Retour/"
+"Échange"
 
 #: ../admin/class-wcmp-settings-capabilities.php:81
 msgid "Allow vendors to edit the Cancellation/Return/Exchange Policy."
 msgstr ""
+"Permettre aux vendeurs de modifier les politiques de cancellation/retour/"
+"échange"
 
 #: ../admin/class-wcmp-settings-capabilities.php:82
 msgid "Can Vendor Edit Refund Policy"
-msgstr ""
+msgstr "Est-ce que le vendeur peut modifier la Politique de Remboursement"
 
 #: ../admin/class-wcmp-settings-capabilities.php:82
-#, fuzzy
 msgid "Allow vendors to edit the Refund Policy."
-msgstr "Permettre aux vendeurs de créer des coupons."
+msgstr "Permettre aux vendeurs de modifier la Politique de Remboursement."
 
 #: ../admin/class-wcmp-settings-capabilities.php:83
 msgid "Can Vendor Edit Shipping Policy"
-msgstr ""
+msgstr "Est-ce que les vendeurs peuvent modifier la Politique de Livraison"
 
 #: ../admin/class-wcmp-settings-capabilities.php:83
-#, fuzzy
 msgid "Allow vendors to edit the Shipping Policy."
-msgstr "Permettre aux vendeurs de créer des coupons."
+msgstr "Permettre aux vendeurs de modifier la Politique de Livraison"
 
 #: ../admin/class-wcmp-settings-capabilities.php:248
 msgid "Capability Settings Updated"
@@ -2034,6 +1999,9 @@ msgid ""
 "adminstrator if admin want to care of support and returns insteed of "
 "vendors ."
 msgstr ""
+"S’il vous plait, entrer les détails du support aux utilisateurs et l’adresse "
+"de retour de l’administrateur si celui-ci veut s’occuper du support et des "
+"retours à la place des vendeurs"
 
 #: ../admin/class-wcmp-settings.php:44 ../admin/class-wcmp-settings.php:45
 #: ../classes/class-wcmp-report.php:82
@@ -2073,23 +2041,20 @@ msgid "Policies"
 msgstr "Politiques"
 
 #: ../admin/class-wcmp-settings.php:77
-#, fuzzy
 msgid "Customer Support"
-msgstr "Remarque du Client"
+msgstr "Support au client"
 
 #: ../admin/class-wcmp-settings.php:80
 #: ../classes/class-wcmp-post-commission.php:58
 #: ../classes/class-wcmp-post-commission.php:59
 #: ../classes/class-wcmp-post-commission.php:60
 #: ../classes/class-wcmp-post-commission.php:62
-#, fuzzy
 msgid "WCMp Commission"
-msgstr "Commission"
+msgstr "Commission WCMp"
 
 #: ../admin/class-wcmp-settings.php:81
-#, fuzzy
 msgid "Vendor Review and Rating"
-msgstr "Nouvelle transaction du vendeur"
+msgstr "Évaluations et commentaires du vendeur"
 
 #: ../admin/class-wcmp-settings.php:90
 msgid ""
@@ -2188,14 +2153,15 @@ msgstr ""
 "vendeurs s'ils ont pas configurés correctement leur boutiques."
 
 #: ../admin/class-wcmp-settings-general.php:33
-#, fuzzy
 msgid "Enable University"
-msgstr "Activer le mode test"
+msgstr "Activer l’Université"
 
 #: ../admin/class-wcmp-settings-general.php:33
 msgid ""
 "Check this box to enable \"University\" section in the vendor dashboard."
 msgstr ""
+"Cocher cette case pour action la section « Université » dans le tableau de "
+"bord des vendeurs"
 
 #: ../admin/class-wcmp-settings-general.php:70
 msgid "General Settings Updated"
@@ -2207,19 +2173,20 @@ msgid "These features are now available in the %sFrontend%s tab."
 msgstr "Ces fonctions sont maintenant disponibles dans l'onglet %sFrontend%s."
 
 #: ../admin/class-wcmp-settings-general-customer_support_details.php:34
-#, fuzzy
 msgid "Show Customer Support Details"
-msgstr "Détails Client"
+msgstr "Afficher les détails du support aux utilisateurs"
 
 #: ../admin/class-wcmp-settings-general-customer_support_details.php:34
 msgid ""
 "If checked, customer support details will be visible to the customer in the "
 "\"Thank you\" page and new order emails."
 msgstr ""
+"Si coché, les détails du support aux utilisateurs sera visible dans la page "
+"« Merci » et dans les courriels de nouvelle commande."
 
 #: ../admin/class-wcmp-settings-general-customer_support_details.php:41
 msgid "Return Address & Customer Support Details "
-msgstr ""
+msgstr "Adresse de retour & détails du suppoer aux utilisateurs"
 
 #: ../admin/class-wcmp-settings-general-customer_support_details.php:45
 #, fuzzy
@@ -2227,19 +2194,17 @@ msgid "Phone Number"
 msgstr "Numéro de téléphone"
 
 #: ../admin/class-wcmp-settings-general-customer_support_details.php:46
-#, fuzzy
 msgid "Address Line 1"
-msgstr "Adresse 1"
+msgstr "Ligne d’adresse 1"
 
 #: ../admin/class-wcmp-settings-general-customer_support_details.php:47
-#, fuzzy
 msgid "Address Line 2"
-msgstr "Adresse 2"
+msgstr "Ligne d’adresse 2"
 
 #: ../admin/class-wcmp-settings-general-customer_support_details.php:48
 #: ../classes/class-wcmp-user.php:443
 msgid "State"
-msgstr "Etat"
+msgstr "État/Province"
 
 #: ../admin/class-wcmp-settings-general-customer_support_details.php:49
 #: ../classes/class-wcmp-user.php:419
@@ -2253,12 +2218,11 @@ msgstr "Pays"
 
 #: ../admin/class-wcmp-settings-general-customer_support_details.php:51
 msgid "ZipCode"
-msgstr ""
+msgstr "ZipCode"
 
 #: ../admin/class-wcmp-settings-general-customer_support_details.php:107
-#, fuzzy
 msgid "Customer Support Details Settings Updated"
-msgstr "Capacité de Mettre à jour les Paramètres"
+msgstr "Les paramètres du support aux utilisateurs ont été mis à jour"
 
 #: ../admin/class-wcmp-settings-general-customer_support_details.php:128
 msgid ""
@@ -2651,15 +2615,13 @@ msgstr ""
 "Choisissez votre page préférée pour les détails des transactions vendeurs "
 
 #: ../admin/class-wcmp-settings-pages.php:42
-#, fuzzy
 msgid "Choose your preferred page for vendor policies"
 msgstr ""
-"Choisissez votre page préférée pour l'affichage des commandes du vendeur"
+"Choisissez votre page préférée pour l'affichage des Politiques du vendeur"
 
 #: ../admin/class-wcmp-settings-pages.php:44 ../classes/class-wcmp.php:695
-#, fuzzy
 msgid "Vendor Report"
-msgstr "Les commandes des vendeurs"
+msgstr "Rapport du vendeur"
 
 #: ../admin/class-wcmp-settings-pages.php:44
 #: ../admin/class-wcmp-settings-pages.php:45
@@ -2695,13 +2657,12 @@ msgid "Page Settings Updated"
 msgstr "Paramètres de la page sont mis à jour"
 
 #: ../admin/class-wcmp-settings-general-policies.php:34
-#, fuzzy
 msgid "Enable Policies "
-msgstr "Politiques"
+msgstr "Activer les politiques"
 
 #: ../admin/class-wcmp-settings-general-policies.php:36
 msgid "Cancellation/Return/Exchange Policy Product Wise"
-msgstr ""
+msgstr "Politiques de Cancellation/Retour/Échange pour tous les produits"
 
 #: ../admin/class-wcmp-settings-general-policies.php:38
 msgid "Refund Policy Product Wise"
@@ -2712,13 +2673,12 @@ msgid "Shipping Policy Product Wise"
 msgstr ""
 
 #: ../admin/class-wcmp-settings-general-policies.php:46
-#, fuzzy
 msgid "Product Tab Title :"
-msgstr "Titre du produit"
+msgstr "Titre du produit :"
 
 #: ../admin/class-wcmp-settings-general-policies.php:46
 msgid "Please Enter the Policies Tab Title ."
-msgstr ""
+msgstr "S’il vous plait, Entrer le Titre des onglets de Politiques"
 
 #: ../admin/class-wcmp-settings-general-policies.php:47
 msgid "Cancellation/Return/Exchange Policy Label :"
@@ -2727,14 +2687,16 @@ msgstr ""
 #: ../admin/class-wcmp-settings-general-policies.php:47
 msgid "Please Enter the Cancellation Policy Custom Heading."
 msgstr ""
+"S’il vous plait, Entrer l’entête personnalisée de la Politique de "
+"Cancellation"
 
 #: ../admin/class-wcmp-settings-general-policies.php:48
 msgid "Cancellation/Return/Exchange Policy :"
-msgstr ""
+msgstr "Politique de Cancellation/Retour/Échange :"
 
 #: ../admin/class-wcmp-settings-general-policies.php:48
 msgid "Please Enter the Cancellation Policy ."
-msgstr ""
+msgstr "S’il vous plait, Entrer la Politique de Cancellation"
 
 #: ../admin/class-wcmp-settings-general-policies.php:49
 msgid "Refund Policy Label:"
@@ -2746,11 +2708,11 @@ msgstr ""
 
 #: ../admin/class-wcmp-settings-general-policies.php:50
 msgid "Refund Policy :"
-msgstr ""
+msgstr "Politique de Remboursement:"
 
 #: ../admin/class-wcmp-settings-general-policies.php:50
 msgid "Please Enter the Refund Policy ."
-msgstr ""
+msgstr "S’il vous plait, Entrer la Politique de Remboursement"
 
 #: ../admin/class-wcmp-settings-general-policies.php:51
 #, fuzzy
@@ -2762,22 +2724,20 @@ msgid "Please Enter the Shipping Policy Label."
 msgstr ""
 
 #: ../admin/class-wcmp-settings-general-policies.php:52
-#, fuzzy
 msgid "Shipping Policy :"
-msgstr "Classe de livraison:"
+msgstr "Politique de Livraison:"
 
 #: ../admin/class-wcmp-settings-general-policies.php:52
 msgid "Please Enter the Shipping Policy ."
 msgstr ""
 
 #: ../admin/class-wcmp-settings-general-policies.php:109
-#, fuzzy
 msgid "Policies Settings Updated"
-msgstr "Paramètres de la page sont mis à jour"
+msgstr "Les paramètres des Politiques ont été mises à jour"
 
 #: ../admin/class-wcmp-settings-general-policies.php:122
 msgid "Please configure the policies section."
-msgstr ""
+msgstr "S’il vous plait, configurer les sections de Politiques"
 
 #: ../admin/class-wcmp-settings-to_do_list.php:29
 msgid "Pending Vendor Approval"
@@ -2865,32 +2825,31 @@ msgid "IBAN - "
 msgstr "IBAN - "
 
 #: ../admin/class-wcmp-settings-notices.php:29
-#, fuzzy
 msgid "Notices Enable/Disable :"
-msgstr "Activer/désactiver"
+msgstr "Activer/désactiver les notifications"
 
 #: ../admin/class-wcmp-settings-general-sellerreview.php:34
-#, fuzzy
 msgid "Enable Review ( for Vendor )"
-msgstr "Transactions (pour vendeur)"
+msgstr "Activer les commentaires( pour le vendeur )"
 
 #: ../admin/class-wcmp-settings-general-sellerreview.php:34
 msgid "If checked, user can rate vendor(s)."
-msgstr ""
+msgstr "Si coché, l’utilisateur peut évaluer le(s) vendeur(s)."
 
 #: ../admin/class-wcmp-settings-general-sellerreview.php:35
 msgid "Enable Review ( by verified customers )."
-msgstr ""
+msgstr "Activer les commentaires ( par les utilisateurs vérifiés )."
 
 #: ../admin/class-wcmp-settings-general-sellerreview.php:35
 msgid ""
 "If checked, only customers who have purchased from the vendor can rate them."
 msgstr ""
+"Si coché, seuls les utilisateurs ayant acheté d’un vendeur pourront "
+"l’évaluer."
 
 #: ../admin/class-wcmp-settings-general-sellerreview.php:69
-#, fuzzy
 msgid "Vendor Review Rating Settings Updated"
-msgstr "Paramètres généraux ont été mis à jour"
+msgstr "Les paramètres d’évaluation du vendeur ont été mis à jour"
 
 #: ../classes/class-wcmp-post-commission.php:58
 #: ../classes/class-wcmp-post-transaction.php:36
@@ -2930,9 +2889,8 @@ msgstr "tout %s"
 #: ../classes/class-wcmp-post-commission.php:65
 #: ../classes/class-wcmp-post-commission.php:67
 #: ../classes/class-wcmp-post-commission.php:68
-#, fuzzy
 msgid "WCMp Commissions"
-msgstr "Commissions"
+msgstr "Commissions WCMp"
 
 #: ../classes/class-wcmp-post-commission.php:62
 #: ../classes/class-wcmp-post-transaction.php:40
@@ -3105,27 +3063,24 @@ msgid "Order"
 msgstr "Commande"
 
 #: ../classes/class-wcmp-vendor-dashboard.php:296
-#, fuzzy
 msgid "Date of Purchase"
-msgstr "Date de demande"
+msgstr "Date d’Achat"
 
 #: ../classes/class-wcmp-vendor-dashboard.php:297
 msgid "Time Of Purchase"
-msgstr ""
+msgstr "Temps de l’Achat"
 
 #: ../classes/class-wcmp-vendor-dashboard.php:299
 msgid "Items bought"
-msgstr ""
+msgstr "Articles achetés"
 
 #: ../classes/class-wcmp-vendor-dashboard.php:301
-#, fuzzy
 msgid "Discount Used"
-msgstr "Couon utilisé"
+msgstr "Coupon Utilisé"
 
 #: ../classes/class-wcmp-vendor-dashboard.php:302
-#, fuzzy
 msgid "Payment System"
-msgstr "Mode de paiement"
+msgstr "Mode de Paiement"
 
 #: ../classes/class-wcmp-vendor-dashboard.php:304
 #: ../classes/class-wcmp-user.php:547
@@ -3133,29 +3088,24 @@ msgid "Customer Email"
 msgstr "Email du client"
 
 #: ../classes/class-wcmp-vendor-dashboard.php:305
-#, fuzzy
 msgid "Customer Contact"
-msgstr "Remarque du Client"
+msgstr "Coordonnées du client"
 
 #: ../classes/class-wcmp-vendor-dashboard.php:306
-#, fuzzy
 msgid "Billing Address Details"
-msgstr "Adresse de facturation"
+msgstr "Adresse de Facturation"
 
 #: ../classes/class-wcmp-vendor-dashboard.php:307
-#, fuzzy
 msgid "Shipping Address Details"
-msgstr "Adresse de livraison"
+msgstr "Adresse de Livraison"
 
 #: ../classes/class-wcmp-vendor-dashboard.php:308
-#, fuzzy
 msgid "Order Status"
-msgstr "Détails de la commande"
+msgstr "Statut de la commande"
 
 #: ../classes/class-wcmp-vendor-dashboard.php:311
-#, fuzzy
 msgid "Commission Share"
-msgstr "Valeur de la Commission"
+msgstr "Valeur de la commisson"
 
 #: ../classes/class-wcmp-vendor-dashboard.php:684
 msgid "No shipping class"
@@ -3174,9 +3124,8 @@ msgstr ""
 
 #: ../classes/class-wcmp-vendor-dashboard.php:809
 #: ../classes/class-wcmp-vendor-dashboard.php:812
-#, fuzzy
 msgid "Shop Title can not be empty"
-msgstr "Magasinez Title Update erreur"
+msgstr "Le Titre de la Boutique ne peut pas être vide"
 
 #: ../classes/class-wcmp-vendor-dashboard.php:819
 #: ../classes/class-wcmp-vendor-dashboard.php:822
@@ -3200,34 +3149,34 @@ msgstr "Chaque 1 mois"
 msgid "Every 15 Days"
 msgstr "Tous les 15 jours"
 
-#: ../classes/class-wcmp-vendor-details.php:531
+#: ../classes/class-wcmp-vendor-details.php:533
 #, php-format
 msgid "Quantity: %s"
 msgstr "Quantité: %s"
 
-#: ../classes/class-wcmp-vendor-details.php:537
+#: ../classes/class-wcmp-vendor-details.php:539
 #, php-format
 msgid "Total: %s"
 msgstr "Total: %s"
 
-#: ../classes/class-wcmp-vendor-details.php:538
+#: ../classes/class-wcmp-vendor-details.php:540
 #, php-format
 msgid "Commission: %s"
 msgstr "Commission/ %s"
 
-#: ../classes/class-wcmp-vendor-details.php:700
+#: ../classes/class-wcmp-vendor-details.php:702
 msgid "Commission Subtotal:"
 msgstr "Commission:"
 
-#: ../classes/class-wcmp-vendor-details.php:703
+#: ../classes/class-wcmp-vendor-details.php:705
 msgid "Tax Subtotal:"
-msgstr "Sous-total de l'impôt:"
+msgstr "Sous-total des taxes:"
 
-#: ../classes/class-wcmp-vendor-details.php:708
+#: ../classes/class-wcmp-vendor-details.php:710
 msgid "Shipping Subtotal:"
 msgstr "Sous-total de l'Expédition:"
 
-#: ../classes/class-wcmp-vendor-details.php:711
+#: ../classes/class-wcmp-vendor-details.php:713
 msgid "Total:"
 msgstr "Le total:"
 
@@ -3291,101 +3240,89 @@ msgstr "Manuel"
 
 #: ../classes/class-wcmp-post-notices.php:29
 msgid "Addtional Fields"
-msgstr ""
+msgstr "Champs supplémentaires"
 
 #: ../classes/class-wcmp-email.php:69
-#, fuzzy
 msgid "Customer Support Details of : "
-msgstr "Détails Client"
+msgstr "Détails du support au client :"
 
 #: ../classes/class-wcmp-email.php:88
 msgid "Return Address of : "
-msgstr ""
+msgstr "Adresse de retour de :"
 
 #: ../classes/class-wcmp-email.php:93 ../classes/class-wcmp-email.php:169
-#, fuzzy
 msgid "Address Line 1 : "
-msgstr "Adresse 1"
+msgstr "Ligne d’adresse 1 :"
 
 #: ../classes/class-wcmp-email.php:98 ../classes/class-wcmp-email.php:179
-#, fuzzy
 msgid "Address Line 2 : "
-msgstr "Adresse 2"
+msgstr "Ligne d’adresse 2 :"
 
 #: ../classes/class-wcmp-email.php:103 ../classes/class-wcmp-email.php:189
-#, fuzzy
 msgid "State : "
-msgstr "Etat"
+msgstr "État/Province :"
 
 #: ../classes/class-wcmp-email.php:108 ../classes/class-wcmp-email.php:199
-#, fuzzy
 msgid "City : "
-msgstr "Ville"
+msgstr "Ville :"
 
 #: ../classes/class-wcmp-email.php:113 ../classes/class-wcmp-email.php:209
-#, fuzzy
 msgid "Country : "
-msgstr "Pays"
+msgstr "Pays :"
 
 #: ../classes/class-wcmp-email.php:118 ../classes/class-wcmp-email.php:219
-#, fuzzy
 msgid "Zip Code : "
-msgstr "Mode :"
+msgstr "Zip Code :"
 
 #: ../classes/class-wcmp-email.php:137
-#, fuzzy
 msgid "Customer Support Details :"
-msgstr "Détails Client"
+msgstr "Détails du support au client :"
 
 #: ../classes/class-wcmp-email.php:162
 msgid "Our Return Address :"
-msgstr ""
+msgstr "Notre adresse de retour :"
 
-#: ../classes/class-wcmp-seller-review-rating.php:98
-#, fuzzy
+#: ../classes/class-wcmp-seller-review-rating.php:104
 msgid "Vendor Rating"
-msgstr "Le bénéfice du vendeur"
+msgstr "Évaluation du Vendeur"
 
-#: ../classes/class-wcmp-seller-review-rating.php:124
-#: ../classes/class-wcmp-seller-review-rating.php:126
-#, fuzzy
+#: ../classes/class-wcmp-seller-review-rating.php:130
+#: ../classes/class-wcmp-seller-review-rating.php:132
 msgid "Vendor Name."
-msgstr "Nom du vendeur"
+msgstr "Nom du Vendeur."
 
-#: ../classes/class-wcmp-seller-review-rating.php:150
-#, fuzzy
+#: ../classes/class-wcmp-seller-review-rating.php:156
 msgid "Vendor Rating."
-msgstr "Le bénéfice du vendeur"
+msgstr "Évaluation du Vendeur."
 
-#: ../classes/class-wcmp-seller-review-rating.php:152
+#: ../classes/class-wcmp-seller-review-rating.php:158
 #, fuzzy
 msgid "Vendor Rating Star."
 msgstr "Le bénéfice du vendeur"
 
-#: ../classes/class-wcmp-seller-review-rating.php:153
-#, fuzzy
+#: ../classes/class-wcmp-seller-review-rating.php:159
 msgid "Please Select"
-msgstr "S'il vous plaît sélectionner un produit."
+msgstr "S’il vous plait Choisir"
 
-#: ../classes/class-wcmp-seller-review-rating.php:153
+#: ../classes/class-wcmp-seller-review-rating.php:159
 msgid "1 Star"
-msgstr ""
+msgstr "1 Étoile"
 
-#: ../classes/class-wcmp-seller-review-rating.php:153
+#: ../classes/class-wcmp-seller-review-rating.php:159
 msgid "2 Star"
-msgstr ""
+msgstr "2 Étoiles"
 
-#: ../classes/class-wcmp-seller-review-rating.php:153
+#: ../classes/class-wcmp-seller-review-rating.php:159
 msgid "3 Star"
-msgstr ""
+msgstr "3 Étoiles"
 
-#: ../classes/class-wcmp-seller-review-rating.php:153
+#: ../classes/class-wcmp-seller-review-rating.php:159
 msgid "4 Star"
-msgstr ""
+msgstr "4 Étoiles"
 
-#: ../classes/class-wcmp-seller-review-rating.php:153
+#: ../classes/class-wcmp-seller-review-rating.php:159
 msgid "5 Star"
-msgstr ""
+msgstr "5 Étoiles"
 
 #: ../classes/class-wcmp-capabilities.php:259
 #: ../classes/class-wcmp-capabilities.php:279
@@ -3394,7 +3331,7 @@ msgstr "Vendu par"
 
 #: ../classes/class-wcmp-product.php:165
 msgid "SKU must be unique"
-msgstr ""
+msgstr "Le SKU doit être unique"
 
 #: ../classes/class-wcmp-product.php:295 ../classes/class-wcmp-product.php:476
 msgid "Choose a vendor"
@@ -3476,7 +3413,7 @@ msgstr "CNPJ"
 
 #: ../classes/class-wcmp-vendor-order-page.php:286
 msgid "State Registration"
-msgstr "Enregistrement de l'Etat"
+msgstr "Enregistrement de l’État"
 
 #: ../classes/class-wcmp-vendor-order-page.php:290
 msgid "Company"
@@ -3544,11 +3481,11 @@ msgstr "Code Postal"
 
 #: ../classes/class-wcmp-user.php:431
 msgid "External store URL"
-msgstr ""
+msgstr "URL de la boutique externe"
 
 #: ../classes/class-wcmp-user.php:437
 msgid "External store URL label"
-msgstr ""
+msgstr "Titre de l’URL de la boutique externe"
 
 #: ../classes/class-wcmp-user.php:461
 msgid "Facebook Profile"
@@ -3579,39 +3516,32 @@ msgid "Banner"
 msgstr "Bannière"
 
 #: ../classes/class-wcmp-user.php:505
-#, fuzzy
 msgid "Customer address1"
-msgstr "Nom du Client:"
+msgstr "Adresse du client 1"
 
 #: ../classes/class-wcmp-user.php:511
-#, fuzzy
 msgid "Customer address2"
-msgstr "Nom du Client:"
+msgstr "Adresse du client 2"
 
 #: ../classes/class-wcmp-user.php:517
-#, fuzzy
 msgid "Customer Country"
-msgstr "Remarque du Client"
+msgstr "Pays du client"
 
 #: ../classes/class-wcmp-user.php:523
-#, fuzzy
 msgid "Customer Return State"
-msgstr "Détails Client"
+msgstr "État/Province de retour du client"
 
 #: ../classes/class-wcmp-user.php:529
-#, fuzzy
 msgid "Customer Return City"
-msgstr "Détails Client"
+msgstr "Ville de retour du client"
 
 #: ../classes/class-wcmp-user.php:535
-#, fuzzy
 msgid "Customer Return Zip"
-msgstr "Détails Client"
+msgstr "ZipCode de retour du Client"
 
 #: ../classes/class-wcmp-user.php:541
-#, fuzzy
 msgid "Customer Phone"
-msgstr "Remarque du Client"
+msgstr "Téléphone du client"
 
 #: ../classes/class-wcmp-user.php:576
 msgid "Bank Account Name"
@@ -3619,11 +3549,11 @@ msgstr "Nom du compte bancaire"
 
 #: ../classes/class-wcmp-user.php:633
 msgid "Enter the title of Policies Tab"
-msgstr ""
+msgstr "Entrer le titre des onglets de Politique"
 
 #: ../classes/class-wcmp-user.php:672
 msgid "Is Message to buyer Hide From Users"
-msgstr ""
+msgstr "Ce message à l’acheteur est caché aux Utilisateurs"
 
 #: ../classes/class-wcmp-user.php:683
 msgid "Commission Amount"
@@ -3755,26 +3685,26 @@ msgid "No vendors found"
 msgstr "Aucun vendeurs trouvés"
 
 #: ../classes/class-wcmp-frontend.php:365
-#, fuzzy
 msgid "Please rate the vendor"
-msgstr "Vendeur Parent"
+msgstr "S’il vous plait, évaluez le vendeur"
 
 #: ../classes/class-wcmp-frontend.php:366
 msgid "Please review your vendor and minimum 10 Character required"
 msgstr ""
+"S’il vous plait, évaluez le vendeur et un minimum de 10 caractères sont "
+"nécessaires"
 
 #: ../classes/class-wcmp-frontend.php:367
 msgid "Your review submitted successfully"
-msgstr ""
+msgstr "Votre évaluation a bien été envoyée"
 
 #: ../classes/class-wcmp-frontend.php:368
 msgid "Error in system please try again later"
-msgstr ""
+msgstr "Erreur système, s’il vous plait réessayer plus tard"
 
 #: ../classes/class-wcmp-ajax.php:188
-#, fuzzy
 msgid "No Messages Found:"
-msgstr "Aucune vente trouvée"
+msgstr "Aucun Messages Trouvés:"
 
 #: ../classes/class-wcmp-ajax.php:194
 msgid "Error in process:"
@@ -3786,7 +3716,7 @@ msgstr ""
 
 #: ../classes/class-wcmp-ajax.php:306 ../classes/class-wcmp-ajax.php:327
 msgid "no more data found"
-msgstr ""
+msgstr "plus de données trouvées"
 
 #: ../classes/class-wcmp-ajax.php:512 ../classes/class-wcmp-ajax.php:741
 #: ../classes/class-wcmp-ajax.php:795 ../classes/class-wcmp-ajax.php:1028
@@ -3876,14 +3806,12 @@ msgid "Vendor Shop Base"
 msgstr "Base boutique Vendeur"
 
 #: ../classes/class-wcmp-admin.php:208
-#, fuzzy
 msgid "Frontend  Dashboard"
-msgstr "Tableau de bord du vendeur"
+msgstr "Face avant du Tableau de Bord"
 
 #: ../classes/class-wcmp-admin.php:211
-#, fuzzy
 msgid "Frontend Dashboard"
-msgstr "Tableau de bord du vendeur"
+msgstr "Face avant du Tableau de Bord"
 
 #: ../classes/class-wcmp-admin.php:255
 msgid "Powered by"
@@ -3908,43 +3836,11 @@ msgid ""
 "announcements."
 msgstr ""
 
-#: ../classes/class-wcmp-shortcode.php:919
-#: ../classes/class-wcmp-shortcode.php:921
-#: ../classes/class-wcmp-shortcode.php:923
-#: ../classes/class-wcmp-shortcode.php:925
-#: ../classes/class-wcmp-shortcode.php:929
-#: ../classes/class-wcmp-shortcode.php:931
-#: ../classes/class-wcmp-shortcode.php:933
-msgid "By date"
-msgstr "Par date"
-
-#: ../classes/class-wcmp-shortcode.php:919
-#: ../classes/class-wcmp-shortcode.php:921
-#: ../classes/class-wcmp-shortcode.php:923
-#: ../classes/class-wcmp-shortcode.php:925
-#: ../classes/class-wcmp-shortcode.php:929
-#: ../classes/class-wcmp-shortcode.php:931
-#: ../classes/class-wcmp-shortcode.php:933
-msgid "By Alphabetically"
-msgstr "Par ordre alphabétique"
-
-#: ../classes/class-wcmp-shortcode.php:919
-#: ../classes/class-wcmp-shortcode.php:921
-#: ../classes/class-wcmp-shortcode.php:923
-#: ../classes/class-wcmp-shortcode.php:925
-#: ../classes/class-wcmp-shortcode.php:929
-#: ../classes/class-wcmp-shortcode.php:931
-#: ../classes/class-wcmp-shortcode.php:933
-msgid "By Category"
-msgstr ""
-
-#: ../classes/class-wcmp-shortcode.php:955
-msgid "Sort"
-msgstr "Trier"
-
 #: ../classes/shortcode/class-wcmp-shortcode-vendor-shipping-settings.php:59
 msgid "Sorry you are not authorized for this pages. Please contact with admin."
 msgstr ""
+"Désolé, vous n’êtes pas autorisé à accéder à cette page. S’il vous plait, "
+"contacter l’administrateur."
 
 #: ../classes/shortcode/class-wcmp-shortcode-vendor-orders.php:33
 msgid "Order is marked as shipped."
@@ -4273,11 +4169,10 @@ msgid "Vendor New order"
 msgstr "Nouvelle commande vendeur"
 
 #: ../classes/emails/class-wcmp-email-vendor-new-order.php:27
-#, fuzzy
 msgid "New order notification emails are sent when order is processing."
 msgstr ""
-" Des nouvelles notifications email  sont envoyées lorsque le paiement est "
-"terminé."
+"De nouveaux courriels de notifications sont envoyés lorsque la commande est "
+"en traitement."
 
 #: ../classes/emails/class-wcmp-email-vendor-new-order.php:29
 msgid "New Vendor Order"

@@ -137,7 +137,7 @@ if($vendor) {
         <div class="full_part"><img src="<?php echo $WCMp->plugin_url . 'assets/images/twitter.png'?>" alt="" class="social_icon">
           <input class="long no_input" readonly type="text"   name="vendor_twitter_profile" value="<?php echo isset($vendor_twitter_profile['value']) ? $vendor_twitter_profile['value'] : '';?>">
         </div>
-        <div class="full_part"><img src="<?php echo $WCMp->plugin_url . 'assets/images/instagram.png'?>" alt="" class="social_icon">
+        <div class="full_part"><img src="<?php echo $WCMp->plugin_url . 'assets/images/linkedin_33x35.png'?>" alt="" class="social_icon">
           <input class="long no_input" readonly type="text"  name="vendor_linkdin_profile" value="<?php echo isset($vendor_linkdin_profile['value']) ? $vendor_linkdin_profile['value'] : ''; ?>">
         </div>
         <div class="full_part"><img src="<?php echo $WCMp->plugin_url . 'assets/images/googleplus.png'?>" alt="" class="social_icon">

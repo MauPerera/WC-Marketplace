@@ -61,7 +61,7 @@ global $woocommerce, $WCMp;	?>
 			<input type="hidden" id="total_orders_count" value = "<?php echo $total_orders; ?>" />
 			<?php if($total_orders != 0) { ?>
 				<?php 
-				if(isset($WCMp->vendor_caps->payment_cap['choose_payment_mode']) && $WCMp->vendor_caps->payment_cap['choose_payment_mode'] == 'vendor') {
+				if(isset($WCMp->vendor_caps->payment_cap['wcmp_disbursal_mode_vendor']) && $WCMp->vendor_caps->payment_cap['wcmp_disbursal_mode_vendor'] == 'Enable') {
 					$total_vendor_due = $vendor->wcmp_vendor_get_total_amount_due();
 					if($total_vendor_due > $get_vendor_thresold) {
 							?>
@@ -79,7 +79,7 @@ global $woocommerce, $WCMp;	?>
 		$vendor_payment_mode = get_user_meta($vendor->id, '_vendor_payment_mode', true);
 		if($vendor_payment_mode == 'paypal_masspay') { ?>
 			<div class="wcmp_admin_massege">
-				<div class="wcmp_mixed_msg"><?php _e( 'Your next scheduled payment date is on:', $WCMp->text_domain ); ?>	<span><?php echo  date('d/m/Y g:i:s A', wp_next_scheduled( 'paypal_masspay_cron_start' )); ?></span> </div>
+				<div class="wcmp_mixed_msg"><?php _e( 'Your next scheduled payment date is on:', $WCMp->text_domain ); ?>	<span><?php echo  date('d/m/Y g:i:s A', wp_next_scheduled( 'masspay_cron_start' )); ?></span> </div>
 			</div>
 		<?php } 
 	?> 

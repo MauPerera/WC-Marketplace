@@ -18,6 +18,8 @@ class WCMp_Vendor {
 	
 	public $user_data;
 	
+	
+	
 	/**
 	 * Get the vendor if UserID is passed, otherwise the vendor is new and empty.
 	 *
@@ -32,7 +34,7 @@ class WCMp_Vendor {
 		$this->term = false;
 		
 		if ( $id > 0 ) {
-			$this->get_vendor( $id );
+			$this->get_vendor( $id );			
 		}
 	}
 	

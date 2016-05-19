@@ -79,7 +79,8 @@ class WCMp_Shortcode {
 		// List products in a category shortcode
 		add_shortcode( 'wcmp_product_category', array(&$this, 'wcmp_show_product_category'));
 		// List of paginated vendors 
-		add_shortcode( 'wcmp_vendorslist', array(&$this, 'wcmp_show_vendorslist' ) ); 
+		add_shortcode( 'wcmp_vendorslist', array(&$this, 'wcmp_show_vendorslist' ) );
+		
 	}
 	
 	/**
@@ -909,54 +910,6 @@ class WCMp_Shortcode {
 			$get_all_vendors = get_wcmp_vendors(array('orderby' => $orderby, 'order' => $order));
 		}
 		
-		
-		
-		$vendors .= '<div class="vendor_list">';
-		$vendors .= '<form name="vendor_sort" method="get" ><div class="vendor_sort">';
-		$vendors .= '<select class="select short" id="vendor_sort_type" name="vendor_sort_type">';
-		if($vendor_sort_type) {
-			if($vendor_sort_type == 'registered') {
-				$option = '<option selected value="registered">' . __( "By date", $WCMp->text_domain ) . '</option><option value="name">' . __( "By Alphabetically", $WCMp->text_domain ) . '</option><option value="category">' . __( "By Category", $WCMp->text_domain ) . '</option>';
-			} else if($vendor_sort_type == 'name') {
-				$option = '<option value="registered">' . __( "By date", $WCMp->text_domain ) . '</option><option selected value="name">' . __( "By Alphabetically", $WCMp->text_domain ) . '</option><option value="category">' . __( "By Category", $WCMp->text_domain ) . '</option>';
-			} else if($vendor_sort_type == 'category') {
-				$option = '<option value="registered">' . __( "By date", $WCMp->text_domain ) . '</option><option value="name">' . __( "By Alphabetically", $WCMp->text_domain ) . '</option><option selected value="category">' . __( "By Category", $WCMp->text_domain ) . '</option>';
-			} else {
-				$option = '<option value="registered">' . __( "By date", $WCMp->text_domain ) . '</option><option value="name">' . __( "By Alphabetically", $WCMp->text_domain ) . '</option><option value="category">' . __( "By Category", $WCMp->text_domain ) . '</option>';
-			}
-		} else {
-			if($orderby == 'registered') {
-				$option = '<option selected value="registered">' . __( "By date", $WCMp->text_domain ) . '</option><option value="name">' . __( "By Alphabetically", $WCMp->text_domain ) . '</option><option value="category">' . __( "By Category", $WCMp->text_domain ) . '</option>';
-			} else if($orderby == 'name') {
-				$option = '<option  value="registered">' . __( "By date", $WCMp->text_domain ) . '</option><option selected value="name">' . __( "By Alphabetically", $WCMp->text_domain ) . '</option><option value="category">' . __( "By Category", $WCMp->text_domain ) . '</option>';
-			} else if($vendor_sort_type == 'category') {
-				$option = '<option value="registered">' . __( "By date", $WCMp->text_domain ) . '</option><option value="name">' . __( "By Alphabetically", $WCMp->text_domain ) . '</option><option value="category">' . __( "By Category", $WCMp->text_domain ) . '</option>';
-			}
-		}
-		
-		if(isset($_GET['vendor_sort_type'])) {
-			if($_GET['vendor_sort_type'] == 'category') {
-				$category_terms = get_terms('product_cat');
-				$select_html = '&nbsp&nbsp&nbsp<select class="select" id="vendor_sort_category" name="vendor_sort_category">';
-				foreach( $category_terms as $terms ) {
-					if( isset( $_GET['vendor_sort_category'] ) ) {
-						if( $_GET['vendor_sort_category'] == $terms->term_id ) {
-							$select_html .= '<option selected value="' . $terms->term_id . '">' . $terms->name . '</option>';
-						} else {
-							$select_html .= '<option value="' . $terms->term_id . '">' . $terms->name . '</option>';
-						}
-					}
-				}
-				$select_html .= '</select>';
-			}
-		}
-		
-		$vendors .= $option.'</select>'.$select_html;
-		$vendors .= '&nbsp;&nbsp;&nbsp;<input type="submit" value="' . __( "Sort", $WCMp->text_domain ) . '" />';
-		$vendors .= '</div>';
-		$vendors .= '</form>';
-		
-		
 		$get_blocked = wcmp_get_all_blocked_vendors();
 		$get_block_array = array();
 		if(!empty($get_blocked)) {
@@ -965,20 +918,21 @@ class WCMp_Shortcode {
 			}
 		}
 		if( isset($get_all_vendors) && !empty($get_all_vendors) ) {
+			$i = 0;
 			foreach ( $get_all_vendors as $get_vendor ) {
 				if(in_array($get_vendor->id, $get_block_array)) continue;
 				if(!$get_vendor->image) $get_vendor->image = $WCMp->plugin_url . 'assets/images/WP-stdavatar.png';
-				$vendors .= '<div class="sorted_vendors" style="display:inline-block; margin-right:10%;">
-											 <center>
-													<a href="'.$get_vendor->permalink.'"><img width="125" class="vendor_img" src="'. $get_vendor->image .'" id="vendor_image_display"></a><br />
-													<a href="'.$get_vendor->permalink.'" class="button">'.$get_vendor->user_data->display_name.'</a>
-													<br /><br />
-											 </center>
-										 </div>';
-			}
-			$vendors .= '</div>';
+				$vendor_info_array[$i]['vendor_permalink'] = $get_vendor->permalink;
+				$vendor_info_array[$i]['vendor_name'] = $get_vendor->user_data->display_name;
+				$vendor_info_array[$i]['vendor_image'] = $get_vendor->image;				
+				$vendor_info_array[$i]['ID'] = $get_vendor->id;
+				$vendor_info_array[$i]['term_id'] = $get_vendor->term_id;
+				$vendor_info = apply_filters('wcmp_vendor_lits_vendor_info_fields', $vendor_info_array);
+				$i++;				
+			}			
 		}
-		return $vendors;
+		$WCMp->template->get_template( 'shortcode/vendor_lists.php', array('vendor_info' => $vendor_info) );
+		//return $vendors;
 	}
 }
 ?>

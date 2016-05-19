@@ -19,7 +19,7 @@ class WCMp_Paypal_Masspay {
 	
 	public function __construct() {
 		$masspay_admin_settings = get_option("wcmp_payment_settings_name");		
-		if($masspay_admin_settings  && array_key_exists('is_mass_pay', $masspay_admin_settings)) {
+		if($masspay_admin_settings  && array_key_exists('payment_method_paypal_masspay', $masspay_admin_settings)) {
 			$this->is_masspay_enable = true;
 			$this->payment_schedule = $masspay_admin_settings['payment_schedule'];
 			$this->api_username = $masspay_admin_settings['api_username'];

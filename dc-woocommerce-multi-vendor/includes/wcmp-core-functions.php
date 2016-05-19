@@ -652,7 +652,9 @@ if( ! function_exists( 'wcmp_get_vendor_review_info') ) {
 		$count = count($results);
 		foreach( $results as $result ) { $arr[] = $result->comment_id; }
 		$comment_ids = implode(', ',$arr);
-		$results_rating = $wpdb->get_results("SELECT SUM(meta_value) as rating_val FROM {$wpdb->prefix}commentmeta where meta_key = 'vendor_rating' and `comment_id` IN ({$comment_ids})");
+		if(!empty($comment_ids)) {
+			$results_rating = $wpdb->get_results("SELECT SUM(meta_value) as rating_val FROM {$wpdb->prefix}commentmeta where meta_key = 'vendor_rating' and `comment_id` IN ({$comment_ids})");
+		}
 		if($count > 0) {
 			$rating = $results_rating[0]->rating_val/$count;
 		}

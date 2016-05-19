@@ -52,6 +52,7 @@ jQuery(document).ready(function($) {
 			$('.chosen-single span').html('Choose a vendor');
 			$('#choose_vendor_ajax option:selected').remove();
 			$('.input-commision').val('');
+			$('#post_author').val(unassign_vendors_data.current_user_id);
 			$('._product_vendors_commission_percentage input').val('');
 			$('._product_vendors_commission_fixed_per_qty input').val('');
 			$('._product_vendors_commission_percentage input').val('');

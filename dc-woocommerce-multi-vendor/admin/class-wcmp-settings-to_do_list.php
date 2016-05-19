@@ -51,9 +51,9 @@ class WCMp_Settings_To_Do_List {
 			</tbody>
 		</table>
 		<?php }
+		$vendor_ids = array();
 		$vendors = get_wcmp_vendors();
-		if($vendors) {
-			$vendor_ids = array();
+		if($vendors) {			
 			foreach($vendors as $vendor){
 				$vendor_ids[] = $vendor->id;
 			}
@@ -170,7 +170,7 @@ class WCMp_Settings_To_Do_List {
 						$amount =  get_post_meta( $transaction->ID, 'amount', true );
 						?>
 						<td class="vendor column-coupon"><a href="user-edit.php?user_id=<?php echo $currentvendor->id; ?>&amp;wp_http_referer=%2Fwordpress%2Fdc_vendor%2Fwp-admin%2Fusers.php%3Frole%3Ddc_vendor" target="_blank"><?php echo $currentvendor->user_data->display_name; ?></a></td>
-						<td class="commission column-coupon"><a href="post.php?post=<?php echo $transaction->ID; ?>&action=edit" target="_blank" ><?php echo $transaction->post_title; ?></a></td>
+						<td class="commission column-coupon"><?php echo $transaction->post_title; ?></td>
 						<td class="commission_val column-coupon"><?php echo get_woocommerce_currency_symbol().$amount; ?></td>
 						<td class="account_detail"><?php echo __('Account Name- ', $WCMp->text_domain) .' '.$account_name.'<br>'.__('Account No - ', $WCMp->text_domain) .$account_no.'<br>'.__('Bank Name - ', $WCMp->text_domain) .$bank_name.'<br>'. __('IBAN - ', $WCMp->text_domain) .$iban; ?></td>
 						<td class="done"><input class="vendor_transaction_done_button" data-transid="<?php echo $transaction->ID; ?>" data-vendorid="<?php echo $vendor_term_id; ?>" type="button" id="done_request" name="done_request" value="Done"></td>

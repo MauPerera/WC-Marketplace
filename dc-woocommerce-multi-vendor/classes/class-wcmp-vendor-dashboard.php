@@ -270,8 +270,12 @@ Class WCMp_Admin_Dashboard {
 			if( $WCMp->vendor_caps->vendor_capabilities_settings('is_order_csv_export') && !empty( $_POST[ 'wcmp_stat_export_submit' ] ) ) {
 				$user = wp_get_current_user();
 				$vendor = get_wcmp_vendor($user->ID);
-				$vendor_orders = array_unique($vendor->get_orders());
-				if(!empty($vendor_orders)) $this->generate_csv($vendor_orders, $vendor);	
+                                $records = $vendor->get_orders();
+				if(!empty($records) && is_array($records)){ 
+					$vendor_orders = array_unique($records); 
+					if(!empty($vendor_orders)) 
+						$this->generate_csv($vendor_orders, $vendor); 
+				}	
 			}
 		}
 	}
@@ -520,6 +524,7 @@ Class WCMp_Admin_Dashboard {
 								update_user_meta( $vendor_user_id, 'shipping_class_id', $shipping_class_id);
 							}
 						}
+						update_woocommerce_term_meta($shipping_class_id, 'vendor_id', $vendor_user_id);
 						update_woocommerce_term_meta($shipping_class_id, 'vendor_shipping_origin',  $_POST['vendor_shipping_data']['ship_from']);
 						$shipping_term_id = $shipping_class_id;
 					}

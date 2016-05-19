@@ -555,11 +555,22 @@ class WCMp_User {
 			unset($fields['vendor_external_store_url']);
 			unset($fields['vendor_external_store_label']);
 		}
+
+		$payment_admin_settings = get_option('wcmp_payment_settings_name');
+		$payment_mode = array();
+		if(isset($payment_admin_settings['wcmp_disbursal_mode_admin']) &&  $payment_admin_settings['wcmp_disbursal_mode_admin'] = 'Enable') {			
+			if(isset($payment_admin_settings['payment_method_paypal_masspay']) && $payment_admin_settings['payment_method_paypal_masspay'] = 'Enable') {
+				$payment_mode['paypal_masspay'] = __('PayPal Masspay', $WCMp->text_domain);
+			}
+			if(isset($payment_admin_settings['payment_method_direct_bank']) && $payment_admin_settings['payment_method_direct_bank'] = 'Enable') {
+				$payment_mode['direct_bank'] = __('Direct Bank', $WCMp->text_domain);
+			}
+		}
 		
 		$fields["vendor_payment_mode"] =  array(
 				'label' => __('Payment Mode', $WCMp->text_domain),
 				'type' => 'select',
-				'options' => apply_filters( 'wcmp_vendor_payment_mode', array('paypal_masspay' => __('PayPal Masspay', $WCMp->text_domain), 'direct_bank' => __('Direct Bank', $WCMp->text_domain)) ),
+				'options' => apply_filters( 'wcmp_vendor_payment_mode', $payment_mode ),
 				'value' => $vendor->payment_mode,
 				'class'	=> "user-profile-fields"
 			); // Text

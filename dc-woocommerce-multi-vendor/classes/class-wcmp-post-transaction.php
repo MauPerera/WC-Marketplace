@@ -233,7 +233,7 @@ class WCMp_Transaction {
 		);
 		if($offset) $args['offset'] = $offset;
 		
-		if(isset($vendor_term_id)) $args['post_author'] =  $vendor_term_id;
+		if(isset($vendor_term_id)) $args['author'] =  $vendor_term_id;
 		if($start_date) {
 			$start_year = date( 'Y', strtotime($start_date) );
 			$start_month = date( 'n', strtotime($start_date) );

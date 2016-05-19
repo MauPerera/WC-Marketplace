@@ -10,7 +10,7 @@
 class WCMp_MassPay_Cron {
 
 	public function __construct() {
-		add_action('paypal_masspay_cron_start', array(&$this, 'do_mass_payment') );             
+		add_action('masspay_cron_start', array(&$this, 'do_mass_payment') );             
 	}
         
 	/**
@@ -21,10 +21,9 @@ class WCMp_MassPay_Cron {
 	function do_mass_payment() {
 		global $WCMp;
 		$payment_admin_settings = get_option('wcmp_payment_settings_name');
-		if($payment_admin_settings['choose_payment_mode'] == 'admin')
-			$admin_default_payment_mode = "paypal_masspay";
-		else
-			$admin_default_payment_mode = "others";
+		if(!isset($payment_admin_settings['wcmp_disbursal_mode_admin']))
+			return;
+		
 		doProductVendorLOG("Cron Run Start for array creatation @ " . date('d/m/Y g:i:s A', time()));
 		$commissions = $this->get_query_commission();		
 		$commission_data = $commission_totals = $commissions_data = array();
@@ -40,7 +39,7 @@ class WCMp_MassPay_Cron {
 				$vendor = get_wcmp_vendor_by_term($commission_data->vendor->term_id);				
 				$payment_type = get_user_meta($vendor->id, '_vendor_payment_mode', true);
 					if(empty($payment_type)) {
-						$payment_type = $admin_default_payment_mode;
+						continue;
 					}
 				if(!preg_match('/masspay/', $payment_type)) continue;
 				$due_vendor = $vendor->wcmp_get_vendor_part_from_order($order, $vendor->term_id);
@@ -77,7 +76,7 @@ class WCMp_MassPay_Cron {
 				// Get vendor data
 				$vendor_payment_mode = $transaction_data[$vendor_id]['payment_mode'];
 				if(empty($vendor_payment_mode)) {
-					$vendor_payment_mode = $admin_default_payment_mode;
+					continue;
 				}
 				$commissions_data[$vendor_payment_mode][] = array(
 					'total' => $total_payable,

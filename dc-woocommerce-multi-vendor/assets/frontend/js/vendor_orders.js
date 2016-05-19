@@ -31,7 +31,7 @@ jQuery(document).ready(function($) {
 		
 		$.post(woocommerce_params.ajax_url, data, function(response) {
 			var data_shown = parseInt(data_shown) + 6;
-			this_button.attr("data-shown", data_shown);
+			this_button.attr("data-shown", parseInt(this_button.attr("data-shown"))+6);
 			if(data_type == 'all') {
 				$( ".wcmp_order_all_table tr:last" ).after(response);
 				checkbox_custome_design();
