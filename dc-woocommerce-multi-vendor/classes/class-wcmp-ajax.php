@@ -10,33 +10,34 @@
 class WCMp_Ajax {
 
 	public function __construct() {
+		$general_singleproductmultisellersettings = get_option('wcmp_general_singleproductmultiseller_settings_name');
 		add_action('wp_ajax_woocommerce_json_search_vendors', array( &$this, 'woocommerce_json_search_vendors'));
 		add_action('wp_ajax_activate_pending_vendor', array(&$this, 'activate_pending_vendor'));
 		add_action('wp_ajax_reject_pending_vendor', array(&$this, 'reject_pending_vendor'));
-	  add_action('wp_ajax_send_report_abuse', array( &$this, 'send_report_abuse' ) );
-    add_action('wp_ajax_nopriv_send_report_abuse', array( &$this, 'send_report_abuse' ) );
-    add_action('wp_ajax_dismiss_vendor_to_do_list', array( &$this, 'dismiss_vendor_to_do_list' ) );
-    add_action('wp_ajax_get_more_orders', array( &$this, 'get_more_orders' ) );
-    add_action('wp_ajax_withdrawal_more_orders', array( &$this, 'withdrawal_more_orders' ) );
-    add_action('wp_ajax_show_more_transaction', array( &$this, 'show_more_transaction' ) );
-    add_action('wp_ajax_nopriv_get_more_orders', array( &$this, 'get_more_orders' ) );
-    add_action('wp_ajax_order_mark_as_shipped', array( &$this, 'order_mark_as_shipped' ) );
-    add_action('wp_ajax_nopriv_order_mark_as_shipped', array( &$this, 'order_mark_as_shipped' ) );  
-    add_action('wp_ajax_transaction_done_button', array( &$this, 'transaction_done_button' ) );
-    add_action('wp_ajax_wcmp_vendor_csv_download_per_order', array( &$this, 'wcmp_vendor_csv_download_per_order' ) );    
-    add_filter('ajax_query_attachments_args', array( &$this, 'show_current_user_attachments'), 10, 1 );    
-    add_filter('wp_ajax_vendor_report_sort', array( $this, 'vendor_report_sort' ));
-    add_filter('wp_ajax_vendor_search', array( $this, 'search_vendor_data' ));    
-    add_filter( 'wp_ajax_product_report_sort', array( $this, 'product_report_sort' ) );
-    add_filter( 'wp_ajax_product_search', array( $this, 'search_product_data' ) );
-    // woocommerce product enquiry form support
-    if( WC_Dependencies_Product_Vendor::woocommerce_product_enquiry_form_active_check() ) {
-    	add_filter( 'product_enquiry_send_to', array($this, 'send_enquiry_to_vendor'), 10, 2 );
-    }
-    
-    // Unsign vendor from product
-    add_action( 'wp_ajax_unassign_vendor', array($this, 'unassign_vendor') );    
-    add_action('wp_ajax_wcmp_frontend_sale_get_row', array( &$this, 'wcmp_frontend_sale_get_row_callback'));
+	  	add_action('wp_ajax_send_report_abuse', array( &$this, 'send_report_abuse' ) );
+    	add_action('wp_ajax_nopriv_send_report_abuse', array( &$this, 'send_report_abuse' ) );
+	    add_action('wp_ajax_dismiss_vendor_to_do_list', array( &$this, 'dismiss_vendor_to_do_list' ) );
+	    add_action('wp_ajax_get_more_orders', array( &$this, 'get_more_orders' ) );
+	    add_action('wp_ajax_withdrawal_more_orders', array( &$this, 'withdrawal_more_orders' ) );
+	    add_action('wp_ajax_show_more_transaction', array( &$this, 'show_more_transaction' ) );
+	    add_action('wp_ajax_nopriv_get_more_orders', array( &$this, 'get_more_orders' ) );
+	    add_action('wp_ajax_order_mark_as_shipped', array( &$this, 'order_mark_as_shipped' ) );
+	    add_action('wp_ajax_nopriv_order_mark_as_shipped', array( &$this, 'order_mark_as_shipped' ) );  
+	    add_action('wp_ajax_transaction_done_button', array( &$this, 'transaction_done_button' ) );
+	    add_action('wp_ajax_wcmp_vendor_csv_download_per_order', array( &$this, 'wcmp_vendor_csv_download_per_order' ) );    
+	    add_filter('ajax_query_attachments_args', array( &$this, 'show_current_user_attachments'), 10, 1 );    
+	    add_filter('wp_ajax_vendor_report_sort', array( $this, 'vendor_report_sort' ));
+	    add_filter('wp_ajax_vendor_search', array( $this, 'search_vendor_data' ));    
+	    add_filter( 'wp_ajax_product_report_sort', array( $this, 'product_report_sort' ) );
+	    add_filter( 'wp_ajax_product_search', array( $this, 'search_product_data' ) );
+	    // woocommerce product enquiry form support
+	    if( WC_Dependencies_Product_Vendor::woocommerce_product_enquiry_form_active_check() ) {
+	    	add_filter( 'product_enquiry_send_to', array($this, 'send_enquiry_to_vendor'), 10, 2 );
+	    }
+
+	    // Unsign vendor from product
+	    add_action( 'wp_ajax_unassign_vendor', array($this, 'unassign_vendor') );    
+	    add_action('wp_ajax_wcmp_frontend_sale_get_row', array( &$this, 'wcmp_frontend_sale_get_row_callback'));
 		add_action('wp_ajax_nopriv_wcmp_frontend_sale_get_row', array(&$this, 'wcmp_frontend_sale_get_row_callback'));
 		add_action('wp_ajax_wcmp_frontend_pending_shipping_get_row', array( &$this, 'wcmp_frontend_pending_shipping_get_row_callback'));
 		add_action('wp_ajax_nopriv_wcmp_frontend_pending_shipping_get_row', array(&$this, 'wcmp_frontend_pending_shipping_get_row_callback'));
@@ -49,15 +50,43 @@ class WCMp_Ajax {
 		add_action('wp_ajax_nopriv_wcmp_dismiss_dashboard_announcements', array($this, 'wcmp_dismiss_dashboard_message'));
 		
 		// Sort vendors by category
-    add_action('wp_ajax_vendor_list_by_category', array($this, 'vendor_list_by_category'));
-    add_action('wp_ajax_nopriv_vendor_list_by_category', array($this, 'vendor_list_by_category'));
-    
-    add_action( 'wp_ajax_wcmp_add_review_rating_vendor', array($this, 'wcmp_add_review_rating_vendor'));
-    add_action( 'wp_ajax_nopriv_wcmp_add_review_rating_vendor', array($this, 'wcmp_add_review_rating_vendor')); 
-    // load more vendor review
-    add_action( 'wp_ajax_wcmp_load_more_review_rating_vendor', array($this, 'wcmp_load_more_review_rating_vendor'));
-    add_action( 'wp_ajax_nopriv_wcmp_load_more_review_rating_vendor', array($this, 'wcmp_load_more_review_rating_vendor'));
-        
+	    add_action('wp_ajax_vendor_list_by_category', array($this, 'vendor_list_by_category'));
+	    add_action('wp_ajax_nopriv_vendor_list_by_category', array($this, 'vendor_list_by_category'));
+	    if(isset($general_singleproductmultisellersettings['is_singleproductmultiseller'])) {
+			// Product auto suggestion
+			add_action('wp_ajax_wcmp_auto_search_product', array($this, 'wcmp_auto_suggesion_product'));
+			add_action('wp_ajax_nopriv_wcmp_auto_search_product', array($this, 'wcmp_auto_suggesion_product'));    
+			// Product duplicate
+			add_action('wp_ajax_wcmp_copy_to_new_draft', array($this, 'wcmp_copy_to_new_draft'));
+			add_action('wp_ajax_nopriv_wcmp_copy_to_new_draft', array($this, 'wcmp_copy_to_new_draft')); 
+			add_action('wp_ajax_get_loadmorebutton_single_product_multiple_vendors', array($this, 'wcmp_get_loadmorebutton_single_product_multiple_vendors'));
+			add_action('wp_ajax_nopriv_get_loadmorebutton_single_product_multiple_vendors', array($this, 'wcmp_get_loadmorebutton_single_product_multiple_vendors'));
+			add_action('wp_ajax_single_product_multiple_vendors_sorting', array($this,'single_product_multiple_vendors_sorting'));
+			add_action('wp_ajax_nopriv_single_product_multiple_vendors_sorting', array($this,'single_product_multiple_vendors_sorting'));
+	    }
+	    add_action( 'wp_ajax_wcmp_add_review_rating_vendor', array($this, 'wcmp_add_review_rating_vendor'));
+	    add_action( 'wp_ajax_nopriv_wcmp_add_review_rating_vendor', array($this, 'wcmp_add_review_rating_vendor')); 
+	    // load more vendor review
+	    add_action( 'wp_ajax_wcmp_load_more_review_rating_vendor', array($this, 'wcmp_load_more_review_rating_vendor'));
+	    add_action( 'wp_ajax_nopriv_wcmp_load_more_review_rating_vendor', array($this, 'wcmp_load_more_review_rating_vendor'));        
+  }
+
+  function single_product_multiple_vendors_sorting() {
+  	global $WCMp;	
+  	$sorting_value = $_POST['sorting_value'];
+  	$attrid = $_POST['attrid'];
+  	$more_products = $WCMp->product->get_multiple_vendors_array_for_single_product( $attrid );
+		$more_product_array = $more_products['more_product_array'];
+		$results = 	$more_products['results'];
+		$WCMp->template->get_template( 'single-product/multiple_vendors_products_body.php', array('more_product_array'=>$more_product_array, 'sorting'=>$sorting_value)); 	
+  	die;  	
+  }
+  
+  
+  function wcmp_get_loadmorebutton_single_product_multiple_vendors() {
+  	global $WCMp;
+  	$WCMp->template->get_template( 'single-product/load-more-button.php');
+  	die;
   }
   
   function wcmp_load_more_review_rating_vendor() {
@@ -116,7 +145,30 @@ class WCMp_Ajax {
   	die;  	
   }
   
+  function wcmp_copy_to_new_draft() {
+  	$post_id = $_POST['postid'];
+  	$post = get_post($post_id);
+    echo 	wp_nonce_url( admin_url( 'edit.php?post_type=product&action=duplicate_product&post=' . $post->ID ), 'woocommerce-duplicate-product_' . $post->ID );
+    die;
+  }
   
+  function wcmp_auto_suggesion_product() {
+  	global $WCMp, $wpdb;
+  	$searchstr = $_POST['protitle'];
+  	$querystr = "select DISTINCT post_title, ID from {$wpdb->prefix}posts where post_title like '{$searchstr}%' and post_status = 'publish' and post_type = 'product' GROUP BY post_title order by post_title  LIMIT 0,10";
+  	$results = $wpdb->get_results($querystr);
+  	if(count($results) > 0) {
+  		echo "<ul>";
+  		foreach( $results as $result ) {
+  			echo "<li data-element='{$result->ID}'><a href='".wp_nonce_url( admin_url( 'edit.php?post_type=product&action=duplicate_product&post=' . $result->ID ), 'woocommerce-duplicate-product_' . $result->ID )."'>{$result->post_title}</a></li>";
+  		}
+  		echo "</ul>";
+  	}
+  	else {
+  		echo "<div>".__('No Suggestion found',$WCMp->text_domain)."</div>";
+  	}
+  	die;
+  }
   
   function vendor_list_by_category() {
   	global $WCMp;

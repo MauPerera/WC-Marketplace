@@ -1,195 +1,73 @@
 ﻿=== WC Marketplace ===
-Contributors: Dualcube, prabhakarkumarshaw, arimghosh, sandy-wcmp, arkapravamidya.
-Tags: wc marketplace, wc market place, woocommerce product vendors, WooCommerce vendors, ebay, etsy, amazon, woocommerce marketplace, vendor, vendors, vendor system, woocommerce market place, WooCommerce multivendor, WooCommerce multi vendor, woocommerce vendors, woo vendors, WooCommerce vendors, multistore, multi store, multivendor, multi vendor, multi vendors, dokan, product vendor, product vendors, vendor system, wc vendors, commission rate, multi seller
+Contributors: Dualcube, prabhakarkumarshaw, arimghosh, sandy-wcmp, arka422
+Tags: wc marketplace, wc market place, woocommerce product vendors, WooCommerce vendors, ebay, etsy, amazon, woocommerce marketplace, vendor, vendors, vendor system, woocommerce market place, WooCommerce multivendor, WooCommerce multi vendor, woocommerce vendors, woo vendors, WooCommerce vendors, multistore, multi store, multivendor, multi vendor, multi vendors, dokan, product vendor, product vendors, vendor system, wc vendors, commission rate, multi seller, One Product Multi Seller
 Donate link: https://dualcube.com/
 Requires at least: 3.8.1
-Tested up to: 4.4.2
-Stable tag: 2.3.7
+Tested up to: 4.5.2
+Stable tag: 2.3.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 
 
 
-A Free Extension That Transforms Your WooCommerce Site into a Marketplace.   
+WC Marketplace is the fastest growing multi-store marketplace plugin for WooCommerce.
 
 
 == Description ==
-Transform your site into a marketplace and allow people to sell products from your site, just like Themeforest, Etsy or Amazon.  
+Transform your site into a marketplace and allow people to sell products from your site - just like Themeforest, Etsy or Amazon.
 
+Check out the plugin site here: [WC Marketplace](http://wc-marketplace.com)
 
-The WC Marketplace Plugin, or WCMp, is a WooCommerce extension that transforms your site into a multistore marketplace. This plugin has the longest list of features among all WooCommerce based free marketplace/multivendor plugins and comes with support that beats paid ones in speed and quality.
 
 
-Check out the plugin site here: [WC Marketplace](http://wc-marketplace.com/)
 
+= Why use WC Marketplace: =
 
-New paid add-ons are now live. You can now:
 
+Wondering why 2000+ marketplaces love and use WCMp? Here you go:
 
-* Allow sellers to create variable, external as well as affiliate product types from the front end.
-* Show all sales, transaction and inventory reports to sellers in the frontend.
-* Allow sellers to set SEO meta data and view store specific Google Analytics data.
-* Allow sellers to import/export product data in bulk.
-* Allow sellers to set their own stock alerts.
 
+> <strong>Lightening quick support</strong>
+>
+> 75+ reviews here in WordPress.org, and everyone loves WCMp. Here is why: [http://wc-marketplace.com/support-forum/]( http://wc-marketplace.com/support-forum )
+> <img src="http://wc-marketplace.com/wp-content/uploads/2016/06/reviews.png" alt="75+ reviews here in WordPress.org">
+>
+>
+>
+> <strong>Boatload of Features</strong>
+>
+> - [Admin Capabilities]( http://wc-marketplace.com/admin-capabilities )
+> - [Vendor Capabilities]( http://wc-marketplace.com/vendors-capabilities )
+> - [User Capabilities]( http://wc-marketplace.com/users-capabilities )
+> - [Commissions]( http://wc-marketplace.com/commissions )
+> - [Short Codes]( http://wc-marketplace.com/shortcodes )
+> - [Translations]( http://wc-marketplace.com/translations )
+>
+>
+>
+> <strong>Compatible plugins addons</strong>
+>
+> - [Addons](http://wc-marketplace.com/addons)
+> - [Compatible plugins and themes](http://wc-marketplace.com/themes)
+>
+>
+>
+> <strong>Still not convinced?</strong>
+>
+> - [Shut Up And Take My Money](http://wc-marketplace.com/shut-up-and-take-my-money)
 
-............................................................................................................
 
 
-A few points about us and this plugin:
 
 
-* The core plugin is free, and will always remain so. 
-* Support is free and fast, and will always remain so. 
-* We will keep adding more features to the core plugin.  
-* If you want any new feature(s), have noticed a bug or need help in setting up this plugin - just open a new thread here. We have a team of 4 developers working full time on this plugin, so chances are we will be able to help you sooner than you think.
+= Demo =
 
 
-............................................................................................................
-= Features =
-
-
-= Admin can =
-
-
-* Manage vendors using bulk actions.
-* Approve/disapprove vendors' registration applications manually, or choose to auto-approve all vendor applications.
-* Allow/disallow product uploading by vendors.
-* Allow vendors to publish products directly, or manually approve each upload.
-* Can set a threshold amount before commissions are disbursed.
-* Can set the number of free withdrawals 
-* Set commission for a particular product, vendor or globally.  
-* Export unpaid commission data (in PayPal mass pay format).
-* Admin can disburse commission based on pay on a schedule using PayPal MassPay or pay by request using Bank Transfer.
-* Set commission withdrawal charge 
-* View sales report for a particular product / vendor.
-* Edit vendor shop page URL base from WordPress permalink settings page. For example, if the URL is mysite.com/vendor/vendor-name/, admin can change the   word "vendor" as per their requirement.
-* Block a vendor with all their items. 
-* Add notification text for viewers if a vendor has been blocked.
-* Choose to show/block vendor's name in the catalog, single product, cart, check out and e-mails.
-* Choose to show/reveal customer's name/email/phone number and billing address to vendors.
-* Choose to share coupon expenses with the vendor.
-* Choose to transfer shipping/tax collected for a sale to vendors. 
-* Moderate(approve/edit/disapprove) coupons created by Vendors.
-* Register a new vendor from the frontend.
-* Link to vendor shop page in a product page.
-* Vendors can now hide email, phone, address from the profile and shop settings page.
-* Admin can un-assign a vendor from a product.
-* Admin can now allow customers to leave vendors reviews and ratings.
-* Vendors can set shipping from the front end.
-
-
-= Vendors can =
-
-
-* Configure their stores. (Add logo, store description, banner image, store location, social media links)
-* Export order details (all of his/her products' orders / for a particular product) in CSV format.
-* Add/edit products.
-* Add coupons for their products.
-* Add comments in their orders and ship orders.
-* Get instant notifications for new orders.
-* Can withdraw to Paypal as well as request for direct Bank transfer
-* Can withdraw commission by request
-* See backend report
-
-
-
-
-= Users can =
-
-
-* Register as vendor. 
-* Rate a vendor.
-* Report abuse products.
-
-
-
-
-
-
-= Commissions =
-
-
-* 2 modes to calculate revenue sharing - Admin Fees and Vendor Commission 
-* Admin can set commission rate for the site (global), vendor or product. 
-* Admin can set commission as the percentage, and/or fixed amount.
- 
-
-
-= Shortcodes =
-
-
-* [wcmp_vendorslist] : List of vendors in your site.
-* [wcmp_recent_products vendor="VENDOR LOGIN NAME"] : Recent Products of the vendor.
-* [wcmp_products vendor="VENDOR LOGIN NAME"] : Products of the vendor.
-* [wcmp_products id="VENDOR ID"] : Products of the vendor.
-* [wcmp_featured_products vendor="VENDOR LOGIN NAME"] : Featured products of the vendor.
-* [wcmp_sale_products vendor="VENDOR LOGIN NAME"] : Only products of the vendor, in sale.
-* [wcmp_top_rated_products vendor="VENDOR LOGIN NAME"] : Top rated products of the vendor.
-* [wcmp_best_selling_products vendor="VENDOR LOGIN NAME"] : Best selling products of the vendor.
-* [wcmp_product_category category="category-slug" vendor="VENDOR LOGIN NAME"] : All products of the category by the particular vendor, if vendor is specified, otherwise, all products of the category irrespective of vendor.
-* [vendor_coupons] : Shows vendor's coupon and the usage counted. Also added coupon information in vendor order details page.
-* [vendor_shipping_settings] : vendor can set shipping from front end.
-* [transaction_details]: Vendor commission transaction
-
-
-
-
-= Translations =
-
-
-This plugin is completely WPML compatible.
-If you are a translator and wish to contribute to translate this plugin, please shoot us a mail at sandip@dualcube.com. We are happy to acknowledge your contribution by linking back to you.
-
-
-The current version of WC Marketplace plugin supports following languages:
-
-
-* Norwegian - Thanks to Bjørn Andre
-* Brazilian - Thanks to [Simone Pereira Cunha](https://wordpress.org/support/profile/amadass)
-* Italian - Thanks to [Diego Mazzoli](https://wordpress.org/support/profile/deemaz)
-* Russian - Thanks to [Natalia Sedova](https://profiles.wordpress.org/9130995589s)
-* Arabic - Thanks to [Juancho Deveraturda](https://profiles.wordpress.org/jdev)
-* French - Thanks to [Mehdi Abassi](https://profiles.wordpress.org/maryouli_com)
-* Spanish - Thanks to [Sergio Alonso Garrido](https://profiles.wordpress.org/lenwireless)
-* Persian-  Thanks to [The Immortal]( https://wordpress.org/support/profile/the-immortal)
-
-
-
-
-
-
-We'd love to hear from you if you want to submit a translation or enhance the existing ones. Just drop us an email at- sandip@dualcube.com
-
-
-= Compatibility =
-* WooCommerce 2.5+
-* WordPress 4.4.2+
-* Multilingual Support is included with the plugin and is fully compatible with WPML.
-* WCMp now supports [WooCommerce Product Enquiry Form](http://www.woothemes.com/products/product-enquiry-form/) - Vendor receives the user inquiry mail upon activating this plugin. Thanks to Thanks to [Ria](https://profiles.wordpress.org/gadgetx).
-* WCMp now supports [WooCommerce Extra Checkout Fields for Brazil](https://wordpress.org/plugins/woocommerce-extra-checkout-fields-for-brazil/). Thanks to [Feijao](https://wordpress.org/support/profile/amadass).
-* WCMp now Supports [Advanced Notifications](https://www.woothemes.com/products/advanced-notifications/)
-* WCMp now supports [WooCommerce Social Login](https://www.woothemes.com/products/woocommerce-social-login/)
-* WCMp  now supports [Restrict Taxonomies](https://wordpress.org/plugins/restrict-taxonomies/)
-* WCMp is now compatible with [WooCommerce Table Rate](https://www.woothemes.com/products/table-rate-shipping/) extension via [WCMp Advanced Shipping](https://wordpress.org/plugins/wcmp-advance-shipping/) extension.
-
-
-
-
-= Configurable =
-
-
-This plugin is highly configurable, with options to customize almost every feature you may think of.
-
-
-Click to see the Live Demo [Admin Panel](http://demo.dualcube.com/wordpress/plugins/dc_woocommerce_multi_vendor/wp-admin "Link for WP-Admin")
+[Admin Dashboard](http://demo.dualcube.com/wordpress/plugins/dc_woocommerce_multi_vendor/wp-admin "Link for WP-Admin")
 ( Administrator Access=> Username: "demo" Password: "demo" )
-
-
-Click to see the Live Demo [Vendor Dashboard](http://demo.dualcube.com/wordpress/plugins/dc_woocommerce_multi_vendor/my-account "Link for Vendor Dashboard")
+[Vendor Dashboard](http://demo.dualcube.com/wordpress/plugins/dc_woocommerce_multi_vendor/my-account "Link for Vendor Dashboard")
 ( Vendor Access=> Username: "demo_vendor" Password: "demo_vendor" )
-
 
 
 
@@ -223,6 +101,15 @@ WC Marketplace has been heavily inspired by the ideas and concepts of numerous W
 * The entire development team at Your Inspiration Themes, YITH WooCommerce Multi Vendor
 
 
+
+
+== A few points about us and this plugin ==
+
+
+* The core plugin is free, and will always remain so. 
+* Support is free and fast, and will always remain so. 
+* We will keep adding more features to the core plugin.  
+* If you want any new feature(s), have noticed a bug or need help in setting up this plugin - just open a new thread here. We have a team of 4 developers working full time on this plugin, so chances are we will be able to help you sooner than you think.
 
 
 
@@ -281,11 +168,20 @@ Ans. This plugin is tested with PHP version 5.5.
 25. Vendor review and rating in front-end.
 26. Vendor review and rating in order-details page.
 27. Vendor review and rating in front-end upper section.
+28. More Vendor Settings.
+29. Show Multiple Seller in Single Product.
 
 
 
 
 == Changelog ==
+= 2.3.8 =
+* Added: One product multiple sellers.
+* Modified: Choose vendor on the edit product page shown vendor fullname.
+* Fixed: Vendor Shipping class dropdown issue.
+
+
+
 = 2.3.7 =
 * Fixed: SQL syntax error on the shop page has been fixed.
 * Fixed: Unassigning vendor from the product has been fixed.
@@ -505,6 +401,13 @@ Ans. This plugin is tested with PHP version 5.5.
 
 
 == Upgrade Notice ==
+= 2.3.8 =
+* Added: One product multiple sellers.
+* Modified: Choose vendor on the edit product page shown vendor fullname.
+* Fixed: Vendor Shipping class dropdown issue.
+
+
+
 = 2.3.7 =
 * Fixed: SQL syntax error on the shop page has been fixed.
 * Fixed: Unassigning vendor from the product has been fixed.

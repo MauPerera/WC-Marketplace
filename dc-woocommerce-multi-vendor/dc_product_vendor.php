@@ -3,11 +3,39 @@
 Plugin Name: WC Marketplace
 Plugin URI: http://dualcube.com
 Description: A Free Extension That Transforms Your WooCommerce Site into a Marketplace.
-Author: DualCube, Prabhakar Kumar Shaw, Arim Ghosh,  Sandeep Kumar
-Version: 2.3.7
+Author: DualCube, Prabhakar Kumar Shaw, Arim Ghosh,  Sandeep Kumar, Arkaprava Midya
+Version: 2.3.8
 Author URI: http://dualcube.com
 */
 
+// Create a helper function for easy SDK access.
+function dwmv_fs() {
+	global $dwmv_fs; 
+	if ( ! isset( $dwmv_fs ) ) {
+		// Include Freemius SDK. 
+		require_once dirname(__FILE__) . '/freemius/start.php'; 
+		$dwmv_fs = fs_dynamic_init( array( 
+			'id' => '327', 
+			'slug' => 'dc-woocommerce-multi-vendor', 
+			'public_key' => 'pk_690f546ce4a71a53bdb25fbb894e9', 
+			'is_premium' => false, 
+			'has_addons' => false, 
+			'has_paid_plans' => false, 
+			'menu' => array( 
+				'slug' => 'wcmp-setting-admin', 
+				'account' => false, 
+				'contact' => false, 
+				'support' => false, 
+				'parent' => array( 
+					'slug' => 'woocommerce', 
+				), 
+			), 
+		) ); 
+	} 
+	return $dwmv_fs; 
+} 
+// Init Freemius. 
+dwmv_fs();
 
 if ( ! class_exists( 'WC_Dependencies_Product_Vendor' ) ) require_once 'includes/class-wcmp-dependencies.php';
 require_once 'includes/wcmp-core-functions.php';

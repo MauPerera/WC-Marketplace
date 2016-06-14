@@ -371,6 +371,9 @@ class WCMp_Frontend {
 			);
 			wp_localize_script( 'wcmp_seller_review_rating_js', 'wcmp_review_rating_msg', $vendor_review_rating_msg_array );
 		}
+		if( is_singular( 'product' ) ) {
+			wp_enqueue_script('wcmp_single_product_multiple_vendors', $frontend_script_path.'/single-product-multiple-vendors'.$suffix.'.js', array('jquery'), $WCMp->version, true);
+		}
 	}
 
   /**
@@ -417,6 +420,7 @@ class WCMp_Frontend {
 				wp_enqueue_style('wcmp_review_rating',  $frontend_style_path .'review_rating'.$suffix.'.css', array(), $WCMp->version);
 			}
 		}
+		wp_enqueue_style('multiple_vendor',  $frontend_style_path .'multiple-vendor'.$suffix.'.css', array(), $WCMp->version);
 	}
 	
 	/**

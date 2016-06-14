@@ -21,6 +21,8 @@ Class WCMp_Admin_Dashboard {
 		add_action(	'save_post', array( &$this, 'process_vendor_data' ) );
 		
 		add_action( 'wp_before_admin_bar_render', array($this,'remove_admin_bar_links') );
+
+		add_action( 'wp_footer', 'wcmp_remove_comments_section_from_vendor_dashboard' );
 		
 		// Init export functions
     $this->export_csv();

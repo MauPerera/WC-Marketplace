@@ -55,7 +55,7 @@ if(in_array('wcmp-vendor_shop_seo/wcmp_vendor_shop_seo.php',$active_plugins)){
 					<li><a href="<?php echo isset($pages['vendor_policies']) ? get_permalink($pages['vendor_policies']) : ''; ?>" <?php if($selected_item == "policies") { echo 'class="selected_menu"'; } ?> data-menu_item="policies"><?php _e( '- Policies', $WCMp->text_domain ); ?></a></li>
 					<?php }?>
 					<li><a href="<?php echo isset($pages['vendor_billing']) ? get_permalink($pages['vendor_billing']) : ''; ?>" <?php if($selected_item == "billing") { echo 'class="selected_menu"'; } ?> data-menu_item="billing"><?php _e( '- Billing', $WCMp->text_domain ); ?></a></li>
-					<?php if(isset($wcmp_payment_settings_name['give_shipping'])) { if(empty($_vendor_give_shipping)) {?>
+					<?php if(isset($wcmp_payment_settings_name['give_shipping']) && get_option('woocommerce_calc_shipping') != 'no') { if(empty($_vendor_give_shipping)) {?>
 					<li><a href="<?php echo isset($pages['vendor_shipping']) ? get_permalink($pages['vendor_shipping']) : ''; ?>" <?php if($selected_item == "shipping") { echo 'class="selected_menu"'; } ?> data-menu_item="shipping"><?php _e( '- Shipping', $WCMp->text_domain ); ?></a></li>
 					<?php } }?>
 					<?php do_action('wcmp_store_settings_sub_menu'); ?>
@@ -70,7 +70,8 @@ if(in_array('wcmp-vendor_shop_seo/wcmp_vendor_shop_seo.php',$active_plugins)){
 			<li class="hasmenu"><a href="#"><span class="icon_stand ic4"> </span> <span class="writtings"><?php _e( 'Promote', $WCMp->text_domain ); ?></span></a>
 				<ul class="submenu" <?php if($selected_item != "coupon") { ?> style="display:none;" <?php } ?>>
 					<?php if(isset($wcmp_capabilities_settings_name['is_submit_coupon']) && !empty($_vendor_submit_coupon)) {?>
-					<li><a <?php if($selected_item == "coupon") { echo 'class="selected_menu"'; } ?> data-menu_item="coupon" href="<?php echo admin_url( 'edit.php?post_type=shop_coupon' );?>"><?php _e( '- Coupons', $WCMp->text_domain ); ?></a></li>
+					<li><a <?php if($selected_item == "add_coupon") { echo 'class="selected_menu"'; } ?> data-menu_item="add_coupon" target="_blank" href="<?php echo apply_filters('wcmp_vendor_submit_coupon', admin_url( 'post-new.php?post_type=shop_coupon' ));?>"><?php _e( '- Add Coupon', $WCMp->text_domain ); ?></a></li>
+                    <li><a <?php if($selected_item == "coupon") { echo 'class="selected_menu"'; } ?> data-menu_item="coupon" href="<?php echo apply_filters('wcmp_vendor_coupons', admin_url( 'edit.php?post_type=shop_coupon' ));?>"><?php _e( '- Coupons', $WCMp->text_domain ); ?></a></li>
 					<?php }?>
 				</ul>
 			</li>
@@ -83,7 +84,10 @@ if(in_array('wcmp-vendor_shop_seo/wcmp_vendor_shop_seo.php',$active_plugins)){
 			<li><a <?php if($selected_item == "orders") { echo 'class="active"'; } ?> data-menu_item="orders" href="<?php echo isset($pages['view_order']) ? get_permalink($pages['view_order']) : ''; ?>"><span class="icon_stand ic6"> </span> <span class="writtings"><?php _e( 'Orders', $WCMp->text_domain ); ?></span></a></li>
 			<li class="hasmenu"><a <?php if(in_array($selected_item, array('widthdrawal', 'history'))) {  echo 'class="active"'; } ?> href="#"><span class="icon_stand ic7"> </span><span class="writtings"><?php _e( 'Payments', $WCMp->text_domain ); ?></span></a>
 				<ul class="submenu" <?php if(!in_array($selected_item, array('widthdrawal', 'history'))) { ?> style="display:none;"<?php } ?>>
-					<li><a <?php if($selected_item == "widthdrawal") { echo 'class="selected_menu"'; } ?> data-menu_item="widthdrawal" href="<?php echo isset($pages['vendor_widthdrawals']) ? get_permalink($pages['vendor_widthdrawals']) : ''; ?>"><?php _e( '- Withdrawal', $WCMp->text_domain ); ?></a></li>
+					<?php 
+						if(isset($WCMp->vendor_caps->payment_cap['wcmp_disbursal_mode_vendor']) && $WCMp->vendor_caps->payment_cap['wcmp_disbursal_mode_vendor'] == 'Enable') { ?>
+							<li><a <?php if($selected_item == "widthdrawal") { echo 'class="selected_menu"'; } ?> data-menu_item="widthdrawal" href="<?php echo isset($pages['vendor_widthdrawals']) ? get_permalink($pages['vendor_widthdrawals']) : ''; ?>"><?php _e( '- Withdrawal', $WCMp->text_domain ); ?></a></li>
+					<?php } ?>
 					<li><a <?php if($selected_item == "history") { echo 'class="selected_menu"'; } ?> data-menu_item="history" href="<?php echo isset($pages['vendor_transaction_detail']) ? get_permalink($pages['vendor_transaction_detail']) : ''; ?>"><?php _e( '- History', $WCMp->text_domain ); ?></a></li>
 				</ul>
 			</li>

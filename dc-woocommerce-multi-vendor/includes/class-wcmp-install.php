@@ -206,6 +206,13 @@ class WCMp_Install {
 			);
 			update_option('wcmp_frontend_settings_name', $frontend_settings);
 		}
+		$general_singleproductmultisellersettings = get_option('wcmp_general_singleproductmultiseller_settings_name');
+		if(empty($general_singleproductmultisellersettings)) {
+			$general_singleproductmultisellersettings = array (
+				'is_singleproductmultiseller' => 'Enable',				
+			);
+			update_option('wcmp_general_singleproductmultiseller_settings_name', $general_singleproductmultisellersettings);
+		}
 	}
 	
 	function wcmp_plugin_tables_install() {
@@ -234,6 +241,14 @@ class WCMp_Install {
 		`created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,				
 		PRIMARY KEY (`ID`),
 		CONSTRAINT vendor_orders UNIQUE (order_id, vendor_id, commission_id, product_id)
+		)$charset_collate;";
+
+	$migs[] = "CREATE TABLE IF NOT EXISTS `".$wpdb->prefix."wcmp_products_map` (
+		`ID` bigint(20) NOT NULL AUTO_INCREMENT,
+		`product_title` varchar(255) NOT NULL,
+		`product_ids`text NOT NULL,						
+		`created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,				
+		PRIMARY KEY (`ID`)
 		)$charset_collate;";
 		
 		$needed_migration = count($migs);

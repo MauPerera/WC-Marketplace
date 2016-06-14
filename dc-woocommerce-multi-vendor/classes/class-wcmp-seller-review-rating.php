@@ -25,6 +25,7 @@ class WCMp_Seller_Review_Rating {
 	}
 	
 	function wcmp_vendor_list_rating_rating_value($vendor_term_id, $vendor_id) {
+		global $WCMp;
 		$rating_info = wcmp_get_vendor_review_info($vendor_term_id);
 		$WCMp->template->get_template( 'review/rating_vendor_lists.php', array('rating_val_array' => $rating_info));
 	}

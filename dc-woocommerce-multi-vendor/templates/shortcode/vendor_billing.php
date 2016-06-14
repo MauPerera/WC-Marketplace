@@ -23,20 +23,21 @@ global $WCMp;
 		<div class="clear"></div>
 	</div>
 	<form method="post" name="shop_settings_form" class="wcmp_billing_form">
-    <div class="wcmp_form1">
+    <div class="wcmp_form1">    	
     	<?php 
-    		$payment_admin_settings = get_option('wcmp_payment_settings_name');
-    		//print_r($payment_admin_settings);die;
+    		$payment_admin_settings = get_option('wcmp_payment_settings_name');    		
     		if(isset($payment_admin_settings['wcmp_disbursal_mode_admin']) &&  $payment_admin_settings['wcmp_disbursal_mode_admin'] = 'Enable') {
     			$payment_mode = array();
     			if(isset($payment_admin_settings['payment_method_paypal_masspay']) && $payment_admin_settings['payment_method_paypal_masspay'] = 'Enable') {
     				$payment_mode['paypal_masspay'] = __('PayPal Masspay', $WCMp->text_domain);
     			}
+				if(isset($payment_admin_settings['payment_method_direct_bank']) && $payment_admin_settings['payment_method_direct_bank'] = 'Enable') {
+    				$payment_mode['direct_bank'] = __('Direct Bank', $WCMp->text_domain);
+    			}
     			$vendor_payment_mode_select = apply_filters( 'wcmp_vendor_payment_mode', $payment_mode );
-    			// array('paypal_masspay' => __('PayPal Masspay', $WCMp->text_domain), 'direct_bank' => __('Direct Bank', $WCMp->text_domain))
     			if(!empty($vendor_payment_mode_select)) {
     	?>
-		    	<div class="wcmp_headding2"><?php _e( 'Payment Mode', $WCMp->text_domain );?></div>
+		    	<div class="wcmp_headding2"><?php _e( 'Automatic Payment Mode', $WCMp->text_domain );?></div>
 				<div class="two_third_part">
 					<div class="select_box no_input">						
 						<select id="vendor_payment_mode" disabled name="vendor_payment_mode" class="user-profile-fields">
@@ -47,7 +48,9 @@ global $WCMp;
 					</div>
 				</div>
 				<div class="clear"></div>
-		<?php } } ?>
+		<?php } } 
+			
+		?>
 		<div class="wcmp_headding2"><?php _e( 'Paypal', $WCMp->text_domain );?></div>
 		<p><?php _e( 'Enter your Paypal ID', $WCMp->text_domain );?></p>
 		<input  class="long no_input" readonly type="text" name="vendor_paypal_email" value="<?php echo isset($vendor_paypal_email['value']) ? $vendor_paypal_email['value']: ''; ?>"  placeholder="<?php _e( 'Enter your Paypal ID', $WCMp->text_domain );?>">

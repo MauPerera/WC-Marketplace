@@ -220,6 +220,8 @@ class WCMp_User {
 		if( empty($shipping_class_id) ) {
 			$shipping_term = wp_insert_term( $user->user_login.'-'.$user_id, 'product_shipping_class' );
 			update_user_meta($user_id, 'shipping_class_id', $shipping_term['term_id']);
+			add_woocommerce_term_meta($shipping_term['term_id'], 'vendor_id', $user_id); 
+			add_woocommerce_term_meta($shipping_term['term_id'], 'vendor_shipping_origin',  get_option( 'woocommerce_default_country' ));
 		}
   	do_action('wcmp_set_user_role', $user_id, $new_role, $old_role);
   }

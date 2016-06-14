@@ -55,11 +55,12 @@ if(!empty($orders)) {
 						'img' => $WCMp->plugin_url . 'assets/images/download.png',
 						'title' => __('Download' ,$WCMp->text_domain),
 					);
-					
-					$actions['mark_ship'] = array(
-						'url'  => '#',
-						'title' => $mark_ship_title,
-					);
+					if ( get_option('woocommerce_calc_shipping') != 'no' ) {
+						$actions['mark_ship'] = array(
+							'url'  => '#',
+							'title' => $mark_ship_title,
+						);
+					}
 					
 					$actions = apply_filters( 'wcmp_my_account_my_orders_actions', $actions, $order );
 	

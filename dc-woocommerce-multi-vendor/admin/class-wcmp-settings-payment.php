@@ -9,6 +9,7 @@ class WCMp_Settings_Payment {
   private $paypal_api_password;
   private $paypal_api_signature;
   private $automatic_payment_method;
+  private $withdrawal_payment_method;
 
   /**
    * Start up
@@ -46,6 +47,7 @@ class WCMp_Settings_Payment {
       }
       $i++;
     }
+    
     $settings_tab_options = array("tab" => "{$this->tab}",
                                   "ref" => &$this,
                                   "sections" => array(
@@ -74,8 +76,9 @@ class WCMp_Settings_Payment {
                                                                                                           $automatic_method,
                                                                                                           array("choose_payment_mode_request_disbursal" => array('title' => __('Request Disbursal Mode', $WCMp->text_domain), 'type' => 'checkbox', 'id' => 'wcmp_disbursal_mode_vendor', 'label_for' => 'wcmp_disbursal_mode_vendor', 'name' => 'wcmp_disbursal_mode_vendor',  'desc' => __('If checked, vendors can withdrawal commission by request. ', $WCMp->text_domain),  'value' => 'Enable'), // Checkbox                                                                            
                                                                                                           "commission_transfer" => array('title' => __('Withdrawal Charges', $WCMp->text_domain), 'type' => 'text', 'id' => 'commission_transfer', 'label_for' => 'commission_transfer', 'name' => 'commission_transfer', 'desc' => __('Vendor will be charged this amount per withdrawal after the quota of free withdrawals is over.', $WCMp->text_domain)), // Text
-                                                                                                          "no_of_orders" => array('title' => __('Number of Free Withdrawals', $WCMp->text_domain), 'type' => 'text', 'id' => 'no_of_orders', 'label_for' => 'no_of_orders', 'name' => 'no_of_orders', 'desc' => __('Number of Free Withdrawal Requests.', $WCMp->text_domain)), // Text),            
-                                                                                                        )),
+                                                                                                          "no_of_orders" => array('title' => __('Number of Free Withdrawals', $WCMp->text_domain), 'type' => 'text', 'id' => 'no_of_orders', 'label_for' => 'no_of_orders', 'name' => 'no_of_orders', 'desc' => __('Number of Free Withdrawal Requests.', $WCMp->text_domain)), // Text                                                                                                          
+                                                                                                          )
+                                                                                                          ),
                                                                                          ),
                                                       "wcmp_paypal_settings" => array("title" =>  __('WCMp Paypal Settings ', $WCMp->text_domain), // Section one
                                                                                          "fields" => array("api_username" => array('title' => __('API Username', $WCMp->text_domain), 'type' => 'text', 'id' => 'api_username', 'label_for' => 'api_username', 'dfvalue'=>$this->paypal_api_username, 'name' => 'api_username', 'desc' => __('Give your PayPal API Username.', $WCMp->text_domain)),
@@ -147,6 +150,12 @@ class WCMp_Settings_Payment {
       $new_input['wcmp_disbursal_mode_vendor'] = sanitize_text_field( $input['wcmp_disbursal_mode_vendor'] ); 
     }
     foreach($this->automatic_payment_method as $key=>$val) {
+      if(isset( $input['payment_method_'.$key] )) {
+        $new_input['payment_method_'.$key] = sanitize_text_field( $input['payment_method_'.$key] ); 
+      }
+    }
+
+    foreach($this->withdrawal_payment_method as $key=>$val) {
       if(isset( $input['payment_method_'.$key] )) {
         $new_input['payment_method_'.$key] = sanitize_text_field( $input['payment_method_'.$key] ); 
       }

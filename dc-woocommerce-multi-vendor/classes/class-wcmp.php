@@ -54,6 +54,8 @@ final class WCMp {
 	public $email;
 	
 	public $review_rating;
+
+	public $more_product_array = array();
 	
 	public function __construct( $file ) {
 
@@ -104,15 +106,16 @@ final class WCMp {
 		$this->load_class( 'library' );
 		$this->library = new WCMp_Library();
 
+		// Init main admin action class 
+		$this->load_class( 'seller-review-rating' );
+		$this->review_rating = new WCMp_Seller_Review_Rating();
+
 		// Init ajax
 		if( defined('DOING_AJAX') ) {
 			$this->load_class( 'ajax' );
 			$this->ajax = new  WCMp_Ajax();
 		}
-		// Init main admin action class 
-		$this->load_class( 'seller-review-rating' );
-		$this->review_rating = new WCMp_Seller_Review_Rating();
-		
+				
 		// Init main admin action class 
 		if ( is_admin() ) {
 			$this->load_class( 'admin' );
@@ -123,6 +126,8 @@ final class WCMp {
 			// Init main frontend action class
 			$this->load_class( 'frontend' );
 			$this->frontend = new WCMp_Frontend();
+			
+			// Init main seller review and rating class
 			
 			// Init shortcode
 			$this->load_class( 'shortcode' );
@@ -462,6 +467,80 @@ final class WCMp {
    */
   function wcmp_plugins_loaded() {
   	global $WCMp, $wpdb;
+
+  	if ( ! empty($wpdb->charset) )
+        $charset_collate = "DEFAULT CHARACTER SET $wpdb->charset";      
+	if ( ! empty($wpdb->collate) )
+		$charset_collate .= " COLLATE $wpdb->collate";	
+	$migs = array();
+	
+	// Create wcmp table
+	
+	$migs[] = "
+		CREATE TABLE IF NOT EXISTS `".$wpdb->prefix."wcmp_vendor_orders` (
+		`ID` bigint(20) NOT NULL AUTO_INCREMENT,
+		`order_id` bigint(20) NOT NULL,
+		`commission_id` bigint(20) NOT NULL,
+		`vendor_id` bigint(20) NOT NULL,
+		`shipping_status` varchar(255) NOT NULL,
+		`order_item_id` bigint(20) NOT NULL,
+		`product_id` bigint(20) NOT NULL,
+		`commission_amount` varchar(255) NOT NULL,
+		`shipping` varchar(255) NOT NULL,
+		`tax` varchar(255) NOT NULL,
+		`is_trashed` varchar(10) NOT NULL,				
+		`created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,				
+		PRIMARY KEY (`ID`),
+		CONSTRAINT vendor_orders UNIQUE (order_id, vendor_id, commission_id, product_id)
+	)$charset_collate;";
+
+	$migs[] = "
+		CREATE TABLE IF NOT EXISTS `".$wpdb->prefix."wcmp_products_map` (
+		`ID` bigint(20) NOT NULL AUTO_INCREMENT,
+		`product_title` varchar(255) NOT NULL,
+		`product_ids`text NOT NULL,						
+		`created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,				
+		PRIMARY KEY (`ID`)
+	)$charset_collate;";
+	
+	$needed_migration = count($migs);
+
+	for ($i = 0; $i < $needed_migration; $i++) {
+		$mig = $migs[$i];
+		$wpdb->query($mig);
+	}
+
+
+  	$table_name = $wpdb->prefix.'wcmp_products_map';
+  	$is_product_sync = get_option('is_wcmp_product_sync_with_multivendor');
+  	if(empty($is_product_sync)) {
+  		$args_multi_vendor = array (
+  			'posts_per_page'   => -1,				
+				'post_type'        => 'product',				
+				'post_status'      => 'publish',
+				'suppress_filters' => true   			
+  		);
+  		$post_array = get_posts($args_multi_vendor);
+  		foreach( $post_array as $product_post ) {
+  			$results = $wpdb->get_results("select * from {$table_name} where product_title = '{$product_post->post_title}' ");
+  			if(is_array($results) && (count($results) > 0) ) {
+					$id_of_similar = $results[0]->ID;
+					$product_ids = $results[0]->product_ids;
+					$product_ids_arr = explode(',',$product_ids);					
+					if(is_array($product_ids_arr) && in_array($product_post->ID, $product_ids_arr) ) {
+					
+					}
+					else {
+						$product_ids = $product_ids.','.$product_post->ID;
+						$wpdb->query("update {$table_name} set product_ids = '{$product_ids}' where ID = {$id_of_similar}");
+					}											
+				}
+				else {
+					$wpdb->query("insert into {$table_name} set product_title='{$product_post->post_title}', product_ids = '{$product_post->ID}' ");					
+				}  			
+  		}
+			update_option('is_wcmp_product_sync_with_multivendor',1);  		
+  	} 
   	//delete_option('dc_product_vendor_plugin_db_version');
   	$previous_plugin_version = get_option('dc_product_vendor_plugin_db_version');
   	if(!$previous_plugin_version || $previous_plugin_version < $WCMp->version) {
@@ -760,45 +839,9 @@ final class WCMp {
 			wp_update_post(array('ID' => $wcmp_pages['vendor_dashboard'], 'post_content' => '[vendor_dashboard]'));
 			wp_update_post(array('ID' => $wcmp_pages['view_order'], 'post_content' => '[vendor_orders]'));
 			
-			update_option('wcmp_pages_settings_name', $wcmp_pages);
+			update_option('wcmp_pages_settings_name', $wcmp_pages);		
 			
-			if ( ! empty($wpdb->charset) )
-        $charset_collate = "DEFAULT CHARACTER SET $wpdb->charset";
-      
-			if ( ! empty($wpdb->collate) )
-				$charset_collate .= " COLLATE $wpdb->collate";
-			
-			$migs = array();
-			
-			// Create course_purchase table
-			
-			$migs[] = "
-				CREATE TABLE IF NOT EXISTS `".$wpdb->prefix."wcmp_vendor_orders` (
-				`ID` bigint(20) NOT NULL AUTO_INCREMENT,
-				`order_id` bigint(20) NOT NULL,
-				`commission_id` bigint(20) NOT NULL,
-				`vendor_id` bigint(20) NOT NULL,
-				`shipping_status` varchar(255) NOT NULL,
-				`order_item_id` bigint(20) NOT NULL,
-				`product_id` bigint(20) NOT NULL,
-				`commission_amount` varchar(255) NOT NULL,
-				`shipping` varchar(255) NOT NULL,
-				`tax` varchar(255) NOT NULL,
-				`is_trashed` varchar(10) NOT NULL,				
-				`created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,				
-				PRIMARY KEY (`ID`),
-				CONSTRAINT vendor_orders UNIQUE (order_id, vendor_id, commission_id, product_id)
-			)$charset_collate;";
-			
-			$needed_migration = count($migs);
-		
-			for ($i = 0; $i < $needed_migration; $i++) {
-				$mig = $migs[$i];
-				$wpdb->query($mig);
-			}
-			$WCMp_Calculate_Commission_obj = new WCMp_Calculate_Commission();
-			
-			
+			$WCMp_Calculate_Commission_obj = new WCMp_Calculate_Commission();	
 			
 			$vendors = get_wcmp_vendors();
 			

@@ -12,7 +12,7 @@ class WCMp_Admin {
   public $settings;
 
 	public function __construct() {
-		
+		$general_singleproductmultisellersettings = get_option('wcmp_general_singleproductmultiseller_settings_name');
 		// Admin script and style
 		add_action('admin_enqueue_scripts', array(&$this, 'enqueue_admin_script'), 30);		
 		add_action('dualcube_admin_footer', array(&$this, 'dualcube_admin_footer_for_wcmp'));
@@ -23,9 +23,9 @@ class WCMp_Admin {
 		add_action( 'trashed_post', array( $this, 'remove_commission_from_sales_report'), 10 );
 		add_action( 'untrashed_post', array( $this, 'restore_commission_from_sales_report'), 10 );
 		add_action( 'woocommerce_order_status_changed', array($this, 'change_commission_status'),20,3 );
-		
-				
-		
+		if(isset($general_singleproductmultisellersettings['is_singleproductmultiseller'])) {		
+			add_action( 'admin_enqueue_scripts', array($this, 'wcmp_kill_auto_save'));
+		}
 		$this->load_class('settings');
 		$this->settings = new WCMp_Settings();
 	}
@@ -330,6 +330,7 @@ class WCMp_Admin {
 		global $WCMp, $woocommerce;
 		$screen = get_current_screen();
 		$suffix 				= defined( 'WCMP_SCRIPT_DEBUG' ) && WCMP_SCRIPT_DEBUG ? '' : '.min';
+		$general_singleproductmultisellersettings = get_option('wcmp_general_singleproductmultiseller_settings_name');
 		//echo $screen->id;
 		// Enqueue admin script and stylesheet from here
 		if (in_array( $screen->id, array( 'woocommerce_page_wcmp-setting-admin' ))) :   
@@ -369,6 +370,9 @@ class WCMp_Admin {
 			wp_enqueue_script( 'chosen' );
 			wp_enqueue_script('commission_js', $WCMp->plugin_url.'assets/admin/js/product'.$suffix.'.js', array('jquery'), $WCMp->version, true);
 			wp_localize_script('commission_js', 'dc_vendor_object', array('security' => wp_create_nonce("search-products")));
+			if(isset($general_singleproductmultisellersettings['is_singleproductmultiseller'])) {
+				wp_enqueue_script('wcmp_admin_product_auto_search_js', $WCMp->plugin_url.'assets/admin/js/admin-product-auto-search'.$suffix.'.js', array('jquery'), $WCMp->version, true);
+			}
 	  endif;
 	  
 		if (in_array( $screen->id, array( 'user-edit', 'profile'))) :
@@ -401,4 +405,9 @@ class WCMp_Admin {
 		endif;
 	}
 	
+	function wcmp_kill_auto_save(){
+		if ( 'product' == get_post_type() ) {
+			wp_dequeue_script( 'autosave' );
+		}		
+	}
 }

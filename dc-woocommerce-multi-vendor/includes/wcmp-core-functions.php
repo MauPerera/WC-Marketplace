@@ -669,4 +669,76 @@ if( ! function_exists( 'wcmp_vendor_review_rating_args_to_fetch_callback' ) ) {
 		return $args;
 	}
 }
+
+if( ! function_exists( 'wcmp_sort_by_rating_multiple_product' )) {
+	function wcmp_sort_by_rating_multiple_product($more_product_array) {
+		$more_product_array2 = array();
+		$j = 0;
+		foreach( $more_product_array as $more_product) {
+			
+			if($j == 0) {
+				$more_product_array2[] = $more_product;										
+			}
+			elseif($more_product['is_vendor'] == 0) {
+				$more_product_array2[] = $more_product;					
+			}
+			elseif($more_product['rating_data']['avg_rating'] == 0 ) {
+				$more_product_array2[] = $more_product;					
+			}
+			elseif($more_product['rating_data']['avg_rating'] > 0) {					
+				if(isset($more_product_array2[0]['rating_data']['avg_rating'])) {
+					$i = 0;
+					while($more_product_array2[$i]['rating_data']['avg_rating'] >= $more_product['rating_data']['avg_rating']) {							
+						$i++;
+					}
+					if($i == 0) {														
+						array_unshift($more_product_array2, $more_product);							
+					}
+					elseif($i == (count($more_product_array2)-1)) {
+						if(isset($more_product_array2[$i]['rating_data']['avg_rating']) && $more_product_array2[$i]['rating_data']['avg_rating'] <= $more_product['rating_data']['avg_rating']){
+							$temp = $more_product_array2[$i];
+							$more_product_array2[$i] = $more_product;
+							array_push($more_product_array2, $temp);								
+						}
+						else {
+							array_push($more_product_array2, $more_product);	
+						}
+					}
+					else {
+						$array_1 = array_slice($more_product_array2,0,$i);
+						$array_2 = array_slice($more_product_array2,$i);
+						array_push($array_1, $more_product);							
+						$more_product_array2 = array_merge($array_1, $array_2);														
+					}
+				}
+				else {
+					array_unshift($more_product_array2, $more_product);
+					echo $j.',';
+				}
+			}
+			$j++;
+		}			
+		return 	$more_product_array2;		
+	}
+}
+
+if( ! function_exists( 'wcmp_remove_comments_section_from_vendor_dashboard') ) {
+	function wcmp_remove_comments_section_from_vendor_dashboard() {
+		$pages = get_option("wcmp_pages_settings_name");
+		if(isset($pages['vendor_dashboard'] )) {	
+			if(is_page( absint( $pages['vendor_dashboard'] ) ) ) {
+				?>
+				<script type="text/javascript">
+					jQuery(document).ready(function($) {
+						$('div#comments').remove();
+					});
+				</script>
+				<?php
+			}
+		}
+		
+	}
+	
+}
+
 ?>

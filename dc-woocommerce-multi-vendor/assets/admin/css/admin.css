@@ -134,3 +134,28 @@ a.wcmp_sub_sction {
 .inline-edit-col span.inline-edit-categories-label:nth-of-type(2), .inline-edit-col ul.product_shipping_class-checklist {
 	display: none !important;
 }
+
+
+/*... One product multiple vendor ..............................................*/
+
+#wcmp_auto_suggest_product_title{
+	box-shadow: 0 0 3px 1px rgba(0, 0, 0, 0.3);
+    margin-top: -16px;
+     margin-bottom: 16px;
+}
+
+#wcmp_auto_suggest_product_title > ul {
+    border: 1px solid #aaa;
+    list-style: outside none none;
+    max-height: 140px;
+    overflow-y: auto;
+    padding: 10px;
+}
+
+#wcmp_auto_suggest_product_title li a {
+    border-bottom: 1px solid #ddd;
+    color: #727272;
+    display: inline-block;
+    text-decoration: none;
+    width: 100%;
+}
