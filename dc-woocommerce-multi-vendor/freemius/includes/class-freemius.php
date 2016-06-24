@@ -6335,7 +6335,7 @@
 			$all_submenu_items_after = array();
 
 			$found_submenu_item = false;
-
+			
 			foreach ( $top_level_menu as $submenu_id => $meta ) {
 				if ( $found_submenu_item ) {
 					// Remove all submenu items after the plugin's submenu item.

@@ -146,6 +146,9 @@ if($vendor) {
         <div class="full_part"><img src="<?php echo $WCMp->plugin_url . 'assets/images/youtube.png'?>" alt="" class="social_icon wcmp_to_disable">
           <input class="long no_input" readonly type="text"   name="vendor_youtube" value="<?php echo isset($vendor_youtube['value']) ? $vendor_youtube['value'] : ''; ?>">
         </div>
+        <div class="full_part"><img src="<?php echo $WCMp->plugin_url . 'assets/images/instagram.png'?>" alt="" class="social_icon wcmp_to_disable">
+          <input class="long no_input" readonly type="text"   name="vendor_instagram" value="<?php echo isset($vendor_instagram['value']) ? $vendor_instagram['value'] : ''; ?>">
+        </div>
         <div class="clear"></div>
       </div>
       <?php do_action('other_exta_field_dcmv'); ?>

@@ -176,45 +176,41 @@ class WCMp_User {
   		$user->add_cap('read_product');
   		if( $WCMp->vendor_caps->vendor_capabilities_settings('is_submit_product') ) {
   			$vendor_submit_products = get_user_meta($user_id, '_vendor_submit_product', true);
-				if( $vendor_submit_products ) {
-					$caps = array();
-					$caps[] = "edit_product";
-					$caps[] = "delete_product";
-					$caps[] = "edit_products";
-					$caps[] = "edit_others_products";
-					$caps[] = "delete_published_products";
-					$caps[] = "delete_products";
-					$caps[] = "delete_others_products";
-					$caps[] = "edit_published_products";
-					foreach( $caps as $cap ) {
-						$user->add_cap( $cap );
-					} 
-				}
+			if( $vendor_submit_products ) {
+				$caps = array();
+				$caps[] = "edit_product";
+				$caps[] = "delete_product";
+				$caps[] = "edit_products";
+				$caps[] = "edit_others_products";
+				$caps[] = "delete_published_products";
+				$caps[] = "delete_products";
+				$caps[] = "delete_others_products";
+				$caps[] = "edit_published_products";
+				foreach( $caps as $cap ) {
+					$user->add_cap( $cap );
+				} 
 			}
-			
-			if( $WCMp->vendor_caps->vendor_capabilities_settings('is_published_product') ) {					
-				$user->add_cap( 'publish_products' );				
+		}
+		
+		if( $WCMp->vendor_caps->vendor_capabilities_settings('is_published_product') ) {					
+			$user->add_cap( 'publish_products' );				
+		}
+		
+		if( $WCMp->vendor_caps->vendor_capabilities_settings('is_submit_coupon') ) {
+			$vendor_submit_coupon = get_user_meta($user_id, '_vendor_submit_coupon', true);
+			if( $vendor_submit_coupon ) {
+				$caps = array();
+				$caps[] = 'edit_shop_coupons';
+				$caps[] = 'read_shop_coupons';
+				$caps[] = 'delete_shop_coupons';
+				$caps[] = 'edit_published_shop_coupons';
+				$caps[] = 'delete_published_shop_coupons';
+				$caps[] = 'edit_others_shop_coupons';
+				$caps[] = 'delete_others_shop_coupons';
+				foreach( $caps as $cap ) {
+					$user->add_cap( $cap );
+				} 
 			}
-			
-			if( $WCMp->vendor_caps->vendor_capabilities_settings('is_submit_coupon') ) {
-  			$vendor_submit_coupon = get_user_meta($user_id, '_vendor_submit_coupon', true);
-				if( $vendor_submit_coupon ) {
-					$caps = array();
-					$caps[] = 'edit_shop_coupons';
-					$caps[] = 'read_shop_coupons';
-					$caps[] = 'delete_shop_coupons';
-					$caps[] = 'edit_published_shop_coupons';
-					$caps[] = 'delete_published_shop_coupons';
-					$caps[] = 'edit_others_shop_coupons';
-					$caps[] = 'delete_others_shop_coupons';
-					foreach( $caps as $cap ) {
-						$user->add_cap( $cap );
-					} 
-				}
-			}
-  	}
-  	if( $WCMp->vendor_caps->vendor_capabilities_settings('is_published_coupon') ) {                    
-			$user->add_cap( 'publish_shop_coupons' );                
 		}
 		$shipping_class_id = get_user_meta($user_id,'shipping_class_id',true);
 		if( empty($shipping_class_id) ) {
@@ -223,6 +219,10 @@ class WCMp_User {
 			add_woocommerce_term_meta($shipping_term['term_id'], 'vendor_id', $user_id); 
 			add_woocommerce_term_meta($shipping_term['term_id'], 'vendor_shipping_origin',  get_option( 'woocommerce_default_country' ));
 		}
+  	}
+  	if( $WCMp->vendor_caps->vendor_capabilities_settings('is_published_coupon') ) {                    
+		$user->add_cap( 'publish_shop_coupons' );                
+	}		
   	do_action('wcmp_set_user_role', $user_id, $new_role, $old_role);
   }
   
@@ -487,6 +487,12 @@ class WCMp_User {
 				'label' => __('YouTube Channel', $WCMp->text_domain),
 				'type' => 'text',
 				'value' => $vendor->youtube,
+				'class'	=> "user-profile-fields"
+			), // Text
+			"vendor_instagram" => array(
+				'label' => __('Instagram Profile', $WCMp->text_domain),
+				'type' => 'text',
+				'value' => $vendor->instagram,
 				'class'	=> "user-profile-fields"
 			), // Text
 			"vendor_image" => array(

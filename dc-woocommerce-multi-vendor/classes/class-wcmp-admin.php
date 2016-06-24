@@ -347,11 +347,14 @@ class WCMp_Admin {
 		  wp_enqueue_script('wcmp_admin_js', $WCMp->plugin_url.'assets/admin/js/admin'.$suffix.'.js', array('jquery'), $WCMp->version, true);
 		  wp_enqueue_style('wcmp_admin_css',  $WCMp->plugin_url.'assets/admin/css/admin'.$suffix.'.css', array(), $WCMp->version);
 			if( ! wp_style_is( 'woocommerce_chosen_styles', 'queue' ) ) {
-				wp_enqueue_style( 'woocommerce_chosen_styles', $woocommerce->plugin_url() . '/assets/css/chosen.css' );
+				// wp_enqueue_style( 'woocommerce_chosen_styles', $woocommerce->plugin_url() . '/assets/css/chosen.css' );
+				wp_enqueue_style( 'woocommerce_chosen_styles', $WCMp->plugin_url . '/assets/admin/css/chosen'.$suffix.'.css' );
 			}
 			// Load Chosen JS
-			wp_enqueue_script( 'ajax-chosen' );
-			wp_enqueue_script( 'chosen' );
+			// wp_enqueue_script( 'ajax-chosen' );
+			// wp_enqueue_script( 'chosen' );
+			wp_enqueue_script('WCMp_chosen',$WCMp->plugin_url.'assets/admin/js/chosen.jquery'.$suffix.'.js', array('jquery'), $WCMp->version, true);
+			wp_enqueue_script('WCMp_ajax-chosen',$WCMp->plugin_url.'assets/admin/js/ajax-chosen.jquery'.$suffix.'.js', array('jquery','WCMp_chosen'), $WCMp->version, true);
 			wp_enqueue_script('commission_js', $WCMp->plugin_url.'assets/admin/js/commission'.$suffix.'.js', array('jquery'), $WCMp->version, true);
 			wp_localize_script('commission_js', 'dc_vendor_object', array('security' => wp_create_nonce("search-products")));
 	  endif;
@@ -363,11 +366,14 @@ class WCMp_Admin {
 		  wp_enqueue_script('wcmp_admin_js', $WCMp->plugin_url.'assets/admin/js/admin'.$suffix.'.js', array('jquery'), $WCMp->version, true);
 		  wp_enqueue_style('wcmp_admin_css',  $WCMp->plugin_url.'assets/admin/css/admin'.$suffix.'.css', array(), $WCMp->version);		  
 			if( ! wp_style_is( 'woocommerce_chosen_styles', 'queue' ) ) {
-				wp_enqueue_style( 'woocommerce_chosen_styles', $woocommerce->plugin_url() . '/assets/css/chosen'.$suffix.'.css' );
+				wp_enqueue_style( 'woocommerce_chosen_styles', $WCMp->plugin_url . '/assets/admin/css/chosen'.$suffix.'.css' );
 			}
 			// Load Chosen JS
-			wp_enqueue_script( 'ajax-chosen' );
-			wp_enqueue_script( 'chosen' );
+			// wp_enqueue_script( 'ajax-chosen' );
+			// wp_enqueue_script( 'chosen' );
+			
+			wp_enqueue_script('WCMp_chosen',$WCMp->plugin_url.'assets/admin/js/chosen.jquery'.$suffix.'.js', array('jquery'), $WCMp->version, true);
+			wp_enqueue_script('WCMp_ajax-chosen',$WCMp->plugin_url.'assets/admin/js/ajax-chosen.jquery'.$suffix.'.js', array('jquery','WCMp_chosen'), $WCMp->version, true);
 			wp_enqueue_script('commission_js', $WCMp->plugin_url.'assets/admin/js/product'.$suffix.'.js', array('jquery'), $WCMp->version, true);
 			wp_localize_script('commission_js', 'dc_vendor_object', array('security' => wp_create_nonce("search-products")));
 			if(isset($general_singleproductmultisellersettings['is_singleproductmultiseller'])) {
@@ -388,8 +394,10 @@ class WCMp_Admin {
 		endif;
 		
 		if (in_array( $screen->id, array( 'woocommerce_page_wc-reports', 'toplevel_page_wc-reports' ))) :
-			wp_enqueue_script( 'ajax-chosen' );
-			wp_enqueue_script( 'chosen' );
+			// wp_enqueue_script( 'ajax-chosen' );
+			// wp_enqueue_script( 'chosen' );
+			wp_enqueue_script('WCMp_chosen',$WCMp->plugin_url.'assets/admin/js/chosen.jquery'.$suffix.'.js', array('jquery'), $WCMp->version, true);
+			wp_enqueue_script('WCMp_ajax-chosen',$WCMp->plugin_url.'assets/admin/js/ajax-chosen.jquery'.$suffix.'.js', array('jquery','WCMp_chosen'), $WCMp->version, true);
 			wp_enqueue_script('product_js', $WCMp->plugin_url.'assets/admin/js/product'.$suffix.'.js', array('jquery'), $WCMp->version, true);
 			wp_localize_script('product_js', 'dc_vendor_object', array('security' => wp_create_nonce("search-products")));
 		endif;

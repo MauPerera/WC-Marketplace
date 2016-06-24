@@ -211,7 +211,7 @@ final class WCMp {
    */
   public function load_plugin_textdomain() {
     $locale = apply_filters( 'plugin_locale', get_locale(), $this->token );
-    load_textdomain( $this->text_domain, WP_LANG_DIR . "/dc-woocommerce-multi-vendor/wcmp-$locale.mo" );
+    load_textdomain( $this->text_domain, WP_LANG_DIR . "/plugins/wcmp-$locale.mo" );
     load_textdomain( $this->text_domain, $this->plugin_path . "/languages/wcmp-$locale.mo" );
   }
 

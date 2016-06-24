@@ -43,12 +43,14 @@ $review_settings = get_option('wcmp_general_sellerreview_settings_name');
 				$vendor_linkdin_profile = get_user_meta($vendor_id,'_vendor_linkdin_profile', true);
 				$vendor_google_plus_profile = get_user_meta($vendor_id,'_vendor_google_plus_profile', true);
 				$vendor_youtube = get_user_meta($vendor_id,'_vendor_youtube', true);
+				$vendor_instagram = get_user_meta($vendor_id,'_vendor_instagram', true);
 			?>
 				<?php if($vendor_fb_profile) { ?> <a target="_blank" href="<?php echo $vendor_fb_profile; ?>"><img src="<?php echo $WCMp->plugin_url . 'assets/images/facebook.png';?>" alt="facebook" height="20" width="20" ></a><?php } ?>
 				<?php if($vendor_twitter_profile) { ?> <a target="_blank" href="<?php echo $vendor_twitter_profile; ?>"><img src="<?php echo $WCMp->plugin_url . 'assets/images/twitter.png';?>" alt="twitter" height="20" width="20" ></a><?php } ?>
 				<?php if($vendor_linkdin_profile) { ?> <a target="_blank" href="<?php echo $vendor_linkdin_profile; ?>"><img src="<?php echo $WCMp->plugin_url . 'assets/images/linkedin.png';?>" alt="linkedin" height="20" width="20" ></a><?php } ?>
 				<?php if($vendor_google_plus_profile) { ?> <a target="_blank" href="<?php echo $vendor_google_plus_profile; ?>"><img src="<?php echo $WCMp->plugin_url . 'assets/images/google-plus.png';?>" alt="google_plus" height="20" width="20" ></a><?php } ?>
 				<?php if($vendor_youtube) { ?> <a target="_blank" href="<?php echo $vendor_youtube; ?>"><img src="<?php echo $WCMp->plugin_url . 'assets/images/youtube.png';?>" alt="youtube" height="20" width="20" ></a><?php } ?>
+				<?php if($vendor_instagram) { ?> <a target="_blank" href="<?php echo $vendor_instagram; ?>"><img src="<?php echo $WCMp->plugin_url . 'assets/images/instagram.png';?>" alt="instagram" height="20" width="20" ></a><?php } ?>
 			</div>
 		</div>
 	</div>

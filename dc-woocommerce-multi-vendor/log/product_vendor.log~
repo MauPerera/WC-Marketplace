@@ -1,0 +1,6 @@
+[{"recipient":"arka422-buyer@gmail.com","total":115,"currency":"GBP","vendor_id":7,"payout_note":"Total commissions earned from WCmp 2.4 Compatible with Woocommerce 2.6 as at 09:14:09 on 22-06-2016"}]
+-------------------------------------
+&L_EMAIL0=arka422-buyer%40gmail.com&L_Amt0=115&L_UNIQUEID0=7&L_NOTE0=Total+commissions+earned+from+WCmp+2.4+Compatible+with+Woocommerce+2.6+as+at+09%3A14%3A09+on+22-06-2016&EMAILSUBJECT=You+have+money%21&RECEIVERTYPE=EmailAddress&CURRENCYCODE=GBP
+-------------------------------------
+{"TIMESTAMP":"2016-06-22T09:14:14Z","CORRELATIONID":"45f8301030017","ACK":"Failure","VERSION":"65.1","BUILD":"22998660","L_ERRORCODE0":"10002","L_SHORTMESSAGE0":"Authentication\/Authorization Failed","L_LONGMESSAGE0":"You do not have permissions to make this API call","L_SEVERITYCODE0":"Error"}
+-------------------------------------
