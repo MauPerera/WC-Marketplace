@@ -79,6 +79,7 @@ if(in_array('wcmp-vendor_shop_seo/wcmp_vendor_shop_seo.php',$active_plugins)){
 			<li class="hasmenu"><a <?php if($selected_item == "vendor_report") { echo 'class="active"'; } ?> href="#"><span class="icon_stand ic5"> </span> <span class="writtings"><?php _e( 'Stats/Reports', $WCMp->text_domain ); ?></span></a>
 				<ul class="submenu" <?php if($selected_item != "vendor_report") { ?> style="display:none;" <?php } ?>>
 					<li><a <?php if($selected_item == "vendor_report") { echo 'class="selected_menu"'; } ?> data-menu_item="overview" href="<?php echo isset($pages['vendor_report']) ? get_permalink($pages['vendor_report']) : ''; ?>"><?php _e( '- Overview', $WCMp->text_domain ); ?></a></li>
+					<?php do_action('after_vendor_report', $vendor, $selected_item); ?>
 				</ul>
 			</li>
 			<li><a <?php if($selected_item == "orders") { echo 'class="active"'; } ?> data-menu_item="orders" href="<?php echo isset($pages['view_order']) ? get_permalink($pages['view_order']) : ''; ?>"><span class="icon_stand ic6"> </span> <span class="writtings"><?php _e( 'Orders', $WCMp->text_domain ); ?></span></a></li>
