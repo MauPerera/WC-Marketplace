@@ -4,7 +4,7 @@ Tags: wc marketplace, wc market place, woocommerce product vendors, WooCommerce 
 Donate link: https://dualcube.com/
 Requires at least: 3.8.1
 Tested up to: 4.5.2
-Stable tag: 2.4
+Stable tag: 2.4.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -175,7 +175,7 @@ Ans. This plugin is tested with PHP version 5.5.
 
 
 == Changelog ==
-= 2.4 =
+= 2.4.0 =
 * Added: Support WooCommerce 2.6.
 * Added: Vendor can manage zone wise shipping methods.
 
@@ -413,7 +413,7 @@ Ans. This plugin is tested with PHP version 5.5.
 
 
 == Upgrade Notice ==
-= 2.4 =
+= 2.4.0 =
 * Added: Support WooCommerce 2.6.
 * Added: Vendor can manage zone wise shipping methods.
 
