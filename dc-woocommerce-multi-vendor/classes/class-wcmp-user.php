@@ -69,12 +69,14 @@ class WCMp_User {
 	
 	function wcmp_vendor_login($redirect, $user) {
 		global $WCMp;
-		
-		if( $user->roles[0] == 'dc_vendor' ) {
-			$pages = get_wcmp_vendor_settings('wcmp_pages_settings_name');
-			$redirect = get_permalink($pages['vendor_dashboard']);
+		$pages = get_wcmp_vendor_settings('wcmp_pages_settings_name');
+		if(is_array($user->roles)){
+		  if(in_array('dc_vendor',$user->roles)){
+		     $redirect = get_permalink($pages['vendor_dashboard']);
+		  }
+		} else if($user->roles == 'dc_vendor'){
+		   $redirect = get_permalink($pages['vendor_dashboard']);
 		}
-		
 		return $redirect;
 	}
 	
