@@ -1111,24 +1111,27 @@ class WCMp_Ajax {
   function order_mark_as_shipped() {
   	global $WCMp, $wpdb;
   	$order_id = $_POST['order_id'];
+        $tracking_url = $_POST['tracking_url'];
+        $tracking_id = $_POST['tracking_id'];
   	$user_id = get_current_user_id();
-		$vendor = get_wcmp_vendor($user_id);
+        $vendor = get_wcmp_vendor($user_id);
   	$shippers = (array) get_post_meta( $order_id, 'dc_pv_shipped', true );  	
-		if(!in_array($user_id, $shippers)) {
-			$shippers[] = $user_id;
-			$mails = WC()->mailer()->emails['WC_Email_Notify_Shipped'];
-			if ( !empty( $mails ) ) {
-				$customer_email = get_post_meta($order_id, '_billing_email', true);
-				$mails->trigger( $order_id, $customer_email, $vendor->term_id );
-			}
-			do_action('wcmp_vendors_vendor_ship', $order_id, $vendor->term_id);
-			array_push($shippers, $user_id);
-			update_post_meta( $order_id, 'dc_pv_shipped', $shippers );
-		}
-		$wpdb->query( "UPDATE {$wpdb->prefix}wcmp_vendor_orders SET shipping_status = '1' WHERE order_id = $order_id and vendor_id = $user_id" );		
-		$order = new WC_Order( $order_id );
-		$order->add_order_note('Vendor '.$vendor->user_data->display_name .' has shipped his part of order to customer.');
-		die;
+        if(!in_array($user_id, $shippers)) {
+                $shippers[] = $user_id;
+                $mails = WC()->mailer()->emails['WC_Email_Notify_Shipped'];
+                if ( !empty( $mails ) ) {
+                        $customer_email = get_post_meta($order_id, '_billing_email', true);
+                        $mails->trigger( $order_id, $customer_email, $vendor->term_id );
+                }
+                do_action('wcmp_vendors_vendor_ship', $order_id, $vendor->term_id);
+                array_push($shippers, $user_id);
+                update_post_meta( $order_id, 'dc_pv_shipped', $shippers );
+        }
+        $wpdb->query( "UPDATE {$wpdb->prefix}wcmp_vendor_orders SET shipping_status = '1' WHERE order_id = $order_id and vendor_id = $user_id" );		
+        $order = new WC_Order( $order_id );
+        //$order->add_order_note('Vendor '.$vendor->user_data->display_name .' has shipped his part of order to customer. Tracking Url : <a href="'.$tracking_url.'">'.$tracking_url.'</a><br> Tracking Id: '.$tracking_id);
+        $order->add_order_note('Vendor '.$vendor->user_data->display_name .' has shipped his part of order to customer. <br>Tracking Url : <a target="_blank" href="'.$tracking_url.'">'.$tracking_url.'</a><br> Tracking Id: '.$tracking_id, '1');
+        die;
   }
   
   /**
@@ -1242,7 +1245,7 @@ class WCMp_Ajax {
 		$WCMp->user->update_vendor_meta($user_id);
 		$user->add_role( 'dc_vendor' );
 		$WCMp->user->add_vendor_caps( $user_id );
-  	$vendor = get_wcmp_vendor( $user_id );
+                $vendor = get_wcmp_vendor( $user_id );
 		$vendor->generate_term();
 		$user_dtl = get_userdata( absint( $user_id ) );
 		$email = WC()->mailer()->emails['WC_Email_Approved_New_Vendor_Account'];

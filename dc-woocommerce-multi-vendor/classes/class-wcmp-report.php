@@ -180,7 +180,7 @@ class WCMp_Report {
 					$commission_array = array();
 					
 					foreach( $items as $item_id => $item ) {
-						
+						if(!isset($item['item_meta']['_vendor_id'][0])) continue;
 						$comm_pro_id = $product_id = $order->get_item_meta( $item_id, '_product_id', true );
 						$line_total = $order->get_item_meta( $item_id, '_line_total', true );
 						$variation_id = $order->get_item_meta( $item_id, '_variation_id', true );

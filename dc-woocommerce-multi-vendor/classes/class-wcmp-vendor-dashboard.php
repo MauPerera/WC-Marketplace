@@ -104,7 +104,7 @@ Class WCMp_Admin_Dashboard {
 						}
 					}
 					$commission_payment_mode = get_user_meta($vendor->id, '_vendor_payment_mode', true);
-					if($commission_payment_mode == 'paypal_masspay') {
+					if($commission_payment_mode == 'paypal_masspay' || $commission_payment_mode == 'paypal_payout') {
 				
 						// Set info for all payouts
 						$currency = get_woocommerce_currency();
@@ -133,15 +133,28 @@ Class WCMp_Admin_Dashboard {
 								}
 								
 							}
-							
-							$result = $WCMp->paypal_masspay->call_masspay_api($commissions_data);
-							
-							if($result) {
-								// create a new transaction by vendor
-								if(!empty($transaction_data))	$transaction_id = $WCMp->transaction->insert_new_transaction($transaction_data, 'wcmp_completed', 'paypal_masspay', $result);
-								$email_admin = WC()->mailer()->emails['WC_Email_Admin_Widthdrawal_Request'];
-								$email_admin->trigger( $transaction_id, $vendor->term_id);
-							}
+                                                        if($commission_payment_mode == 'paypal_masspay') {
+                                                            $result = $WCMp->paypal_masspay->call_masspay_api($commissions_data);							
+                                                            if($result) {
+                                                                    // create a new transaction by vendor
+                                                                    if(!empty($transaction_data))	$transaction_id = $WCMp->transaction->insert_new_transaction($transaction_data, 'wcmp_completed', 'paypal_masspay', $result);
+                                                                    $email_admin = WC()->mailer()->emails['WC_Email_Admin_Widthdrawal_Request'];
+                                                                    $email_admin->trigger( $transaction_id, $vendor->term_id);
+                                                            }
+                                                            
+                                                        } else if($commission_payment_mode == 'paypal_payout') {
+                                                            foreach($commissions_data as $commission_data) {
+                                                                $method = 'process_'.$commission_payment_mode;
+                                                                $result = $WCMp->paypal_payout->process_paypal_single_payout($commission_data);
+
+                                                                if($result) {
+                                                                        // create a new transaction by vendor
+                                                                        if(!empty($transaction_data))	$transaction_id = $WCMp->transaction->insert_new_transaction($transaction_data, 'wcmp_completed', $commission_payment_mode, $result);
+                                                                        $email_admin = WC()->mailer()->emails['WC_Email_Admin_Widthdrawal_Request'];
+                                                                        $email_admin->trigger( $transaction_id, $vendor->term_id);
+                                                                }
+                                                            }
+                                                        }
 						}
 					} else if($commission_payment_mode == 'direct_bank') {
 						if(!empty($commission_totals)) {
@@ -688,7 +701,7 @@ Class WCMp_Admin_Dashboard {
 									$shipping_term_id = $shipping_term['term_id'];
 									update_user_meta($vendor_user_id, 'shipping_class_id', $shipping_term['term_id']);
 									add_woocommerce_term_meta($shipping_term['term_id'], 'vendor_id', $vendor_user_id); 
-									add_woocommerce_term_meta($shipping_term['term_id'], 'vendor_shipping_origin',  $_POST['vendor_shipping_data']['ship_from']);
+									add_woocommerce_term_meta($shipping_term['term_id'], 'vendor_shipping_origin',  get_option( 'woocommerce_default_country' ));
 								}
 							} else {
 								$shipping_class_id = get_user_meta($vendor_user_id, 'shipping_class_id', true);
@@ -700,7 +713,7 @@ Class WCMp_Admin_Dashboard {
 									}
 								}
 								update_woocommerce_term_meta($shipping_class_id, 'vendor_id', $vendor_user_id);
-								update_woocommerce_term_meta($shipping_class_id, 'vendor_shipping_origin',  $_POST['vendor_shipping_data']['ship_from']);
+								update_woocommerce_term_meta($shipping_class_id, 'vendor_shipping_origin',  get_option( 'woocommerce_default_country' ));
 								$shipping_term_id = $shipping_class_id;
 							}
 							$term_shipping_obj = get_term_by( 'id', $shipping_class_id, 'product_shipping_class');
@@ -754,7 +767,7 @@ Class WCMp_Admin_Dashboard {
 							}
 							$class = "class_cost_" . $shipping_term_id;
 							$woocommerce_flat_rate_settings = get_option('woocommerce_flat_rate_settings');
-							if($woocommerce_flat_rate_settings['enabled'] == 'yes') { ?>
+							if(isset($woocommerce_flat_rate_settings['enabled']) && $woocommerce_flat_rate_settings['enabled'] == 'yes') { ?>
 								<tr><td colspan="2"><strong><?php _e('"Flat Rate (Legacy)" is deprecated in woocommerce 2.6.0 and will be removed in future versions - we recommend disabling it and instead setting up a new rate within your Shipping Zones.', $WCMp->text_domain); ?></strong></td></tr>
 								<tr>
 									<td><label><?php _e('Enter Shipping Amount for "Flat Rate (Legacy)" :', $WCMp->text_domain); ?></label></td>
@@ -763,7 +776,7 @@ Class WCMp_Admin_Dashboard {
 								<tr><td></td><td><?php _e( 'Enter a cost (excl. tax) or sum, e.g. <code>10.00 * [qty]</code>. Supports the following placeholders: <code>[qty]</code> = number of items, <code>[cost]</code> = cost of items,<br><code>[fee percent="10" min_fee="20"]</code> = Percentage based fee.', $WCMp->text_domain );?> <br><br></td></tr>
 							<?php }
 							$woocommerce_international_delivery_settings = get_option('woocommerce_international_delivery_settings');
-							if($woocommerce_international_delivery_settings['enabled'] == 'yes') { ?>
+							if(isset($woocommerce_international_delivery_settings['enabled']) && $woocommerce_international_delivery_settings['enabled'] == 'yes') { ?>
 								<tr><td colspan="2"><strong><?php _e('"International Flat Rate (Legacy)" is deprecated in woocommerce 2.6.0 and will be removed in future versions - we recommend disabling it and instead setting up a new rate within your Shipping Zones.', $WCMp->text_domain); ?></strong></td></tr>
 								<tr>
 									<td><label><?php _e('Enter Shipping Amount for "International Flat Rate (Legacy)" :', $WCMp->text_domain); ?></label></td>

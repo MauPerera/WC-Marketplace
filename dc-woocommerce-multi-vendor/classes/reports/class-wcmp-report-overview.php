@@ -33,6 +33,7 @@ class WCMp_Report_Overview extends WC_Admin_Report {
 	 * Get all data needed for this report and store in the class
 	 */
 	private function query_report_data() {
+                global $WCMp;
 		$this->report_data = new stdClass;
 		
 		$start_date = $this->start_date;
@@ -83,7 +84,38 @@ class WCMp_Report_Overview extends WC_Admin_Report {
 					
 					$order = new WC_Order( $order_obj->ID );
 					$items = $order->get_items( 'line_item' );
-					
+                                        $shipping_items = $order->get_items( 'shipping' );
+                                        $tax_items = $order->get_items( 'tax' );
+                                        $shipping_cost = $tax_amount = $shipping_tax_amount = 0;
+                                        $admin_shipping_cost = $admin_tax_amount = $admin_shipping_tax_amount = 0;
+                                        $vendor_shipping_cost = $vendor_tax_amount = $vendor_shipping_tax_amount = 0;
+                                        $give_tax_to_vendor = $give_shipping_to_vendor = false;
+                                        if(!empty($shipping_items)){
+                                            foreach ($shipping_items as $item_id => $shipping){
+                                                $shipping_to_vendor = $order->get_item_meta($item_id, '_give_shipping_to_vendor',true);
+                                                $shipping_cost += (float) $order->get_item_meta($item_id, 'cost', true);
+                                                if(!empty($shipping_to_vendor) && $shipping_to_vendor == 1){
+                                                    $vendor_shipping_cost += (float) $order->get_item_meta($item_id, 'cost', true);
+                                                } else if($WCMp->vendor_caps->vendor_payment_settings('give_shipping')){
+                                                    $vendor_shipping_cost = $order->get_item_meta($item_id, 'cost',true);
+                                                } else{
+                                                    $admin_shipping_cost += (float) $order->get_item_meta($item_id, 'cost', true);
+                                                }
+                                            }
+                                        }
+                                        if(!empty($tax_items)){
+                                            foreach($tax_items as $item_id => $tax){
+                                                $tax_amount += (float) $order->get_item_meta($item_id, 'tax_amount', true);
+                                                $shipping_tax_amount += (float) $order->get_item_meta($item_id, 'shipping_tax_amount', true);
+                                                if($WCMp->vendor_caps->vendor_payment_settings('give_tax')){
+                                                    $vendor_tax_amount += (float) $order->get_item_meta($item_id, 'tax_amount', true);
+                                                    $vendor_shipping_tax_amount += (float) $order->get_item_meta($item_id, 'shipping_tax_amount', true);
+                                                } else{
+                                                   $admin_tax_amount += (float) $order->get_item_meta($item_id, 'tax_amount', true);
+                                                   $admin_shipping_tax_amount += (float) $order->get_item_meta($item_id, 'shipping_tax_amount', true); 
+                                                }
+                                            }
+                                        }
 					$commission_array = array();
 					
 					foreach( $items as $item_id => $item ) {
@@ -155,7 +187,11 @@ class WCMp_Report_Overview extends WC_Admin_Report {
 						}
 						
 					}
-					
+                                        $sales += ($shipping_cost + $tax_amount + $shipping_tax_amount);
+                                        $total_sales += ($shipping_cost + $tax_amount + $shipping_tax_amount);
+                                        
+					$earnings += ($admin_shipping_cost + $admin_tax_amount + $admin_shipping_tax_amount);
+                                        $total_earnings += ($admin_shipping_cost + $admin_tax_amount + $admin_shipping_tax_amount);
 					++$order_count;
 					++$total_order_count;
 					

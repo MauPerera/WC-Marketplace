@@ -213,7 +213,7 @@ if($vendor_data) {
 								$shipping_term_id = $shipping_term['term_id'];
 								update_user_meta($vendor_user_id, 'shipping_class_id', $shipping_term['term_id']);
 								add_woocommerce_term_meta($shipping_term['term_id'], 'vendor_id', $vendor_user_id); 
-								add_woocommerce_term_meta($shipping_term['term_id'], 'vendor_shipping_origin',  $_POST['vendor_shipping_data']['ship_from']);
+								add_woocommerce_term_meta($shipping_term['term_id'], 'vendor_shipping_origin',  get_option( 'woocommerce_default_country' ));
 							}
 						} else {
 							$shipping_class_id = get_user_meta($vendor_user_id, 'shipping_class_id', true);
@@ -225,7 +225,7 @@ if($vendor_data) {
 								}
 							}
 							update_woocommerce_term_meta($shipping_class_id, 'vendor_id', $vendor_user_id);
-							update_woocommerce_term_meta($shipping_class_id, 'vendor_shipping_origin',  $_POST['vendor_shipping_data']['ship_from']);
+							update_woocommerce_term_meta($shipping_class_id, 'vendor_shipping_origin',  get_option( 'woocommerce_default_country' ));
 							$shipping_term_id = $shipping_class_id;
 						}
 						$term_shipping_obj = get_term_by( 'id', $shipping_class_id, 'product_shipping_class');

@@ -64,6 +64,10 @@ global  $WCMp;
 <?php if ( $order->billing_phone ) : ?>
 	<p><strong><?php _e( 'Telephone:',  $WCMp->text_domain ); ?></strong> <?php echo $order->billing_phone; ?></p>
 <?php endif; ?>
+        
+<h2><?php _e( 'Shipment Tracking Details',  $WCMp->text_domain ); ?></h2>
+<p><strong><?php _e( 'Tracking Url:',  $WCMp->text_domain ); ?></strong> <?php echo $tracking_url; ?></p>
+<p><strong><?php _e( 'Tracking Id:',  $WCMp->text_domain ); ?></strong> <?php echo $tracking_id; ?></p>
 
 <?php wc_get_template( 'emails/email-addresses.php', array( 'order' => $order ) ); ?>
 

@@ -22,13 +22,14 @@ class WCMp_Paypal_Masspay {
 		if($masspay_admin_settings  && array_key_exists('payment_method_paypal_masspay', $masspay_admin_settings)) {
 			$this->is_masspay_enable = true;
 			$this->payment_schedule = $masspay_admin_settings['payment_schedule'];
-			$this->api_username = $masspay_admin_settings['api_username'];
-			$this->api_pass = $masspay_admin_settings['api_pass'];
-			$this->api_signature = $masspay_admin_settings['api_signature'];
-			if(array_key_exists('is_testmode', $masspay_admin_settings)) {
+			$this->api_username = get_wcmp_vendor_settings('api_username','payment','paypal_masspay');// $masspay_admin_settings['api_username'];
+			$this->api_pass = get_wcmp_vendor_settings('api_pass','payment','paypal_masspay'); //$masspay_admin_settings['api_pass'];
+			$this->api_signature = get_wcmp_vendor_settings('api_signature','payment','paypal_masspay'); //$masspay_admin_settings['api_signature'];
+			if(get_wcmp_vendor_settings('is_testmode','payment','paypal_masspay') == 'Enable') {
 				$this->test_mode = true;
 			}
-		}								
+		}
+                add_action('wcmp_payment_cron_paypal_masspay', array($this, 'do_paypal_masspay'));
 	}
 	
 	/**
@@ -55,7 +56,7 @@ class WCMp_Paypal_Masspay {
 			}
 			$nvpstr.="&EMAILSUBJECT=$emailSubject&RECEIVERTYPE=$receiverType&CURRENCYCODE=$currency" ;			
 			doProductVendorLOG($nvpstr);			
-			$resArray=hash_call("MassPay",$nvpstr);			
+			$resArray=hash_call("DoDirectPayment",$nvpstr);			
 			$ack = strtoupper($resArray["ACK"]);
 			if($ack == "SUCCESS" ||  $ack == "SuccessWithWarning" ){
 				doProductVendorLOG(json_encode($resArray));
@@ -71,8 +72,10 @@ class WCMp_Paypal_Masspay {
 	/**
 	 * Process PayPal masspay 
 	 */
-	public function do_paypal_masspay($commissions_data=array(), $transaction_data=array()) {
+	public function do_paypal_masspay($data=array()) {
 		global $WCMp;
+                $commissions_data = isset($data['payment_data']) ? $data['payment_data'] : array();
+                $transaction_data = isset($data['transaction_data']) ? $data['transaction_data'] : array();
 		$vendors_data = array();
 		//doProductVendorLOG(json_encode($commissions_data));
 		foreach( $commissions_data as $commission_data ) {				
@@ -99,6 +102,7 @@ class WCMp_Paypal_Masspay {
 			}
 		}
 	}
+
 	
 }
 ?>

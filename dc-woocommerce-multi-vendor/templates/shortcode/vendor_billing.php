@@ -28,10 +28,13 @@ global $WCMp;
     		$payment_admin_settings = get_option('wcmp_payment_settings_name');    		
     		if(isset($payment_admin_settings['wcmp_disbursal_mode_admin']) &&  $payment_admin_settings['wcmp_disbursal_mode_admin'] = 'Enable') {
     			$payment_mode = array();
-    			if(isset($payment_admin_settings['payment_method_paypal_masspay']) && $payment_admin_settings['payment_method_paypal_masspay'] = 'Enable') {
+                        if(isset($payment_admin_settings['payment_method_paypal_masspay']) && $payment_admin_settings['payment_method_paypal_masspay'] = 'Enable') {
     				$payment_mode['paypal_masspay'] = __('PayPal Masspay', $WCMp->text_domain);
     			}
-				if(isset($payment_admin_settings['payment_method_direct_bank']) && $payment_admin_settings['payment_method_direct_bank'] = 'Enable') {
+    			if(isset($payment_admin_settings['payment_method_paypal_payout']) && $payment_admin_settings['payment_method_paypal_payout'] = 'Enable') {
+    				$payment_mode['paypal_payout'] = __('PayPal Payout', $WCMp->text_domain);
+    			}
+                        if(isset($payment_admin_settings['payment_method_direct_bank']) && $payment_admin_settings['payment_method_direct_bank'] = 'Enable') {
     				$payment_mode['direct_bank'] = __('Direct Bank', $WCMp->text_domain);
     			}
     			$vendor_payment_mode_select = apply_filters( 'wcmp_vendor_payment_mode', $payment_mode );
@@ -84,7 +87,7 @@ global $WCMp;
 			<div class="clear"></div>
 		</div>
 		<?php do_action('other_exta_field_dcmv'); ?>
-    <div class="action_div_space"> </div>
+                <div class="action_div_space"> </div>
 		<div class="action_div">
 			<?php
 				if($is_billing_saved == 1) { ?>

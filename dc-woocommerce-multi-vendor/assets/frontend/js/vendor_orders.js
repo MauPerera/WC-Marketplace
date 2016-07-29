@@ -67,22 +67,39 @@ jQuery(document).ready(function($) {
 	});
 	
 	
-	$('.mark_ship').on( "click", function(e) {
+        /*
+         *  Shipment Tracking.
+         */
+        $('.fancybox').fancybox();
+    
+	$('.submit_tracking').on( "click", function(e) {
 		e.preventDefault();
-		$(this).find('img').attr('title', 'Shipped');
-		thisimg = $(this).find('img');
+                var order_id = $(this).attr('data-id');
+                var tracking_url = $('#shipping_tracking_url_'+order_id).val();
+                if(tracking_url == '') return false;
+                var tracking_id = $('#shipping_tracking_id_'+order_id).val();
+                if(tracking_id == '') return false;
+                var selector = $('.mark_ship_'+order_id);
+		selector.find('img').attr('title', 'Shipped');
+		thisimg = selector.find('img');
 		thisimg.attr('src', wcmp_mark_shipped_text.image);
-		$( this ).css( "pointer-events",'none' );
-		$( this ).css( "cursor",'default' );		
+		selector.css( "pointer-events",'none' );
+		selector.css( "cursor",'default' );		
 		var data = {
 			action : 'order_mark_as_shipped',
-			order_id : $(this).attr('data-id'),
-			user_id : $(this).attr('data-user')
+			order_id : order_id,
+			user_id : selector.attr('data-user'),
+                        tracking_url : tracking_url,
+                        tracking_id : tracking_id
 		}	
 		$.post(woocommerce_params.ajax_url, data, function(response) {
 				
-				console.log(response);
-				alert(wcmp_mark_shipped_text.text);
+				//console.log(response);
+                                $('.shipping_msg').html(wcmp_mark_shipped_text.text);
+				//alert(wcmp_mark_shipped_text.text);
+                                setTimeout(function(){
+                                    $('.fancybox-close').click();
+                                }, 3000);
 		});
 	});
 	
@@ -152,3 +169,11 @@ jQuery(document).ready(function($) {
 	
 	
 });
+
+function geturlvalue(who, order_id) {
+    jQuery('#shipping_tracking_url_'+order_id).val(jQuery(who).val());
+}
+
+function getidvalue(who, order_id) {
+    jQuery('#shipping_tracking_id_'+order_id).val(jQuery(who).val());
+}

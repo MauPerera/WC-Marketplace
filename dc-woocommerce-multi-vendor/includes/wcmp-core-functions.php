@@ -4,11 +4,15 @@ if(!function_exists('get_wcmp_vendor_settings')) {
 		* get plugin settings
 		* @return array
 	*/
-	function get_wcmp_vendor_settings($name = '', $tab = '') {
+	function get_wcmp_vendor_settings($name = '', $tab = '',$subtab='') {
 		if(empty($tab) && empty($name)) return '';
 		if(empty($tab)) return get_option($name);
 		if(empty($name)) return get_option("wcmp_{$tab}_settings_name");
-		$settings = get_option("wcmp_{$tab}_settings_name");
+                if(!empty($subtab)){
+                    $settings = get_option("wcmp_{$tab}_{$subtab}_settings_name");
+                } else{
+                    $settings = get_option("wcmp_{$tab}_settings_name");
+                }
 		if(!isset($settings[$name])) return '';
 		return $settings[$name];
 	}
@@ -739,6 +743,44 @@ if( ! function_exists( 'wcmp_remove_comments_section_from_vendor_dashboard') ) {
 		
 	}
 	
+}
+
+if(!function_exists('do_wcmp_data_migrate')){
+    function do_wcmp_data_migrate($previous_plugin_version = ''){
+        if(!empty($previous_plugin_version) && $previous_plugin_version <= '2.4.1'){
+            
+            $wcmp_payment_settings = get_option('wcmp_payment_settings_name',true);
+            $wcmp_payment_paypal_masspay_settings_name = array();
+            $wcmp_payment_paypal_payout_settings_name = array();
+            if(!empty($wcmp_payment_settings) && is_array($wcmp_payment_settings)){
+                foreach ($wcmp_payment_settings as $wcmp_payment_settings_key => $wcmp_payment_settings_value){
+                    switch ($wcmp_payment_settings_key){
+                        case 'api_username':
+                            $wcmp_payment_paypal_masspay_settings_name['api_username'] = $wcmp_payment_settings_value;
+                            break;
+                        case 'api_pass':
+                            $wcmp_payment_paypal_masspay_settings_name['api_pass'] = $wcmp_payment_settings_value;
+                            break;
+                        case 'api_signature':
+                            $wcmp_payment_paypal_masspay_settings_name['api_signature'] = $wcmp_payment_settings_value;
+                            break;
+                        case 'is_testmode':
+                            $wcmp_payment_paypal_masspay_settings_name['api_username'] = $wcmp_payment_settings_value;
+                            $wcmp_payment_paypal_payout_settings_name['is_testmode'] = $wcmp_payment_settings_value;
+                            break;
+                        case 'client_id':
+                            $wcmp_payment_paypal_payout_settings_name['client_id'] = $wcmp_payment_settings_value;
+                            break;
+                        case 'client_secret':
+                            $wcmp_payment_paypal_payout_settings_name['client_secret'] = $wcmp_payment_settings_value;
+                            break;
+                    }
+                }
+                update_option('wcmp_payment_paypal_masspay_settings_name', $wcmp_payment_paypal_masspay_settings_name);
+                update_option('wcmp_payment_paypal_payout_settings_name', $wcmp_payment_paypal_payout_settings_name);
+            }
+        }
+    }
 }
 
 ?>

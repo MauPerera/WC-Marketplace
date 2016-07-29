@@ -5,9 +5,11 @@ class WCMp_Settings_Payment {
    */
   private $options;  
   private $tab;
-  private $paypal_api_username;
-  private $paypal_api_password;
-  private $paypal_api_signature;
+//  private $paypal_api_username;
+//  private $paypal_api_password;
+//  private $paypal_api_signature;
+//  private $paypal_client_id;
+//  private $paypal_client_secret;
   private $automatic_payment_method;
   private $withdrawal_payment_method;
 
@@ -17,16 +19,22 @@ class WCMp_Settings_Payment {
   public function __construct($tab) {
     $this->tab = $tab;
     $this->options = get_option( "wcmp_{$this->tab}_settings_name" );
-    $paypal_details = get_option('woocommerce_paypal_settings');
-    if(isset($paypal_details['api_username']) && !empty($paypal_details['api_username'])){
-    	$this->paypal_api_username = $paypal_details['api_username'];
-    }
-    if(isset($paypal_details['api_password']) && !empty($paypal_details['api_password'])){
-    	$this->paypal_api_password = $paypal_details['api_password'];
-    }
-    if(isset($paypal_details['api_signature']) && !empty($paypal_details['api_signature'])){
-    	$this->paypal_api_signature = $paypal_details['api_signature'];
-    }
+//    $paypal_details = get_option('woocommerce_paypal_settings');
+//    if(isset($paypal_details['api_username']) && !empty($paypal_details['api_username'])){
+//    	$this->paypal_api_username = $paypal_details['api_username'];
+//    }
+//    if(isset($paypal_details['api_password']) && !empty($paypal_details['api_password'])){
+//    	$this->paypal_api_password = $paypal_details['api_password'];
+//    }
+//    if(isset($paypal_details['api_signature']) && !empty($paypal_details['api_signature'])){
+//    	$this->paypal_api_signature = $paypal_details['api_signature'];
+//    }
+//    if(isset($paypal_details['client_id']) && !empty($paypal_details['client_id'])){
+//    	$this->paypal_client_id = $paypal_details['client_id'];
+//    }
+//    if(isset($paypal_details['client_secret']) && !empty($paypal_details['client_secret'])){
+//    	$this->paypal_client_secret = $paypal_details['client_secret'];
+//    }
     $this->settings_page_init();
   }
   
@@ -36,12 +44,14 @@ class WCMp_Settings_Payment {
   public function settings_page_init() {
     global $WCMp;
     
-    $this->automatic_payment_method = apply_filters( 'automatic_payment_method', array('paypal_masspay' => __('Paypal masspay', $WCMp->text_domain), 'direct_bank' => __('Direct Bank', $WCMp->text_domain)));
+    $this->automatic_payment_method = apply_filters( 'automatic_payment_method', array('paypal_masspay' => __('Paypal Masspay', $WCMp->text_domain), 'paypal_payout' => __('Paypal Payout', $WCMp->text_domain), 'direct_bank' => __('Direct Bank', $WCMp->text_domain)));
     $automatic_method = array();
     $i=0;
     foreach($this->automatic_payment_method as $key=>$val) {
       if($i == 0) {
         $automatic_method['payment_method_'.$key] = array('title' => __('Payment Method', $WCMp->text_domain), 'type' => 'checkbox', 'id' => 'payment_method_'.$key, 'class' => 'automatic_payment_method', 'label_for' => 'payment_method_'.$key, 'desc' => __('If checked, vendors commission will be disbursed automatically by '.$val.'.', $WCMp->text_domain), 'name' => 'payment_method_'.$key, 'value' => 'Enable', 'data-display-label' => $val);
+      } else if($key == 'direct_bank') {
+          $automatic_method['payment_method_'.$key] = array('title' => __('', $WCMp->text_domain), 'type' => 'checkbox', 'id' => 'payment_method_'.$key, 'class' => 'automatic_payment_method', 'label_for' => 'payment_method_'.$key, 'desc' => __('If checked, vendors commission will be disbursed by '.$val.'.', $WCMp->text_domain), 'name' => 'payment_method_'.$key, 'value' => 'Enable', 'data-display-label' => $val);
       } else {
         $automatic_method['payment_method_'.$key] = array('title' => __('', $WCMp->text_domain), 'type' => 'checkbox', 'id' => 'payment_method_'.$key, 'class' => 'automatic_payment_method', 'label_for' => 'payment_method_'.$key, 'desc' => __('If checked, vendors commission will be disbursed automatically by '.$val.'.', $WCMp->text_domain), 'name' => 'payment_method_'.$key, 'value' => 'Enable', 'data-display-label' => $val);
       }
@@ -80,13 +90,15 @@ class WCMp_Settings_Payment {
                                                                                                           )
                                                                                                           ),
                                                                                          ),
-                                                      "wcmp_paypal_settings" => array("title" =>  __('WCMp Paypal Settings ', $WCMp->text_domain), // Section one
-                                                                                         "fields" => array("api_username" => array('title' => __('API Username', $WCMp->text_domain), 'type' => 'text', 'id' => 'api_username', 'label_for' => 'api_username', 'dfvalue'=>$this->paypal_api_username, 'name' => 'api_username', 'desc' => __('Give your PayPal API Username.', $WCMp->text_domain)),
-                                                                                                          "api_pass" => array('title' => __('API Password', $WCMp->text_domain), 'type' => 'text', 'id' => 'api_pass', 'label_for' => 'api_pass', 'name' => 'api_pass', 'dfvalue'=>$this->paypal_api_password, 'desc' => __('Give your PayPal API Password.', $WCMp->text_domain)),
-                                                                                                          "api_signature" => array('title' => __('API Signature', $WCMp->text_domain), 'type' => 'text', 'id' => 'api_signature', 'label_for' => 'api_signature', 'name' => 'api_signature', 'dfvalue'=>$this->paypal_api_signature,  'desc' => __('Give your PayPal API Signature.', $WCMp->text_domain)),
-                                                                                                          "is_testmode" => array('title' => __('Enable Test Mode', $WCMp->text_domain), 'type' => 'checkbox', 'id' => 'is_testmode', 'label_for' => 'is_testmode', 'name' => 'is_testmode', 'value' => 'Enable'), // Checkbox
-                                                                                                          ),              
-                                                                                         )
+//                                                      "wcmp_paypal_settings" => array("title" =>  __('WCMp Paypal Settings ', $WCMp->text_domain), // Section one
+//                                                                                         "fields" => array("api_username" => array('title' => __('API Username', $WCMp->text_domain), 'type' => 'text', 'id' => 'api_username', 'label_for' => 'api_username', 'dfvalue'=>$this->paypal_api_username, 'name' => 'api_username', 'desc' => __('Give your PayPal API Username.', $WCMp->text_domain)),
+//                                                                                                          "api_pass" => array('title' => __('API Password', $WCMp->text_domain), 'type' => 'text', 'id' => 'api_pass', 'label_for' => 'api_pass', 'name' => 'api_pass', 'dfvalue'=>$this->paypal_api_password, 'desc' => __('Give your PayPal API Password.', $WCMp->text_domain)),
+//                                                                                                          "api_signature" => array('title' => __('API Signature', $WCMp->text_domain), 'type' => 'text', 'id' => 'api_signature', 'label_for' => 'api_signature', 'name' => 'api_signature', 'dfvalue'=>$this->paypal_api_signature,  'desc' => __('Give your PayPal API Signature.', $WCMp->text_domain)),
+//                                                                                                          "client_id" => array('title' => __('Client Id', $WCMp->text_domain), 'type' => 'text', 'id' => 'client_id', 'label_for' => 'client_id', 'name' => 'client_id', 'dfvalue'=>$this->paypal_client_id, 'desc' => __('Give your PayPal APP Client Id for <a href="https://developer.paypal.com/developer/applications/">Paypal Payout</a>.', $WCMp->text_domain)),
+//                                                                                                          "client_secret" => array('title' => __('Client Secret', $WCMp->text_domain), 'type' => 'text', 'id' => 'client_secret', 'label_for' => 'client_secret', 'name' => 'client_secret', 'dfvalue'=>$this->paypal_client_secret,  'desc' => __('Give your PayPal APP Client Secret for <a href="https://developer.paypal.com/developer/applications/">Paypal Payout</a>.', $WCMp->text_domain)),
+//                                                                                                          "is_testmode" => array('title' => __('Enable Test Mode', $WCMp->text_domain), 'type' => 'checkbox', 'id' => 'is_testmode', 'label_for' => 'is_testmode', 'name' => 'is_testmode', 'value' => 'Enable'), // Checkbox
+//                                                                                                          ),              
+//                                                                                         )
                                                       ),
                                   );
     
@@ -180,52 +192,76 @@ class WCMp_Settings_Payment {
 			}
     } 
 
-    if( isset( $input['is_testmode'] ) )
-      $new_input['is_testmode'] = sanitize_text_field( $input['is_testmode'] );
-		
-    if( isset( $input['api_username'] ) ) {
-      $new_input['api_username'] = trim($input['api_username']);
-    } else {
-      add_settings_error(
-        "dc_{$this->tab}_settings_name",
-        esc_attr( "dc_{$this->tab}_settings_admin_error" ),
-        __('Set API Username', $WCMp->text_domain),
-        'error'
-      );
-      $hasError = true;
-    }
-    
-    if( isset( $input['api_pass'] ) ) {
-      $new_input['api_pass'] = trim($input['api_pass']);
-    } else {
-      add_settings_error(
-        "dc_{$this->tab}_settings_name",
-        esc_attr( "dc_{$this->tab}_settings_admin_error" ),
-        __('Set API Password', $WCMp->text_domain),
-        'error'
-      );
-      $hasError = true;
-    }
-      
-    if( isset( $input['api_signature'] ) ) {
-      $new_input['api_signature'] = trim($input['api_signature']);
-    } else {
-      add_settings_error(
-        "dc_{$this->tab}_settings_name",
-        esc_attr( "dc_{$this->tab}_settings_admin_error" ),
-        __('Set API Signature', $WCMp->text_domain),
-        'error'
-      );
-      $hasError = true;
-    }
+//    if( isset( $input['is_testmode'] ) )
+//      $new_input['is_testmode'] = sanitize_text_field( $input['is_testmode'] );
+//		
+//    if( isset( $input['api_username'] ) ) {
+//      $new_input['api_username'] = trim($input['api_username']);
+//    } else {
+//      add_settings_error(
+//        "dc_{$this->tab}_settings_name",
+//        esc_attr( "dc_{$this->tab}_settings_admin_error" ),
+//        __('Set API Username', $WCMp->text_domain),
+//        'error'
+//      );
+//      $hasError = true;
+//    }
+//    
+//    if( isset( $input['api_pass'] ) ) {
+//      $new_input['api_pass'] = trim($input['api_pass']);
+//    } else {
+//      add_settings_error(
+//        "dc_{$this->tab}_settings_name",
+//        esc_attr( "dc_{$this->tab}_settings_admin_error" ),
+//        __('Set API Password', $WCMp->text_domain),
+//        'error'
+//      );
+//      $hasError = true;
+//    }
+//      
+//    if( isset( $input['api_signature'] ) ) {
+//      $new_input['api_signature'] = trim($input['api_signature']);
+//    } else {
+//      add_settings_error(
+//        "dc_{$this->tab}_settings_name",
+//        esc_attr( "dc_{$this->tab}_settings_admin_error" ),
+//        __('Set API Signature', $WCMp->text_domain),
+//        'error'
+//      );
+//      $hasError = true;
+//    }
+//    
+//    if( isset( $input['client_id'] ) ) {
+//      $new_input['client_id'] = trim($input['client_id']);
+//    } else {
+//      add_settings_error(
+//        "dc_{$this->tab}_settings_name",
+//        esc_attr( "dc_{$this->tab}_settings_admin_error" ),
+//        __('Set APP Client Id', $WCMp->text_domain),
+//        'error'
+//      );
+//      $hasError = true;
+//    }
+//    
+//    if( isset( $input['client_secret'] ) ) {
+//      $new_input['client_secret'] = trim($input['client_secret']);
+//    } else {
+//      add_settings_error(
+//        "dc_{$this->tab}_settings_name",
+//        esc_attr( "dc_{$this->tab}_settings_admin_error" ),
+//        __('Set APP Client Secret', $WCMp->text_domain),
+//        'error'
+//      );
+//      $hasError = true;
+//    }
     
     if(!$hasError) {
-			add_settings_error(
-			 "wcmp_{$this->tab}_settings_name",
-			 esc_attr( "wcmp_{$this->tab}_settings_admin_updated" ),
-			 __('Payment Settings Updated', $WCMp->text_domain),
-			 'updated'
-			);
+        add_settings_error(
+         "wcmp_{$this->tab}_settings_name",
+         esc_attr( "wcmp_{$this->tab}_settings_admin_updated" ),
+         __('Payment Settings Updated', $WCMp->text_domain),
+         'updated'
+        );
     }
     return apply_filters("settings_{$this->tab}_tab_new_input", $new_input, $input);
   }

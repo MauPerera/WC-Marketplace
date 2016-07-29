@@ -128,6 +128,7 @@ if(is_user_wcmp_vendor($user->ID)) {
 			$shipping_total = 0;
 			$tax_total = 0;
 			$net_balance_today = 0;
+                        $vendor_comission = 0;
 			foreach ($sale_results_whole_today as $sale_row) {
 				$order_item_id = $sale_row->order_item_id;
 				$item_total += get_metadata( 'order_item', $sale_row->order_item_id, '_line_total', true );
@@ -280,6 +281,7 @@ if(is_user_wcmp_vendor($user->ID)) {
 			$shipping_total_week = 0;
 			$tax_total_week = 0;
 			$net_balance_week = 0;
+                        $vendor_comission_week = 0;
 			foreach ($sale_results_whole_week as $sale_row_week) {
 				$order_item_id_week = $sale_row_week->order_item_id;
 				$item_total_week += get_metadata( 'order_item', $sale_row_week->order_item_id, '_line_total', true );

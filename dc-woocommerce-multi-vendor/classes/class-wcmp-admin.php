@@ -28,10 +28,17 @@ class WCMp_Admin {
 		}
 		$this->load_class('settings');
 		$this->settings = new WCMp_Settings();
+                add_filter( 'woocommerce_hidden_order_itemmeta', array(&$this,'add_hidden_order_items') );
+
 	}
 	
 	
-	
+	function add_hidden_order_items( $order_items ) {
+            $order_items[] = '_give_tax_to_vendor';
+            $order_items[] = '_give_shipping_to_vendor';
+            // and so on...
+            return $order_items;
+        }
 	public function change_commission_status($order_id, $old_status, $new_status) {
 		global $WCMp, $wpdb;
 		$myorder = get_post($order_id);

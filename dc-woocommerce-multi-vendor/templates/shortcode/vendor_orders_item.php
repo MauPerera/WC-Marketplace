@@ -69,7 +69,22 @@ if(!empty($orders)) {
 							<?php if ($key == 'view') { ?> 
 								<a title="<?php echo $action['title']; ?>" target="_blank" href="<?php echo $action['url']; ?>"><i><img src="<?php echo $action['img']; ?>" alt=""></i></a>&nbsp; 
 							<?php } elseif ($key == 'mark_ship') { ?>
-								<a href="#" data-id="<?php echo $order; ?>" data-user="<?php echo $user_id; ?>" class="mark_ship" <?php if($mark_ship) { ?> title="Shipped" style="pointer-events: none; cursor: default;" <?php } else { ?> title="mark as shipped" <?php } ?> ><i><img src="<?php if(!$mark_ship) echo $WCMp->plugin_url.'assets/images/roket_deep.png'; else echo $WCMp->plugin_url.'assets/images/roket-green.png'; ?>"  alt=""></i></a>
+								<a href="#inline<?php echo $order; ?>" data-id="<?php echo $order; ?>" data-user="<?php echo $user_id; ?>" class="fancybox mark_ship_<?php echo $order; ?>" <?php if($mark_ship) { ?> title="Shipped" style="pointer-events: none; cursor: default;" <?php } else { ?> title="mark as shipped" <?php } ?> ><i><img src="<?php if(!$mark_ship) echo $WCMp->plugin_url.'assets/images/roket_deep.png'; else echo $WCMp->plugin_url.'assets/images/roket-green.png'; ?>"  alt=""></i></a>                                                                                                                                
+                                                                <input type="hidden" name="shipping_tracking_url" id="shipping_tracking_url_<?php echo $order; ?>" >
+                                                                <input type="hidden" name="shipping_tracking_id" id="shipping_tracking_id_<?php echo $order; ?>" >
+                                                                <div id="inline<?php echo $order; ?>" style="width:400px;display: none;">
+                                                                    <div class="shipping_msg" style="color: green;"></div>
+                                                                    <div class="wcmp_headding2"><?php _e( 'Shipment Tracking Details', $WCMp->text_domain );?></div>
+                                                                    <p><?php _e( 'Enter Tracking Url', $WCMp->text_domain );?> *</p>
+                                                                    <input  class="long" onkeyup="geturlvalue(this, '<?php echo $order; ?>')" required type="text" name="shipping_tracking_url" placeholder="<?php _e( 'http://example.com/tracking/', $WCMp->text_domain );?>">
+                                                                    <p><?php _e( 'Enter Tracking ID', $WCMp->text_domain );?> *</p>
+                                                                    <input  class="long" onkeyup="getidvalue(this, '<?php echo $order; ?>')" required type="text" name="shipping_tracking_id" placeholder="<?php _e( 'XXXXXXXXXXXXX', $WCMp->text_domain );?>">
+                                                                    <div class="action_div_space"> </div>
+                                                                    <div class="action_div">
+                                                                        <button class="wcmp_orange_btn submit_tracking" name="submit_tracking" data-id="<?php echo $order; ?>" id="submit_tracking"><?php _e( 'Submit', $WCMp->text_domain );?></button>
+                                                                        <div class="clear"></div>
+                                                                    </div>
+                                                                </div>
 							<?php } else { ?>
 								<a title="<?php echo $action['title']; ?>" href="<?php echo $action['url']; ?>" data-id="<?php echo $order; ?>" class="<?php echo sanitize_html_class( $key ); ?>" href="#"><i><img src="<?php echo $action['img']; ?>" alt=""></i></a>&nbsp;
 							<?php 
@@ -83,4 +98,3 @@ if(!empty($orders)) {
 	}
 }	
 ?>
-

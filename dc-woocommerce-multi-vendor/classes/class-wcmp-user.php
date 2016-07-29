@@ -860,7 +860,7 @@ class WCMp_User {
 	 * @return string
 	*/		
 	function column_display_product( $empty, $column_name, $user_id ) {
-		if ( 'product' != $column_name && ! is_user_wcmp_vendor( $user_id ) )                                                                     
+		if ( 'product' != $column_name )                                                                     
 			return $empty;
 		$vendor = get_wcmp_vendor( $user_id );
 		if ( $vendor )  {

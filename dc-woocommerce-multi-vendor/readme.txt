@@ -1,10 +1,10 @@
 ﻿=== WC Marketplace ===
-Contributors: Dualcube, prabhakarkumarshaw, arimghosh, sandy-wcmp, arka422
+Contributors: Dualcube, prabhakarkumarshaw, arimghosh, sandy-wcmp, arka422, dualcube_subrata
 Tags: wc marketplace, wc market place, woocommerce product vendors, WooCommerce vendors, ebay, etsy, amazon, woocommerce marketplace, vendor, vendors, vendor system, woocommerce market place, WooCommerce multivendor, WooCommerce multi vendor, woocommerce vendors, woo vendors, WooCommerce vendors, multistore, multi store, multivendor, multi vendor, multi vendors, dokan, product vendor, product vendors, vendor system, wc vendors, commission rate, multi seller, One Product Multi Seller
 Donate link: https://dualcube.com/
 Requires at least: 3.8.1
-Tested up to: 4.5.2
-Stable tag: 2.4.0
+Tested up to: 4.5.3
+Stable tag: 2.4.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -31,7 +31,6 @@ Wondering why 2000+ marketplaces love and use WCMp? Here you go:
 > <strong>Lightening quick support</strong>
 >
 > 75+ reviews here in WordPress.org, and everyone loves WCMp. Here is why: [http://wc-marketplace.com/support-forum/]( http://wc-marketplace.com/support-forum )
-> <img src="http://wc-marketplace.com/wp-content/uploads/2016/06/reviews.png" alt="75+ reviews here in WordPress.org">
 >
 >
 >
@@ -48,6 +47,7 @@ Wondering why 2000+ marketplaces love and use WCMp? Here you go:
 >
 > <strong>Compatible plugins addons</strong>
 >
+> - [Frontend Manager](http://wc-marketplace.com/product/wcmp-frontend-product-manager)
 > - [Addons](http://wc-marketplace.com/addons)
 > - [Compatible plugins and themes](http://wc-marketplace.com/themes)
 >
@@ -175,6 +175,16 @@ Ans. This plugin is tested with PHP version 5.5.
 
 
 == Changelog ==
+= 2.4.2 =
+* Added: Shipment tracking.
+
+
+= 2.4.1 =
+* Added: Add Paypal Payout Payment Gateway.
+* Added: Chinese translations.
+* Modified: Russian translations updated.
+
+
 = 2.4.0 =
 * Added: Support WooCommerce 2.6.
 * Added: Vendor can manage zone wise shipping methods.
@@ -413,6 +423,16 @@ Ans. This plugin is tested with PHP version 5.5.
 
 
 == Upgrade Notice ==
+= 2.4.2 =
+* Added: Shipment tracking.
+
+
+= 2.4.1 =
+* Added: Add Paypal Payout Payment Gateway.
+* Added: Chinese translations.
+* Modified: Russian translations updated.
+
+
 = 2.4.0 =
 * Added: Support WooCommerce 2.6.
 * Added: Vendor can manage zone wise shipping methods.

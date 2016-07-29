@@ -172,11 +172,11 @@ class WCMp_Vendor_Order_Page extends WP_List_Table {
 					array_push($shippers, $user_id);
 					if(!empty($shippers)) array_unique($shippers);
 					update_post_meta( $order_id, 'dc_pv_shipped', $shippers );
-					if( $variation_id > 0 ) {
-						$com_pro_id = $variation_id;
-					} else {
-						$com_pro_id = $product_id;
-					}
+//					if( $variation_id > 0 ) {
+//						$com_pro_id = $variation_id;
+//					} else {
+//						$com_pro_id = $product_id;
+//					}
 					
 					$update_query = $wpdb->query("UPDATE `{$wpdb->prefix}wcmp_vendor_orders` 	SET shipping_status = 1	WHERE order_id =".$order_id." AND vendor_id = ".$vendor->id);
 				}
@@ -208,29 +208,40 @@ class WCMp_Vendor_Order_Page extends WP_List_Table {
 		
 		if (!empty( $_orders ) ) { 
 			foreach ( $_orders as $order_id ) {
-
 				$order = new WC_Order( $order_id );
+				$new_shipping = false;
+				$valid_items = $vendor->get_vendor_items_from_order( $order->id, $vendor->term_id );
+				$valid_shipping = $vendor->get_vendor_shipping_from_order( $order->id, $vendor->term_id );
+				foreach ($valid_shipping as $key => $value) {
+					// Fetch the new vendor shipping calculation :: version > 2.4
+					if(isset($value[ 'vendor_cost_7' ])) {
+						$product_shipping = __('Shipping Charges',$WCMp->text_domain).' : ' . woocommerce_price( $value[ 'vendor_cost_7' ] ). '<br />';
+						$new_shipping = true;
+					}
+				}
 
-				$valid_items = $vendor->get_vendor_items_from_order( $order->id, $vendor->term_id ); 
-
-				$products = ''; 
-
+				$products = '';
 				foreach ($valid_items as $key => $item) {
-					$item_meta = new WC_Order_Item_Meta( $item[ 'item_meta' ] );
-					// $item_meta = $item_meta->display( false, true );
+					$item_meta = new WC_Order_Item_Meta( $item );
+					//$item_meta = $item_meta->display( false, true );
 					$item_meta = $item_meta->get_formatted( );
 					$products .= '<strong>'. $item['qty'] . ' x ' . $item['name'] . '</strong><br />';
-					foreach ($item_meta as $key => $meta) {
-						// Remove the sold by meta key for display
-						if (strtolower($key) != 'sold by' ){
-							if($meta[ 'label' ] == 'flat_shipping_per_item') {
-								$products .= __('Flat Shipping Charges',$WCMp->text_domain).' : ' . $meta[ 'value' ]. '<br />';
-							}
-							else {
-								$products .= $meta[ 'label' ] .' : ' . $meta[ 'value' ]. '<br />';
+					if( !$new_shipping ) { // Old vendor shipping calculation
+						foreach ($item_meta as $meta_id => $meta) {
+							// Remove the sold by meta key for display
+							if (strtolower($meta['key']) != 'sold by' ){
+								if($meta[ 'label' ] == 'flat_shipping_per_item') {
+									$products .= __('Flat Shipping Charges',$WCMp->text_domain).' : ' . woocommerce_price( $meta[ 'value' ] ). '<br />';
+								}
+								else {
+									//$products .= $meta[ 'label' ] .' : ' . woocommerce_price( $meta[ 'value' ] ). '<br />';
+								}
 							}
 						}
 					}
+				}
+				if( $new_shipping ) {
+					$products .= $product_shipping;
 				}
 
 				$shippers = (array) get_post_meta( $order->id, 'dc_pv_shipped', true );
@@ -260,6 +271,7 @@ class WCMp_Vendor_Order_Page extends WP_List_Table {
 					if(!empty($commissions)) { 
 						foreach($commissions as $commission) {
 							$commission_total = $commission_total + (float)get_post_meta($commission->ID, '_commission_amount', true) + (float)get_post_meta($commission->ID, '_shipping', true) + (float)get_post_meta($commission->ID, '_tax', true);
+							//$commission_total = $commission_total + (float)get_post_meta($commission->ID, '_commission_amount', true);
 						}
 					}
 				}

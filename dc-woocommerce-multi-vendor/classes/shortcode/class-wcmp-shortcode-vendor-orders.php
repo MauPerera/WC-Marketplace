@@ -27,9 +27,17 @@ class WCMp_Vendor_Orders_Shortcode {
 		
 		$frontend_script_path = $WCMp->plugin_url . 'assets/frontend/js/';
 		$frontend_script_path = str_replace( array( 'http:', 'https:' ), '', $frontend_script_path );
+                
+                $frontend_fancybox_path = $WCMp->plugin_url . 'assets/frontend/fancybox/';
+		$frontend_fancybox_path = str_replace( array( 'http:', 'https:' ), '', $frontend_fancybox_path );
+                
 		$pluginURL = str_replace( array( 'http:', 'https:' ), '', $WCMp->plugin_url );
 		$suffix 				= defined( 'WCMP_SCRIPT_DEBUG' ) && WCMP_SCRIPT_DEBUG ? '' : '.min';
 		wp_enqueue_script('vendor_orders_js', $frontend_script_path. 'vendor_orders'.$suffix.'.js', array('jquery'), $WCMp->version, true);
+                if ( get_option('woocommerce_calc_shipping') != 'no' ) {
+                    wp_enqueue_script('jquery_fancybox_js', $frontend_fancybox_path. 'jquery.fancybox.js', array('jquery'), $WCMp->version, true);
+                    wp_enqueue_style('jquery_fancybox_css', $frontend_fancybox_path . 'jquery.fancybox.css', array(), $WCMp->version);
+                }
 		wp_localize_script('vendor_orders_js', 'wcmp_mark_shipped_text', array('text' => __('Order is marked as shipped.', $WCMp->text_domain),'image'=> $WCMp->plugin_url.'assets/images/roket-green.png' ));
 		
 		$user = wp_get_current_user();

@@ -117,8 +117,8 @@ function hash_call($methodName, $nvpStr)
 	//in case of permission APIs send headers as HTTPheders
 	if( defined('AUTH_TOKEN') && defined('AUTH_SIGNATURE') && defined('AUTH_TIMESTAMP') ) {
 		$headers_array[] = "X-PP-AUTHORIZATION: ".$nvpheader;
-    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers_array);
-    curl_setopt($ch, CURLOPT_HEADER, false);
+    	curl_setopt($ch, CURLOPT_HTTPHEADER, $headers_array);
+    	curl_setopt($ch, CURLOPT_HEADER, false);
 	}
 	else {
 		$nvpStr=$nvpheader.$nvpStr;

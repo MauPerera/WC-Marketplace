@@ -10,7 +10,7 @@
 class WCMp_MassPay_Cron {
 
 	public function __construct() {
-		add_action('masspay_cron_start', array(&$this, 'do_mass_payment') );             
+		add_action('masspay_cron_start', array(&$this, 'do_mass_payment') );    
 	}
         
 	/**
@@ -36,12 +36,12 @@ class WCMp_MassPay_Cron {
 				$vendor_shipping = get_post_meta($commission->ID, '_shipping', true);
 				$vendor_tax = get_post_meta($commission->ID, '_tax', true);				
 				$order = new WC_Order ( $commission_order_id );
-				$vendor = get_wcmp_vendor_by_term($commission_data->vendor->term_id);				
+				$vendor = get_wcmp_vendor_by_term($commission_data->vendor->term_id);
 				$payment_type = get_user_meta($vendor->id, '_vendor_payment_mode', true);
-					if(empty($payment_type)) {
-						continue;
-					}
-				if(!preg_match('/masspay/', $payment_type)) continue;
+                                if(empty($payment_type)) {
+                                        continue;
+                                }
+				//if(!preg_match('/masspay/', $payment_type)) continue;
 				$due_vendor = $vendor->wcmp_get_vendor_part_from_order($order, $vendor->term_id);
 					if(!empty($due_vendor)) {
 						if(!$vendor_shipping) $vendor_shipping = $due_vendor['shipping'];
@@ -85,25 +85,26 @@ class WCMp_MassPay_Cron {
 					'payout_note' =>$payout_note
 				);
 				$transactions_data[$vendor_payment_mode][$vendor_id] = $transaction_data[$vendor_id];
-			}			
+			}		
+                        //print_r($transactions_data);die;
 			if(!empty($commissions_data)) {
 				foreach($commissions_data as $payment_mode=>$payment_data) {
 					// Call masspay api as vendor payment mode.
-					$class = $payment_mode;
-					$method = 'do_'.$payment_mode;
-					if(!class_exists('WCMp_'.$class)) {
-						$pro = explode('_', $payment_mode);
-						if(!empty($pro)) {
-							$provider = ucwords($pro[0]);
-							$plug = 'WCMp_'.$provider.'_Gateway';
-							$class = str_replace('_', '_Gateway_', $class);
-							$plug = $plug.'_Masspay';							
-							$WCMp_masspay_provider = new $plug();							
-							$WCMp_masspay_provider->$method($payment_data, $transactions_data[$payment_mode]);
-						}                                    
-					} else {						
-						$WCMp->$class->$method($payment_data, $transactions_data[$payment_mode]);
-					}
+					if($payment_mode == 'direct_bank') {
+                                            if(!empty($payment_data)) {
+                                                // create a new transaction by vendor
+                                                $transaction_data = $transactions_data[$payment_mode];
+                                                if(!empty($transaction_data)) {
+                                                    $transaction_id = $WCMp->transaction->insert_new_transaction($transaction_data, 'wcmp_processing', 'direct_bank');
+                                                    $email_vendor = WC()->mailer()->emails['WC_Email_Vendor_Direct_Bank'];
+                                                    $email_vendor->trigger( $transaction_id, $payment_data['vendor_id'] );      
+                                                    $email_admin = WC()->mailer()->emails['WC_Email_Admin_Widthdrawal_Request'];
+                                                    $email_admin->trigger( $transaction_id, $payment_data['vendor_id'] );
+                                                }
+                                            }
+					} else {                                        
+                                            do_action('wcmp_payment_cron_'.$payment_mode, array('payment_data' => $payment_data, 'transaction_data' => $transactions_data[$payment_mode]));
+                                        }
 				}
 			}			
 		}		

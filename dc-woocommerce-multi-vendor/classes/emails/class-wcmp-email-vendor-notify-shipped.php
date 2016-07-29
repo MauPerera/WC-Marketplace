@@ -17,7 +17,9 @@ if ( ! class_exists( 'WC_Email_Notify_Shipped' ) ) :
  */
 class WC_Email_Notify_Shipped extends WC_Email {
 
-	var $vendor_id;
+	public $vendor_id;
+        public $tracking_url;
+        public $tracking_id;
 
 	/**
 	 * Constructor
@@ -47,7 +49,7 @@ class WC_Email_Notify_Shipped extends WC_Email {
 	 * @access public
 	 * @return void
 	 */
-	function trigger( $order_id, $customer_email, $vendor_id ) {
+	function trigger( $order_id, $customer_email, $vendor_id, $param=array() ) {
 
 		if ( $order_id && $customer_email && $vendor_id) {
 			$this->object 		= new WC_Order( $order_id );
@@ -58,6 +60,8 @@ class WC_Email_Notify_Shipped extends WC_Email {
 			$this->find[] = '{order_number}';
 			$this->replace[] = $this->object->get_order_number();
 			$this->vendor_id = $vendor_id;
+                        $this->tracking_url = $tracking_url;
+                        $this->tracking_id = $tracking_id;
 			
 			//$user = get_user_by( 'id', $user_id );
 			
@@ -82,7 +86,9 @@ class WC_Email_Notify_Shipped extends WC_Email {
 		wc_get_template( $this->template_html, array(
 			'email_heading'      => $this->get_heading(),
 			'vendor_id'         => $this->vendor_id,
-			'order'						 => $this->object,
+			'order'		 => $this->object,
+                        'tracking_url'		 => $this->tracking_url,
+                        'tracking_id'		 => $this->tracking_id,
 			'blogname'           => $this->get_blogname(),
 			'sent_to_admin' => false,
 			'plain_text'    => false
@@ -99,9 +105,11 @@ class WC_Email_Notify_Shipped extends WC_Email {
 	function get_content_plain() {
 		ob_start();
 		wc_get_template( $this->template_plain, array(
-			'email_heading'      => $this->get_heading(),
+			'email_heading'     => $this->get_heading(),
 			'vendor_id'         =>  $this->vendor_id,
-			'order' 						=> $this->object,
+			'order'             => $this->object,
+                        'tracking_url'		 => $this->tracking_url,
+                        'tracking_id'		 => $this->tracking_id,
 			'blogname'           => $this->get_blogname(),
 			'sent_to_admin' => false,
 			'plain_text'    => true
